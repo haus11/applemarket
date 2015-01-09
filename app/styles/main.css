@@ -1,1 +1,5 @@
-
+/*last element of table will be on the right side*/
+table tr td:last-child {
+  white-space: nowrap;
+  width: 1px;
+}
