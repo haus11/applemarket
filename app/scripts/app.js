@@ -12,7 +12,8 @@ angular
   .module('applemarketApp', [
     'ngAnimate',
     'ngResource',
-    'ngRoute'
+    'ngRoute',
+    'ui.bootstrap'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -23,6 +24,10 @@ angular
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
+      })
+      .when('/games', {
+        templateUrl: 'views/games.html',
+        controller: 'GamesCtrl'
       })
       .otherwise({
         redirectTo: '/'
