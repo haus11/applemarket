@@ -1,13 +1,117 @@
 <h2>Angebote</h2>
-<table class="table table-responsive table-hover">
-  <tr>
-    <th>Händlername</th>
-    <th>Preis</th>
-    <div class="text-right"><th>Verhandeln</th></div>
-  </tr>
-  <tr>
-    <td>test</td>
-    <td>test</td>
-    <td class="text-center"><button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-arrow-right"></span></button> </td>
-  </tr>
-</table>
+<div ng-controller="OffersCtrl">
+  <table class="table table-responsive table-hover">
+    <tr>
+      <th>Händlername</th>
+      <th>Preis</th>
+      <div class="text-right"><th>Verhandeln</th></div>
+    </tr>
+    <tr>
+      <td>test</td>
+      <td>test</td>
+      <td class="text-center"><button class="btn btn-default btn-sm" ng-click="trade()"><span class="glyphicon glyphicon-arrow-right"></span></button> </td>
+    </tr>
+  </table>
+
+  <script type="text/ng-template" id="tradeModal.html">
+    <div class="modal-header">
+      <h3 class="modal-title">Verhandeln <small>mit Peter</small></h3>
+    </div>
+    <div class="modal-body text-center">
+      <div class="row">
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-default" ng-click="increasePrice()">
+            <span class="glyphicon glyphicon-arrow-up"></span>
+          </button>
+          <button type="button" class="btn btn-default">
+            {{price}}
+          </button>
+          <button type="button" class="btn btn-default" ng-click="decreasePrice()">
+            <span class="glyphicon glyphicon-arrow-down"></span>
+          </button>
+        </div>
+      </div>
+      <div class="row top-buffer">
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-default">
+            Angebot <span class="label label-danger label-as-badge">{{offer}}</span>
+          </button>
+          <button type="button" class="btn btn-default">
+            Profit <span class="label label-success label-as-badge">{{profit}}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-default" ng-click="accepted()">Angenommen</button>
+      <button class="btn btn-default" ng-click="rejected()">Abgelehnt</button>
+      <button class="btn btn-warning" ng-click="cancel()">Abbrechen</button>
+    </div>
+  </script>
+
+  <script type="text/ng-template" id="tradeModalSucc.html">
+    <div class="modal-header">
+      <h3 class="modal-title">Verhandeln <small>mit Peter</small></h3>
+    </div>
+    <div class="modal-body text-center">
+      <div class="row">
+        <p>Angebot wurde angenommen.</p>
+      </div>
+      <div class="row top-buffer">
+        <span class="fa fa-thumbs-o-up fa-4x green"></span>
+      </div>
+      <div class="row top-buffer">
+        <button type="button" class="btn btn-default">
+          Profit <span class="label label-success label-as-badge">+22</span>
+        </button>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-info" ng-click="ok()">OK</button>
+    </div>
+  </script>
+
+  <script type="text/ng-template" id="tradeModalFail.html">
+    <div class="modal-header">
+      <h3 class="modal-title">Verhandeln <small>mit Peter</small></h3>
+    </div>
+    <div class="modal-body text-center">
+      <div class="row">
+        <p>Angebot wurde abgelehnt.</p>
+      </div>
+      <div class="row top-buffer">
+        <span class="fa fa-thumbs-o-down fa-4x red"></span>
+      </div>
+      <div class="row top-buffer">
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-default" ng-click="increasePrice()">
+            <span class="glyphicon glyphicon-arrow-up"></span>
+          </button>
+          <button type="button" class="btn btn-default">
+            {{price}}
+          </button>
+          <button type="button" class="btn btn-default" ng-click="decreasePrice()">
+            <span class="glyphicon glyphicon-arrow-down"></span>
+          </button>
+        </div>
+      </div>
+      <div class="row top-buffer">
+        <div class="btn-group" role="group">
+          <button type="button" class="btn btn-default">
+            Angebot <span class="label label-success label-as-badge">{{offer}}</span>
+          </button>
+          <button type="button" class="btn btn-default">
+            Profit <span class="label label-success label-as-badge">{{profit}}</span>
+          </button>
+        </div>
+      </div>
+      <div class="row top-buffer">
+        <button class="btn btn-default" ng-click="ok()">Annehmen</button>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-warning" ng-click="cancel()">Ablehnen</button>
+    </div>
+  </script>
+</div>
+
