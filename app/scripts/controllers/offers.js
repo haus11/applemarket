@@ -11,13 +11,12 @@ angular.module('applemarketApp')
   .controller('OffersCtrl', function ($scope, $modal) {
 
     $scope.trade = function(){
-
       var modalInstance = $modal.open({
         templateUrl: 'tradeModal.html',
         controller: 'ModalCtrl',
         size: 'sm'
       });
-    }
+    };
   });
 
 angular.module('applemarketApp')
@@ -25,19 +24,19 @@ angular.module('applemarketApp')
 
     $scope.price  = 18;
     $scope.offer  = -1;
-    $scope.profit = +22
+    $scope.profit = +22;
 
     $scope.increasePrice = function () {
       $scope.price  = $scope.price + 1;
       $scope.profit = $scope.profit - 1;
       $scope.offer  = $scope.offer + 1;
-    }
+    };
 
     $scope.decreasePrice = function () {
       $scope.price = $scope.price - 1;
       $scope.profit = $scope.profit + 1;
       $scope.offer  = $scope.offer - 1;
-    }
+    };
 
     $scope.ok = function () {
       $modalInstance.close();
@@ -54,7 +53,7 @@ angular.module('applemarketApp')
         controller: 'ModalCtrl',
         size: 'sm'
       });
-    }
+    };
 
     $scope.rejected = function () {
       $modalInstance.close();
@@ -63,5 +62,5 @@ angular.module('applemarketApp')
         controller: 'ModalCtrl',
         size: 'sm'
       });
-    }
+    };
   });
