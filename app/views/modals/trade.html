@@ -1,14 +1,10 @@
+
 <div class="modal-header">
   <h3 class="modal-title">Verhandeln <small>mit Peter</small></h3>
 </div>
 <div class="modal-body text-center">
   <div class="row">
-    <p>Angebot wurde abgelehnt.</p>
-  </div>
-  <div class="row top-buffer">
-    <span class="fa fa-thumbs-o-down fa-4x red"></span>
-  </div>
-  <div class="row top-buffer">
+    <p ng-show="tradeInitiated">Das Angebot wird bearbeitet...</p>
     <div class="btn-group" role="group">
       <button type="button" class="btn btn-default" ng-click="increasePrice()">
         <span class="fa fa-angle-up"></span>
@@ -24,7 +20,7 @@
   <div class="row top-buffer">
     <div class="btn-group" role="group">
       <button type="button" class="btn btn-default">
-        Angebot <span class="label label-success label-as-badge">{{offer}}</span>
+        Angebot <span class="label label-danger label-as-badge">{{offer}}</span>
       </button>
       <button type="button" class="btn btn-default">
         Profit <span class="label label-success label-as-badge">{{profit}}</span>
@@ -32,9 +28,13 @@
     </div>
   </div>
   <div class="row top-buffer">
-    <button class="btn btn-default" ng-click="ok()">Annehmen</button>
+    <button type="button" class="btn btn-default" ng-click="sendOffer()">
+      Angebot abgeben
+    </button>
   </div>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-warning" ng-click="cancel()">Ablehnen</button>
+  <button class="btn btn-default" ng-click="accepted()">Angenommen</button>
+  <button class="btn btn-default" ng-click="rejected()">Abgelehnt</button>
+  <button class="btn btn-warning" ng-click="cancel()">Abbrechen</button>
 </div>

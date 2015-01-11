@@ -31,15 +31,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">VWL-Spiele</a>
+          <a class="navbar-brand" ng-href="#">VWL-Spiele</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav" ng-init="selectedTab='offers'">
-            <li ng-class="{'active':selectedTab === 'offers'}" ng-click="selectedTab = 'offers'"><a href="#/offers">Übersicht</a></li>
-            <li ng-class="{'active':selectedTab === 'profile'}" ng-click="selectedTab = 'profile'"><a href="#/profile">Profil</a></li>
-            <li ng-class="{'active':selectedTab === 'statistics'}" ng-click="selectedTab = 'statistics'"><a href="#/statistics">Statistiken</a></li>
+            <li ng-class="{'active':selectedTab === 'offers'}" ng-click="selectedTab = 'offers'"><a ng-href="#/offers">Übersicht</a></li>
+            <li ng-class="{'active':selectedTab === 'profile'}" ng-click="selectedTab = 'profile'"><a ng-href="#/profile">Profil</a></li>
+            <li ng-class="{'active':selectedTab === 'statistics'}" ng-click="selectedTab = 'statistics'"><a ng-href="#/statistics">Statistiken</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="#" class="disabled"><b>Spielname</b><small> Spieltyp</small></a></li>
@@ -93,6 +93,7 @@
     <script src="scripts/controllers/profile.js"></script>
     <script src="scripts/controllers/offers.js"></script>
     <script src="scripts/controllers/statistics.js"></script>
+    <script src="scripts/controllers/modal.js"></script>
     <!-- endbuild -->
 </body>
 </html>
