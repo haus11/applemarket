@@ -1,19 +1,16 @@
-<h2>Profile</h2>
+<h2>Profile <small>Type: {{ user.type }}</small></h2>
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-6">
     <div class="form-group form-group-sm">
       <label for="name">Name: </label>
       <input type="text" class="form-control input-sm" id="name">
     </div>
   </div>
-  <div class="col-md-4">
+  <div class="col-md-6">
     <div class="form-group form-group-sm">
       <label for="matrikel">Student-ID: </label>
       <input type="text" class="form-control input-sm" id="matrikel">
     </div>
-  </div>
-  <div class="cold-mod-4 text-center">
-    <h4>Type: {{ user.type }}</h4>
   </div>
 </div>
 <h3>Description</h3>
@@ -21,18 +18,18 @@
 <table class="table table-responsive table-striped">
   <tr>
     <th></th>
-    <th>Runde1</th>
-    <th>Runde2</th>
-    <th>Runde3</th>
+    <th>Round 1</th>
+    <th>Round 2</th>
+    <th>Round 3</th>
   </tr>
   <tr>
-    <td>Kaufkraft</td>
+    <td>Buyer Value</td>
     <td>40</td>
     <td>40</td>
     <td>40</td>
   </tr>
   <tr>
-    <td>Kaufpreis</td>
+    <td>Price Paid</td>
   </tr>
   <tr>
     <td>Profit</td>

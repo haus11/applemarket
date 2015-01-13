@@ -60,6 +60,10 @@ module.exports = function (grunt) {
           '.tmp/styles/{,*/}*.css',
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
+      },
+      less: {
+        files: ['app/styles/main.less'],
+        tasks: ['less']
       }
     },
 
@@ -346,7 +350,19 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
+    },
+
+    less: {
+      development: {
+        options: {
+          paths: ["assets/css"]
+        },
+        files: {
+          "app/styles/main.css": "app/styles/main.less"
+        }
+      }
     }
+
   });
 
 
