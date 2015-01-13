@@ -22,24 +22,28 @@
     <![endif]-->
 
     <div class="text-center">
-      <div class="navbar navbar-default navbar-fixed-bottom" ng-controller="NavigationCtrl">
+      <nav class="navbar navbar-default navbar-fixed-bottom" ng-controller="NavigationCtrl">
+        <div class="container">
           <ul class="nav navbar-nav" ng-init="selectedTab='offers'">
-            <li ng-class="{'active':selectedTab === 'offers'}" ng-click="selectedTab = 'offers'"><a ng-href="#/offers">Übersicht</a></li>
-            <li ng-class="{'active':selectedTab === 'profile'}" ng-click="selectedTab = 'profile'"><a ng-href="#/profile">Profil</a></li>
-            <li ng-class="{'active':selectedTab === 'statistics'}" ng-click="selectedTab = 'statistics'"><a ng-href="#/statistics">Statistiken</a></li>
+            <li ng-class="{'active':selectedTab === 'offers'}" ng-click="selectedTab = 'offers'"><a ng-href="#/offers">Offers</a></li>
+            <li ng-class="{'active':selectedTab === 'profile'}" ng-click="selectedTab = 'profile'"><a ng-href="#/profile">Profile</a></li>
+            <li ng-class="{'active':selectedTab === 'statistics'}" ng-click="selectedTab = 'statistics'"><a ng-href="#/statistics">Statistics</a></li>
           </ul>
-      </div>
-      <div class="navbar navbar-default navbar-fixed-top">
-        <ul class="nav navbar-nav">
-          <div class="navbar-header">
-            <a class="navbar-brand" ng-href="#">VWL-Games</a>
-          </div>
-          <p class="navbar-text"><b>Spielname</b><small> Spieltyp</small></p>
-          <p class="navbar-text">Session</p>
-          <p class="navbar-text">Runde</p>
-          <p class="navbar-text">Zeit</p>
-        </ul>
-      </div>
+        </div>
+      </nav>
+      <nav class="navbar navbar-default">
+        <div class="container">
+          <ul class="nav navbar-nav">
+            <div class="navbar-header">
+              <a class="navbar-brand" ng-href="#">VWL-Games</a>
+            </div>
+            <p class="navbar-text"><b>GameName</b><small> GameType</small></p>
+            <p class="navbar-text">Session</p>
+            <p class="navbar-text">Round</p>
+            <p class="navbar-text">Time</p>
+          </ul>
+        </div>
+      </nav>
     </div>
     <div class="container">
     <!-- Add your site or application content here -->

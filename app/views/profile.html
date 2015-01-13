@@ -1,21 +1,20 @@
 <h2>Profile</h2>
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-4">
     <div class="form-group form-group-sm">
-      <label for="name">Name: {{ user.type }}</label>
+      <label for="name">Name: </label>
       <input type="text" class="form-control input-sm" id="name">
     </div>
   </div>
-  <div class="cold-mod-6"></div>
-</div>
-<div class="row">
-  <div class="col-md-6">
+  <div class="col-md-4">
     <div class="form-group form-group-sm">
-      <label for="matrikel">Student-ID:</label>
+      <label for="matrikel">Student-ID: </label>
       <input type="text" class="form-control input-sm" id="matrikel">
     </div>
   </div>
-  <div class="col-mod-6"></div>
+  <div class="cold-mod-4 text-center">
+    <h4>Type: {{ user.type }}</h4>
+  </div>
 </div>
 <h3>Description</h3>
 <p ng-bind-html="user.session.one.description"></p>
@@ -41,7 +40,7 @@
 </table>
 <div class="col-md-12">
   <div class="text-right">
-    <button class="btn btn-success">Speichern</button>
+    <button class="btn btn-success">Save</button>
   </div>
 </div>
 
