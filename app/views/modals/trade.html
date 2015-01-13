@@ -1,10 +1,10 @@
 
 <div class="modal-header">
-  <h3 class="modal-title">Verhandeln <small>mit Peter</small></h3>
+  <h3 class="modal-title"><translate>TRADE_TITLE</translate> <small><translate>WORD_WITH</translate> {{ negotiationPartner }}</small></h3>
 </div>
 <div class="modal-body text-center">
   <div class="row">
-    <p ng-show="tradeInitiated">Das Angebot wird bearbeitet...</p>
+    <p ng-show="tradeInitiated" translate>TRADE_INITIATED</p>
     <div class="btn-group" role="group">
       <button type="button" class="btn btn-default" ng-click="increasePrice()">
         <span class="fa fa-angle-up"></span>
@@ -20,21 +20,19 @@
   <div class="row top-buffer">
     <div class="btn-group" role="group">
       <button type="button" class="btn btn-default">
-        Angebot <span class="label label-danger label-as-badge">{{offer}}</span>
+        <translate>TRADE_OFFER</translate> <span class="label label-danger label-as-badge">{{offer}}</span>
       </button>
       <button type="button" class="btn btn-default">
-        Profit <span class="label label-success label-as-badge">{{profit}}</span>
+        <translate>TRADE_PROFIT</translate> <span class="label label-success label-as-badge">{{profit}}</span>
       </button>
     </div>
   </div>
   <div class="row top-buffer">
-    <button type="button" class="btn btn-default" ng-click="sendOffer()">
-      Angebot abgeben
-    </button>
+    <button type="button" class="btn btn-default" ng-click="sendOffer()" translate>TRADE_SEND_OFFER</button>
   </div>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-default" ng-click="accepted()">Angenommen</button>
-  <button class="btn btn-default" ng-click="rejected()">Abgelehnt</button>
-  <button class="btn btn-warning" ng-click="cancel()">Abbrechen</button>
+  <button class="btn btn-default" ng-click="accepted()" translate>TRADE_ACCEPTED</button>
+  <button class="btn btn-default" ng-click="rejected()" translate>TRADE_DECLINED</button>
+  <button class="btn btn-warning" ng-click="cancel()" translate>SYSTEM_CANCEL</button>
 </div>

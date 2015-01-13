@@ -1,9 +1,11 @@
 <div class="modal-header">
-  <h3 class="modal-title">Verhandeln <small>mit Peter</small></h3>
+  <h3 class="modal-title">
+    <translate>TRADE_TITLE</translate> <small><translate>WORD_WITH</translate> {{ negotiationPartner }}</small>
+  </h3>
 </div>
 <div class="modal-body text-center">
   <div class="row">
-    <p>Angebot wurde abgelehnt.</p>
+    <p translate>TRADE_OFFER_DECLINED</p>
   </div>
   <div class="row top-buffer">
     <span class="fa fa-thumbs-o-down fa-4x red"></span>
@@ -24,17 +26,17 @@
   <div class="row top-buffer">
     <div class="btn-group" role="group">
       <button type="button" class="btn btn-default">
-        Angebot <span class="label label-success label-as-badge">{{offer}}</span>
+        <translate>TRADE_OFFER</translate> <span class="label label-success label-as-badge">{{offer}}</span>
       </button>
       <button type="button" class="btn btn-default">
-        Profit <span class="label label-success label-as-badge">{{profit}}</span>
+        <translate>TRADE_PROFIT</translate> <span class="label label-success label-as-badge">{{profit}}</span>
       </button>
     </div>
   </div>
   <div class="row top-buffer">
-    <button class="btn btn-default" ng-click="ok()">Annehmen</button>
+    <button class="btn btn-default" ng-click="ok()" translate>SYSTEM_ACCEPT</button>
   </div>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-warning" ng-click="cancel()">Ablehnen</button>
+  <button class="btn btn-warning" ng-click="cancel()" translate>SYSTEM_DECLINE</button>
 </div>
