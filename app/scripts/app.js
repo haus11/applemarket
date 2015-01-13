@@ -14,7 +14,7 @@ angular
     'ngResource',
     'ngRoute',
     'ui.bootstrap',
-    'ngSanitize'
+    'ngSanitize',
   ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
@@ -41,6 +41,10 @@ angular
       .when('/statistics', {
         templateUrl: 'views/statistics.html',
         controller: 'StatisticsCtrl'
+      })
+      .when('/simpleChart', {
+        templateUrl: 'views/simplechart.html',
+        controller: 'SimplechartCtrl'
       })
       .otherwise({
         redirectTo: '/'
