@@ -5,7 +5,7 @@ table tr td:last-child {
 }
 
 /*disable the links and buttons*/
-a, button .disabled {
+a.disabled {
   pointer-events: none;
 }
 
