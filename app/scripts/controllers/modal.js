@@ -43,7 +43,7 @@ angular.module('applemarketApp')
     $scope.accepted = function () {
       $modalInstance.close();
       $modalInstance = $modal.open({
-        templateUrl: '../views/modals/trade_succ.html',
+        templateUrl: '../views/trade2/trade_succ.html',
         controller: 'ModalCtrl',
         size: 'sm'
       });
@@ -52,7 +52,7 @@ angular.module('applemarketApp')
     $scope.rejected = function () {
       $modalInstance.close();
       $modalInstance = $modal.open({
-        templateUrl: '../views/modals/trade_fail.html',
+        templateUrl: '../views/trade2/trade_fail.html',
         controller: 'ModalCtrl',
         size: 'sm'
       });
