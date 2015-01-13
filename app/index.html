@@ -25,21 +25,20 @@
       <nav class="navbar navbar-default navbar-fixed-bottom" ng-controller="NavigationCtrl">
         <div class="container">
           <ul class="nav navbar-nav" ng-init="selectedTab='offers'">
-            <li><a ng-href="#"><span class="fa fa-home"></span></a></li>
-            <label for="offers"><span class="fa fa-list-alt"></span></label>
+            <li><a ng-href="#"><span class="fa fa-home"> Games</span></a></li>
             <li ng-class="{'active':selectedTab === 'offers'}" ng-click="selectedTab = 'offers'" id="offers"><a ng-href="#/offers"><span class="fa fa-list-alt"></span> Offers</a></li>
-            <li ng-class="{'active':selectedTab === 'profile'}" ng-click="selectedTab = 'profile'"><a ng-href="#/profile">Profile</a></li>
-            <li ng-class="{'active':selectedTab === 'statistics'}" ng-click="selectedTab = 'statistics'"><a ng-href="#/statistics">Statistics</a></li>
+            <li ng-class="{'active':selectedTab === 'profile'}" ng-click="selectedTab = 'profile'"><a ng-href="#/profile"><span class="fa fa-user"></span> Profile</a></li>
+            <li ng-class="{'active':selectedTab === 'statistics'}" ng-click="selectedTab = 'statistics'"><a ng-href="#/statistics"><span class="fa fa-line-chart"></span> Statistics</a></li>
           </ul>
         </div>
       </nav>
       <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
           <ul class="nav navbar-nav">
-            <p class="navbar-text"><b>GameName</b><small> GameType</small></p>
-            <p class="navbar-text">Session</p>
-            <p class="navbar-text">Round</p>
-            <p class="navbar-text">Time</p>
+            <p class="navbar-text"><span class="fa fa-apple"></span> Gamename </p>
+            <p class="navbar-text"><span class="fa fa-refresh"></span> Session</p>
+            <p class="navbar-text"><span class="fa fa-repeat"></span> Round</p>
+            <p class="navbar-text"><span class="fa fa-clock-o"></span> Time</p>
           </ul>
         </div>
       </nav>
