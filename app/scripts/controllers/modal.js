@@ -10,6 +10,8 @@
 angular.module('applemarketApp')
   .controller('ModalCtrl', function ($scope, $modal, $modalInstance) {
 
+    $scope.negotiationPartner = 'Peter';
+
     $scope.tradeInitiated = false;
 
     $scope.price  = 18;
