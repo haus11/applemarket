@@ -15,6 +15,7 @@ angular
     'ngRoute',
     'ui.bootstrap',
     'ngSanitize',
+    'pascalprecht.translate'
   ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
@@ -45,6 +46,10 @@ angular
       .when('/simpleChart', {
         templateUrl: 'views/simplechart.html',
         controller: 'SimplechartCtrl'
+      })
+      .when('/trade', {
+        templateUrl: 'views/trade.html',
+        controller: 'TradeCtrl'
       })
       .otherwise({
         redirectTo: '/'

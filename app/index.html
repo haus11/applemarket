@@ -25,22 +25,20 @@
       <nav class="navbar navbar-default navbar-fixed-bottom" ng-controller="NavigationCtrl">
         <div class="container">
           <ul class="nav navbar-nav" ng-init="selectedTab='offers'">
-            <li ng-class="{'active':selectedTab === 'offers'}" ng-click="selectedTab = 'offers'"><a ng-href="#/offers">Offers</a></li>
-            <li ng-class="{'active':selectedTab === 'profile'}" ng-click="selectedTab = 'profile'"><a ng-href="#/profile">Profile</a></li>
-            <li ng-class="{'active':selectedTab === 'statistics'}" ng-click="selectedTab = 'statistics'"><a ng-href="#/statistics">Statistics</a></li>
+            <li><a ng-href="#"><span class="fa fa-home"> Games</span></a></li>
+            <li ng-class="{'active':selectedTab === 'offers'}" ng-click="selectedTab = 'offers'" id="offers"><a ng-href="#/offers"><span class="fa fa-list-alt"></span> Offers</a></li>
+            <li ng-class="{'active':selectedTab === 'profile'}" ng-click="selectedTab = 'profile'"><a ng-href="#/profile"><span class="fa fa-user"></span> Profile</a></li>
+            <li ng-class="{'active':selectedTab === 'statistics'}" ng-click="selectedTab = 'statistics'"><a ng-href="#/statistics"><span class="fa fa-line-chart"></span> Statistics</a></li>
           </ul>
         </div>
       </nav>
-      <nav class="navbar navbar-default">
+      <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
           <ul class="nav navbar-nav">
-            <div class="navbar-header">
-              <a class="navbar-brand" ng-href="#">VWL-Games</a>
-            </div>
-            <p class="navbar-text"><b>GameName</b><small> GameType</small></p>
-            <p class="navbar-text">Session</p>
-            <p class="navbar-text">Round</p>
-            <p class="navbar-text">Time</p>
+            <p class="navbar-text"><span class="fa fa-apple"></span> Gamename </p>
+            <p class="navbar-text"><span class="fa fa-refresh"></span> Session</p>
+            <p class="navbar-text"><span class="fa fa-repeat"></span> Round</p>
+            <p class="navbar-text"><span class="fa fa-clock-o"></span> Time</p>
           </ul>
         </div>
       </nav>
@@ -79,11 +77,15 @@
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/d3/d3.js"></script>
+    <script src="bower_components/angular-translate/angular-translate.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
+    <script src="scripts/localization/i18n.js"></script>
+    <script src="scripts/localization/de.js"></script>
+    <script src="scripts/localization/en.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/about.js"></script>
     <script src="scripts/controllers/games.js"></script>
@@ -91,10 +93,10 @@
     <script src="scripts/controllers/offers.js"></script>
     <script src="scripts/controllers/statistics.js"></script>
     <script src="scripts/controllers/modal.js"></script>
-    <script src="scripts/services/configdata.js"></script>
-    <script src="scripts/services/simplechart.js"></script>
     <script src="scripts/controllers/simplechart.js"></script>
     <script src="scripts/controllers/navigation.js"></script>
+    <script src="scripts/services/configdata.js"></script>
+    <script src="scripts/services/simplechart.js"></script>
     <!-- endbuild -->
 </body>
 </html>
