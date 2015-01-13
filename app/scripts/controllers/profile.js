@@ -8,6 +8,6 @@
  * Controller of the applemarketApp
  */
 angular.module('applemarketApp')
-  .controller('ProfileCtrl', function ($scope) {
-
+  .controller('ProfileCtrl', function ($scope, configData) {
+    $scope.user = configData.getPlayerRule('B');
   });

@@ -1,21 +1,24 @@
-<h2>Profil</h2>
+<h2>Profile</h2>
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-6">
     <div class="form-group form-group-sm">
-      <label for="name">Name:</label>
+      <label for="name">Name: {{ user.type }}</label>
       <input type="text" class="form-control input-sm" id="name">
     </div>
   </div>
-  <div class="col-md-4"></div>
-  <div class="col-md-4">
+  <div class="cold-mod-6"></div>
+</div>
+<div class="row">
+  <div class="col-md-6">
     <div class="form-group form-group-sm">
-      <label for="matrikel">Matrikelnummer:</label>
+      <label for="matrikel">Student-ID:</label>
       <input type="text" class="form-control input-sm" id="matrikel">
     </div>
   </div>
+  <div class="col-mod-6"></div>
 </div>
-<h3>Regeln</h3>
-<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+<h3>Description</h3>
+<p ng-bind-html="user.session.one.description"></p>
 <table class="table table-responsive table-striped">
   <tr>
     <th></th>
