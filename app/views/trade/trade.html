@@ -1,0 +1,40 @@
+<div ng-controller="TradeCtrl">
+  <div class="container text-center">
+    <h3>
+      <translate>TRADE_TITLE</translate> <small><translate>WORD_WITH</translate> {{ negotiationPartner }}</small>
+    </h3>
+    <div class="row">
+      <p ng-show="tradeInitiated" translate>TRADE_INITIATED</p>
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-default" ng-click="increasePrice()">
+          <span class="fa fa-angle-up"></span>
+        </button>
+        <button type="button" class="btn btn-default">
+          {{price}}
+        </button>
+        <button type="button" class="btn btn-default" ng-click="decreasePrice()">
+          <span class="fa fa-angle-down"></span>
+        </button>
+      </div>
+    </div>
+    <div class="row top-buffer">
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-default">
+          <translate>TRADE_OFFER</translate> <span class="label label-danger label-as-badge">{{offer}}</span>
+        </button>
+        <button type="button" class="btn btn-default">
+          <translate>TRADE_PROFIT</translate> <span class="label label-success label-as-badge">{{profit}}</span>
+        </button>
+      </div>
+    </div>
+    <div class="row top-buffer">
+      <button type="button" class="btn btn-default" ng-click="sendOffer()" translate>TRADE_SEND_OFFER</button>
+    </div>
+    <div class="row top-buffer">
+      <a ng-href="#/trade/success" href="#/trade/success"><button class="btn btn-default" translate>TRADE_ACCEPTED</button></a>
+      <a ng-href="#/trade/fail" href="#/trade/fail"><button class="btn btn-default" translate>TRADE_DECLINED</button></a>
+      <a ng-href="#/offers" href="#/offers"><button class="btn btn-warning" translate>SYSTEM_CANCEL</button></a>
+    </div>
+  </div>
+</div>
+

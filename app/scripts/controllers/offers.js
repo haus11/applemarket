@@ -12,7 +12,7 @@ angular.module('applemarketApp')
 
     $scope.trade = function(){
       var modalInstance = $modal.open({
-        templateUrl: '../views/trade2/trade2.html',
+        templateUrl: '../views/trade/trade.html',
         controller: 'ModalCtrl',
         size: 'sm'
       });

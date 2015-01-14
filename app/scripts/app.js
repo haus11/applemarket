@@ -48,7 +48,15 @@ angular
         controller: 'SimplechartCtrl'
       })
       .when('/trade', {
-        templateUrl: 'views/trade.html',
+        templateUrl: 'views/trade/trade.html',
+        controller: 'TradeCtrl'
+      })
+      .when('/trade/success', {
+        templateUrl: 'views/trade/trade_succ.html',
+        controller: 'TradeCtrl'
+      })
+      .when('/trade/fail', {
+        templateUrl: 'views/trade/trade_fail.html',
         controller: 'TradeCtrl'
       })
       .otherwise({

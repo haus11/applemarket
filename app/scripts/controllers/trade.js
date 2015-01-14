@@ -8,7 +8,7 @@
  * Controller of the applemarketApp
  */
 angular.module('applemarketApp')
-  .controller('ModalCtrl', function ($scope, $modal, $modalInstance) {
+  .controller('TradeCtrl', function ($scope) {
 
     $scope.negotiationPartner = 'Peter';
 
@@ -43,20 +43,10 @@ angular.module('applemarketApp')
     };
 
     $scope.accepted = function () {
-      $modalInstance.close();
-      $modalInstance = $modal.open({
-        templateUrl: '../views/trade/trade_succ.html',
-        controller: 'ModalCtrl',
-        size: 'sm'
-      });
+
     };
 
     $scope.rejected = function () {
-      $modalInstance.close();
-      $modalInstance = $modal.open({
-        templateUrl: '../views/trade/trade_fail.html',
-        controller: 'ModalCtrl',
-        size: 'sm'
-      });
+
     };
   });

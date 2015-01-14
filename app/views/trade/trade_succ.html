@@ -1,0 +1,22 @@
+<div ng-controller="TradeCtrl">
+  <div class="container text-center">
+    <h3>
+      <translate>TRADE_TITLE</translate> <small><translate>WORD_WITH</translate> {{ negotiationPartner }}</small>
+    </h3>
+    <div class="row">
+      <p translate>TRADE_OFFER_ACCEPTED</p>
+    </div>
+    <div class="row top-buffer">
+      <span class="fa fa-thumbs-o-up fa-4x green"></span>
+    </div>
+    <div class="row top-buffer">
+      <button type="button" class="btn btn-default">
+        <translate>TRADE_PROFIT</translate> <span class="label label-success label-as-badge">+22</span>
+      </button>
+    </div>
+    <div class="row top-buffer">
+      <a ng-href="#/profile" href="#/profile"><button class="btn btn-info" translate>SYSTEM_OK</button></a>
+    </div>
+  </div>
+</div>
+
