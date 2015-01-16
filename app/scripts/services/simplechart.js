@@ -112,6 +112,11 @@ angular.module('applemarketApp')
                      .domain([0, d3.max(appleData, function(d) { return d[1]; })])
                      .range([2, 5]);
 
+      var xAxis = d3.svg.axis(xScale)
+                        .scale(xScale)
+                        .orient('bottom');
+
+
       var svg = d3.select('#chartDiv')
                   .append('svg')
                   .attr('width', w)
@@ -135,6 +140,10 @@ angular.module('applemarketApp')
         .attr('font-family', 'sans-serif')
         .attr('font-size', '11px')
         .attr('fill', 'red');
+
+      svg.append('g')
+        .attr('class', 'axis')
+        .call(xAxis);
     }
 
     return {
