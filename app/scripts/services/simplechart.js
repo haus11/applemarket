@@ -4,7 +4,7 @@
  * @ngdoc service
  * @name applemarketApp.simpleChart
  * @description
- * # simpleChart
+ * # Tests with the chart possibilities in d3.js
  * Service in the applemarketApp.
  */
 angular.module('applemarketApp')
@@ -16,8 +16,9 @@ angular.module('applemarketApp')
     }
 
     var w = 500;
-    var h = 150;
+    var h = 300;
     var barPadding = 1;
+    var padding = 20;
 
     function calcDivGraph() {
       var divs = d3.select('#chartDiv').selectAll('#chartDiv');
@@ -97,6 +98,45 @@ angular.module('applemarketApp')
         });
     }
 
+    function calcApplePlot() {
+      var appleData = [[5, 20], [480, 90], [250, 50], [100, 33], [330, 95], [410, 12], [475, 44], [25, 67], [85, 21], [220, 88], [600, 150]];
+      var xScale = d3.scale.linear()
+                           .domain([0, d3.max(appleData, function(d) { return d[0]; })])
+                           .range ([padding, w - padding * 2]);
+
+      var yScale = d3.scale.linear()
+                           .domain([0, d3.max(appleData, function(d) { return d[1]; })])
+                           .range ([h - padding, padding]);
+
+      var rScale = d3.scale.linear()
+                     .domain([0, d3.max(appleData, function(d) { return d[1]; })])
+                     .range([2, 5]);
+
+      var svg = d3.select('#chartDiv')
+                  .append('svg')
+                  .attr('width', w)
+                  .attr('height', h);
+
+      svg.selectAll('circle')
+        .data(appleData)
+        .enter()
+        .append('circle')
+        .attr('cx', function(d) { return xScale(d[0]); })
+        .attr('cy', function(d) { return yScale(d[1]); })
+        .attr('r',  function(d) { return rScale(d[1]); });
+
+      svg.selectAll('text')
+        .data(appleData)
+        .enter()
+        .append('text')
+        .text(function(d) { return d[0] + ',' + d[1]; })
+        .attr('x', function(d) { return xScale(d[0]); })
+        .attr('y', function(d) { return yScale(d[1]); })
+        .attr('font-family', 'sans-serif')
+        .attr('font-size', '11px')
+        .attr('fill', 'red');
+    }
+
     return {
       getSimpleDataDiv : function () {
        calcDivGraph();
@@ -106,6 +146,9 @@ angular.module('applemarketApp')
       },
       getBarChart : function () {
         calcBarChart();
+      },
+      getApplePlot : function () {
+        calcApplePlot();
       }
     };
   });
