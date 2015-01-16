@@ -16,7 +16,7 @@ angular.module('applemarketApp')
       'student_id'  : playerData.getStudentId(),
       'showInput'   : playerData.getPlayerName() == undefined
     };
-    
+
     $scope.user = configData.getPlayerRule('B');
 
 

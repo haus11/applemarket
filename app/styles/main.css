@@ -34,10 +34,6 @@ body {
 * table settings
 ***********************/
 /*last element of table will be on the right side*/
-table tr td:last-child {
-  white-space: nowrap;
-  width: 1px;
-}
 /***********************
 * spaces
 ***********************/
@@ -114,18 +110,27 @@ table tr td:last-child {
 /***********************
 * media
 ***********************/
-@media all and (max-width: 320px) {
+@media all and (max-width: 370px) {
   .nav-fixed {
     font-size: 6px;
   }
+  .nav-small {
+    font-size: 3px;
+  }
 }
-@media all and (min-width: 321px) and (max-width: 420px) {
+@media all and (min-width: 371px) and (max-width: 520px) {
   .nav-fixed {
     font-size: 10px;
   }
+  .nav-small {
+    font-size: 7px;
+  }
 }
-@media all and (min-width: 421px) {
+@media all and (min-width: 521px) {
   .nav-fixed {
     font-size: 15px;
+  }
+  .nav-small {
+    font-size: 12px;
   }
 }

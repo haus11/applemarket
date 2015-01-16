@@ -5,14 +5,25 @@
       <label for="name">Name: </label>
       <input type="text" class="form-control input-sm" id="name" ng-model="inputData.name">
     </div>
-    <h3 ng-show="!inputData.showInput">Name: <small>{{inputData.name}}</small></h3>
+    <div ng-show="!inputData.showInput">
+      <label>Name: </label>
+      <p>Name:{{inputData.name}}</p>
+    </div>
   </div>
   <div class="col-md-6">
     <div class="form-group form-group-sm" ng-show="inputData.showInput">
       <label for="matrikel">Student-ID: </label>
       <input type="text" class="form-control input-sm" id="matrikel" ng-model="inputData.student_id">
     </div>
-    <h3 ng-show="!inputData.showInput && inputData.student_id != undefined">Student-ID: <small>{{inputData.student_id}}</small></h3>
+    <div ng-show="!inputData.showInput && inputData.student_id != undefined">
+      <label>Student-ID: </label>
+      <p>{{inputData.student_id}}</p>
+    </div>
+  </div>
+</div>
+<div class="col-md-12">
+  <div class="text-right">
+    <button class="btn btn-success" ng-click="saveData()">Save</button>
   </div>
 </div>
 <h3>Description</h3>
@@ -37,8 +48,3 @@
     <td>Profit</td>
   </tr>
 </table>
-<div class="col-md-12">
-  <div class="text-right">
-    <button class="btn btn-success" ng-click="saveData()">Save</button>
-  </div>
-</div>

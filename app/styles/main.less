@@ -20,8 +20,8 @@ table {
     td {
       &:last-child
       {
-        white-space: nowrap;
-        width:       1px;
+        //white-space: nowrap;
+        //width:       1px;
       }
     }
   }
@@ -125,15 +125,24 @@ table {
     .nav-fixed {
       font-size: @font-nav-xs;
     }
+    .nav-small {
+      font-size: @font-nav-xs-sm;
+    }
   }
   @media (min-width: @media-sm-min) and (max-width: @media-sm-max) {
     .nav-fixed {
       font-size: @font-nav-sm;
     }
+    .nav-small {
+      font-size: @font-nav-sm-sm;
+    }
   }
   @media (min-width: @media-lg-min) {
     .nav-fixed {
       font-size: @font-nav-lg;
+    }
+    .nav-small {
+      font-size: @font-nav-lg-sm;
     }
   }
 }

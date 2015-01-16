@@ -21,17 +21,17 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div class="nav-fixed nav-top" ng-controller="NavigationCtrl">
+    <div class="nav-fixed nav-top" ng-controller="IndexCtrl">
       <div class="nav-wrapper">
         <ul>
-          <li><a><span class="fa fa-apple"></span> Gamename </a></li>
-          <li><a><span class="fa fa-refresh"></span> Session </a></li>
-          <li><a><span class="fa fa-repeat"></span> Round </a></li>
-          <li><a><span class="fa fa-clock-o"></span> Time </a></li>
+          <li><a><span class="fa fa-apple"></span> Gamename <small class="nav-small">{{gameInfoData.gameName}}</small></a></li>
+          <li><a><span class="fa fa-refresh"></span> Session <small class="nav-small">{{gameInfoData.sessionNumber}}</small></a></li>
+          <li><a><span class="fa fa-repeat"></span> Round <small class="nav-small">{{gameInfoData.roundNumber}}</small></a></li>
+          <li><a><span class="fa fa-clock-o"></span> Time <small class="nav-small">{{gameInfoData.timeLeft}}s</small></a></li>
         </ul>
       </div>
     </div>
-    <div class="nav-fixed nav-bottom" ng-controller="NavigationCtrl">
+    <div class="nav-fixed nav-bottom" ng-controller="IndexCtrl">
       <div class="nav-wrapper">
         <ul>
           <li><a ng-href="#" class="nav-hover"><span class="fa fa-home"> Games</span></a></li>
@@ -94,15 +94,18 @@
     <script src="scripts/controllers/profile.js"></script>
     <script src="scripts/controllers/offers.js"></script>
     <script src="scripts/controllers/statistics.js"></script>
-    <!--<script src="scripts/controllers/modal.js"></script>-->
-    <script src="scripts/controllers/trade.js"></script>
-    <script src="scripts/controllers/simplechart.js"></script>
-    <script src="scripts/controllers/navigation.js"></script>
+    <!--services-->
+    <script src="scripts/services/gamedata.js"></script>
     <script src="scripts/services/configdata.js"></script>
     <script src="scripts/services/simplechart.js"></script>
     <script src="scripts/services/playerdata.js"></script>
     <script src="scripts/services/rolegenerator.js"></script>
     <script src="scripts/services/appcache.js"></script>
+    <!--controller-->
+    <script src="scripts/controllers/index.js"></script>
+    <script src="scripts/controllers/trade.js"></script>
+    <script src="scripts/controllers/simplechart.js"></script>
+    <script src="scripts/controllers/navigation.js"></script>
     <!-- endbuild -->
 </body>
 </html>
