@@ -8,7 +8,9 @@
  * Controller of the applemarketApp
  */
 angular.module('applemarketApp')
-  .controller('ProfileCtrl', function ($scope, configData, playerData) {
+  .controller('ProfileCtrl', function ($scope, configData, playerData, roleGenerator) {
+
+    console.log(roleGenerator.generateTypeDistribution(29));
 
     $scope.inputData =
     {
@@ -16,7 +18,7 @@ angular.module('applemarketApp')
       'student_id'  : playerData.getStudentId(),
       'showInput'   : playerData.getPlayerName() == undefined
     };
-    
+
     $scope.user = configData.getPlayerRule('B');
 
 
