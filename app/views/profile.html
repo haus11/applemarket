@@ -12,7 +12,7 @@
       <label for="matrikel">Student-ID: </label>
       <input type="text" class="form-control input-sm" id="matrikel" ng-model="inputData.student_id">
     </div>
-    <h3 ng-show="!inputData.showInput && inputData.student_id != null">Student-ID: <small>{{inputData.student_id}}</small></h3>
+    <h3 ng-show="!inputData.showInput && inputData.student_id != undefined">Student-ID: <small>{{inputData.student_id}}</small></h3>
   </div>
 </div>
 <h3>Description</h3>

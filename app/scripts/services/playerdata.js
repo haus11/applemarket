@@ -8,16 +8,16 @@
  * Service in the applemarketApp.
  */
 angular.module('applemarketApp')
-  .service('playerData', function ($cacheFactory) {
+  .service('playerData', function (appCache) {
     // AngularJS will instantiate a singleton by calling "new" on this function
 
     var CACHE_NAME        = 'playerName';
     var CACHE_STUDENT_ID  = 'studentId';
-
-    var cache = $cacheFactory('appleMarketCache');
-
-    var playerName = cache.get(CACHE_NAME);
-    var studentId  = cache.get(CACHE_STUDENT_ID);
+    //
+    //var playerName = appCache.get(CACHE_NAME);
+    //var studentId  = appCache.get(CACHE_STUDENT_ID);
+    var playerName = undefined;
+    var studentId  = undefined;
 
     return {
 
@@ -27,7 +27,7 @@ angular.module('applemarketApp')
 
       setPlayerName : function (_playerName) {
         playerName = _playerName;
-        cache.put(CACHE_NAME, _playerName);
+        //appCache.put(CACHE_NAME, _playerName);
       },
 
       getStudentId : function () {
@@ -36,7 +36,7 @@ angular.module('applemarketApp')
 
       setStudentId : function (_studentId) {
         studentId = _studentId;
-        cache.put(CACHE_STUDENT_ID, _studentId);
+        //appCache.put(CACHE_STUDENT_ID, _studentId);
       }
 
     };
