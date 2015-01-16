@@ -62,7 +62,7 @@ module.exports = function (grunt) {
         ]
       },
       less: {
-        files: ['app/styles/main.less'],
+        files: ['app/styles/main.less', '<%= yeoman.app %>/styles/{,*/}*.less'],
         tasks: ['less']
       }
     },

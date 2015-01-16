@@ -1,3 +1,9 @@
+/***********************************************/
+/* Statistics and graphs */
+.axis {
+  background-color: green;
+  color: yellow;
+}
 /*last element of table will be on the right side*/
 table tr td:last-child {
   white-space: nowrap;
