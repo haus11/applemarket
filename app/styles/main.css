@@ -1,8 +1,14 @@
 /***********************************************/
 /* Statistics and graphs */
-.axis {
-  background-color: green;
-  color: yellow;
+.axis path,
+.axis line {
+  fill: none;
+  stroke: black;
+  shape-rendering: crispEdges;
+}
+.axis text {
+  font-family: sans-serif;
+  font-size: 11px;
 }
 /***********************
 * html tags
