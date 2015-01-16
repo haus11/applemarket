@@ -48,27 +48,33 @@ table {
 /***********************
 * navigation
 ***********************/
-#nav {
+.nav-fixed {
   background-color: #222;
   position: fixed;
   width: 100%;
   z-index: 9999999;
 }
-#nav-wrapper{
-  width: 960px;
+.nav-wrapper {
   margin: 0 auto;
   text-align: center;
 }
-#nav ul {
+.nav-fixed ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
   li {
     display: inline-block;
-    &hover {
+    &:hover {
       background-color: #333;
     }
     a {
+      color: #CCC;
+      display: block;
+      padding: 15px;
+      text-decoration: none;
+    }
+
+    .nav-text {
       color: #CCC;
       display: block;
       padding: 15px;
@@ -107,4 +113,26 @@ table {
   border-radius: @border-radius-label;
 }
 
+/***********************
+* media
+***********************/
+@font-size-nav: @font-nav-lg;
 
+@media all {
+
+  @media (max-width: @media-xs-max) {
+    .nav-fixed {
+      font-size: @font-nav-xs;
+    }
+  }
+  @media (min-width: @media-sm-min) and (max-width: @media-sm-max) {
+    .nav-fixed {
+      font-size: @font-nav-sm;
+    }
+  }
+  @media (min-width: @media-lg-min) {
+    .nav-fixed {
+      font-size: @font-nav-lg;
+    }
+  }
+}

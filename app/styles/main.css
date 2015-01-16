@@ -1,3 +1,15 @@
+/***********************
+* colours
+***********************/
+/***********************
+* distances
+***********************/
+/***********************
+* media sizes
+***********************/
+/***********************
+* text
+***********************/
 /***********************************************/
 /* Statistics and graphs */
 .axis {
@@ -39,29 +51,34 @@ table tr td:last-child {
 /***********************
 * navigation
 ***********************/
-#nav {
+.nav-fixed {
   background-color: #222;
   position: fixed;
   width: 100%;
   z-index: 9999999;
 }
-#nav-wrapper {
-  width: 960px;
+.nav-wrapper {
   margin: 0 auto;
   text-align: center;
 }
-#nav ul {
+.nav-fixed ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
-#nav ul li {
+.nav-fixed ul li {
   display: inline-block;
 }
-#nav ul lihover {
+.nav-fixed ul li:hover {
   background-color: #333;
 }
-#nav ul li a {
+.nav-fixed ul li a {
+  color: #CCC;
+  display: block;
+  padding: 15px;
+  text-decoration: none;
+}
+.nav-fixed ul li .nav-text {
   color: #CCC;
   display: block;
   padding: 15px;
@@ -90,4 +107,22 @@ table tr td:last-child {
 ***********************/
 .label-as-badge {
   border-radius: 1px;
+}
+/***********************
+* media
+***********************/
+@media all and (max-width: 320px) {
+  .nav-fixed {
+    font-size: 6px;
+  }
+}
+@media all and (min-width: 321px) and (max-width: 420px) {
+  .nav-fixed {
+    font-size: 10px;
+  }
+}
+@media all and (min-width: 421px) {
+  .nav-fixed {
+    font-size: 15px;
+  }
 }

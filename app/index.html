@@ -21,8 +21,18 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div id="nav" class="nav-bottom" ng-controller="NavigationCtrl">
-      <div id="nav-wrapper">
+    <div class="nav-fixed nav-top" ng-controller="NavigationCtrl">
+      <div class="nav-wrapper">
+        <ul>
+          <li><a><span class="fa fa-apple"></span> Gamename </a></li>
+          <li><a><span class="fa fa-refresh"></span> Session </a></li>
+          <li><a><span class="fa fa-repeat"></span> Round </a></li>
+          <li><a><span class="fa fa-clock-o"></span> Time </a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="nav-fixed nav-bottom" ng-controller="NavigationCtrl">
+      <div class="nav-wrapper">
         <ul>
           <li><a ng-href="#"><span class="fa fa-home"> Games</span></a></li>
           <li ng-class="{'active':selectedTab === 'offers'}" ng-click="selectedTab = 'offers'" id="offers"><a ng-href="#/offers"><span class="fa fa-list-alt"></span> Offers</a></li>
