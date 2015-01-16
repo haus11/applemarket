@@ -58,7 +58,7 @@ table tr td:last-child {
 * navigation
 ***********************/
 .nav-fixed {
-  background-color: #222;
+  background-color: #222222;
   position: fixed;
   width: 100%;
   z-index: 9999999;
@@ -72,20 +72,17 @@ table tr td:last-child {
   padding: 0;
   margin: 0;
 }
+.nav-fixed ul .nav-active {
+  background-color: #707070;
+}
 .nav-fixed ul li {
   display: inline-block;
 }
-.nav-fixed ul li:hover {
-  background-color: #333;
+.nav-fixed ul li .nav-hover:hover {
+  background-color: #333333;
 }
 .nav-fixed ul li a {
-  color: #CCC;
-  display: block;
-  padding: 15px;
-  text-decoration: none;
-}
-.nav-fixed ul li .nav-text {
-  color: #CCC;
+  color: #cccccc;
   display: block;
   padding: 15px;
   text-decoration: none;
@@ -104,9 +101,9 @@ table tr td:last-child {
   text-align: left;
 }
 #content {
-  background-color: #FFF;
+  background-color: #ffffff;
   padding: 20px;
-  margin: 30px 0 0 0;
+  margin: 30px 0 40px 0;
 }
 /***********************
 * styling
