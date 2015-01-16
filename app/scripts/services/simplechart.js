@@ -14,13 +14,12 @@ angular.module('applemarketApp')
       var newNumber = Math.floor(Math.random() * 30);
       dataset.push(newNumber);
     }
-
-    var w = 500;
-    var h = 300;
     var barPadding = 1;
-    var padding = 20;
+    var padding = 30;
 
     function calcDivGraph() {
+      var w = 500;
+      var h = 300;
       var divs = d3.select('#chartDiv').selectAll('#chartDiv');
         divs.data(dataset)
         .enter()
@@ -33,6 +32,8 @@ angular.module('applemarketApp')
     }
 
     function calcSvgGraph() {
+      var w = 500;
+      var h = 300;
       var svg = d3.select('#chartDiv').append('svg');
       svg.attr('width', w)
          .attr('height', h);
@@ -58,7 +59,17 @@ angular.module('applemarketApp')
     }
 
     function calcBarChart() {
-      var svg = d3.select('#chartDiv')
+      var w = 500;
+      var h = 150;
+      var xScale = d3.scale.ordinal()
+        .domain(d3.range(dataset.length))
+        .rangeRoundBands([0, w], 0.05);
+
+      var yScale = d3.scale.linear()
+        .domain([0, d3.max(dataset)])
+        .range([0, h]);
+
+      var svg = d3.select('#barChartDiv')
         .append('svg')
         .attr('width', w)
         .attr('height', h);
@@ -68,15 +79,13 @@ angular.module('applemarketApp')
         .enter()
         .append('rect')
         .attr('x', function(d, i) {
-          return i * (w / dataset.length);
+          return xScale(i);
         })
         .attr('y', function(d) {
-          return h - d * 4;
+          return h - yScale(d);
         })
-        .attr('width', w / dataset.length - barPadding)
-        .attr('height', function (d) {
-          return d * 4;
-        })
+        .attr('width', xScale.rangeBand())
+        .attr('height', function(d) { return yScale(d);})
         .attr('fill', function(d) {
           return 'rgb(0, 0, ' + (d * 10) + ')';
         });
@@ -85,12 +94,10 @@ angular.module('applemarketApp')
         .data(dataset)
         .enter()
         .append('text')
-        .text(function(d) {
-          return d;
-        })
+        .text(function(d) { return d; })
         .attr({
-          x : function(d, i) { return i * (w / dataset.length) + (w / dataset.length - barPadding) / 2; },
-          y : function(d) { return h - (d * 4) + 14; },
+          x : function(d, i) { return xScale(i) + xScale.rangeBand() / 2; },
+          y : function(d)    { return h - yScale(d) + 14; },
           'font-family' : 'sans-serif',
           'font-size'   : '11px',
           fill          : 'white',
@@ -99,7 +106,18 @@ angular.module('applemarketApp')
     }
 
     function calcApplePlot() {
-      var appleData = [[5, 20], [480, 90], [250, 50], [100, 33], [330, 95], [410, 12], [475, 44], [25, 67], [85, 21], [220, 88], [600, 150]];
+      var w = 500;
+      var h = 300;
+      var appleData = [];
+      var numDataPoints = 50;
+      var xRange = Math.random() * 1000;
+      var yRange = Math.random() * 1000;
+      for (var i = 0; i < numDataPoints; ++i) {
+        var newNumber1 = Math.floor(Math.random() * xRange);
+        var newNumber2 = Math.floor(Math.random() * yRange);
+        appleData.push([newNumber1, newNumber2]);
+      }
+
       var xScale = d3.scale.linear()
                            .domain([0, d3.max(appleData, function(d) { return d[0]; })])
                            .range ([padding, w - padding * 2]);
@@ -112,12 +130,20 @@ angular.module('applemarketApp')
                      .domain([0, d3.max(appleData, function(d) { return d[1]; })])
                      .range([2, 5]);
 
-      var xAxis = d3.svg.axis(xScale)
+      var formatAsPercentage = d3.format('0.1%');
+
+      var xAxis = d3.svg.axis()
                         .scale(xScale)
-                        .orient('bottom');
+                        .orient('bottom')
+                        .ticks(5)
+                        .tickFormat(formatAsPercentage);
 
+      var yAxis = d3.svg.axis()
+                        .scale(yScale)
+                        .orient('left')
+                        .ticks(5);
 
-      var svg = d3.select('#chartDiv')
+      var svg = d3.select('#scatterplotDiv')
                   .append('svg')
                   .attr('width', w)
                   .attr('height', h);
@@ -130,20 +156,25 @@ angular.module('applemarketApp')
         .attr('cy', function(d) { return yScale(d[1]); })
         .attr('r',  function(d) { return rScale(d[1]); });
 
-      svg.selectAll('text')
-        .data(appleData)
-        .enter()
-        .append('text')
-        .text(function(d) { return d[0] + ',' + d[1]; })
-        .attr('x', function(d) { return xScale(d[0]); })
-        .attr('y', function(d) { return yScale(d[1]); })
-        .attr('font-family', 'sans-serif')
-        .attr('font-size', '11px')
-        .attr('fill', 'red');
+      //svg.selectAll('text')
+      //  .data(appleData)
+      //  .enter()
+      //  .append('text')
+      //  .text(function(d) { return d[0] + ',' + d[1]; })
+      //  .attr('x', function(d) { return xScale(d[0]); })
+      //  .attr('y', function(d) { return yScale(d[1]); })
+      //  .attr('font-family', 'sans-serif')
+      //  .attr('font-size', '11px')
+      //  .attr('fill', 'red');
 
       svg.append('g')
         .attr('class', 'axis')
+        .attr('transform', 'translate(0,' + (h-padding) + ')')
         .call(xAxis);
+      var y = svg.append('g')
+        .attr('class', 'axis')
+        .attr('transform', 'translate(' + (padding) + ',0)')
+        .call(yAxis);
     }
 
     return {

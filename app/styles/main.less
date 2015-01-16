@@ -5,7 +5,9 @@
 * html tags
 ***********************/
 body {
-  overflow-y: scroll; padding: 0; margin: 0;
+  overflow-y: scroll;
+  padding:    0;
+  margin:     0;
 }
 
 /***********************
@@ -19,7 +21,7 @@ table {
       &:last-child
       {
         white-space: nowrap;
-        width: 1px;
+        width:       1px;
       }
     }
   }
@@ -48,30 +50,35 @@ table {
 /***********************
 * navigation
 ***********************/
-#nav {
-  background-color: #222;
-  position: fixed;
-  width: 100%;
-  z-index: 9999999;
+.nav-fixed {
+  background-color: @nav-bg;
+  position:         fixed;
+  width:            100%;
+  z-index:          9999999;
 }
-#nav-wrapper{
-  width: 960px;
-  margin: 0 auto;
+.nav-wrapper {
+  margin:     0 auto;
   text-align: center;
 }
-#nav ul {
+.nav-fixed ul {
   list-style-type: none;
-  padding: 0;
-  margin: 0;
+  padding:         0;
+  margin:          0;
+
+  .nav-active {
+    background-color: @nav-active;
+  }
   li {
     display: inline-block;
-    &hover {
-      background-color: #333;
+    .nav-hover {
+      &:hover {
+        background-color: @nav-hover;
+      }
     }
     a {
-      color: #CCC;
-      display: block;
-      padding: 15px;
+      color:@nav-link;
+      display:         block;
+      padding:         15px;
       text-decoration: none;
     }
   }
@@ -89,14 +96,14 @@ table {
 * wrappers
 ***********************/
 #wrapper {
-  margin: 0 auto;
+  margin:     0 auto;
   text-align: left;
 
 }
 #content {
-  background-color: #FFF;
-  padding: 20px;
-  margin: 30px 0 0 0;
+  background-color: @content;
+  padding:  20px;
+  margin:   30px 0 40px 0;
 }
 
 
@@ -107,4 +114,26 @@ table {
   border-radius: @border-radius-label;
 }
 
+/***********************
+* media
+***********************/
+@font-size-nav: @font-nav-lg;
 
+@media all {
+
+  @media (max-width: @media-xs-max) {
+    .nav-fixed {
+      font-size: @font-nav-xs;
+    }
+  }
+  @media (min-width: @media-sm-min) and (max-width: @media-sm-max) {
+    .nav-fixed {
+      font-size: @font-nav-sm;
+    }
+  }
+  @media (min-width: @media-lg-min) {
+    .nav-fixed {
+      font-size: @font-nav-lg;
+    }
+  }
+}
