@@ -10,5 +10,6 @@
 angular.module('applemarketApp')
   .controller('SimplechartCtrl', function ($scope, simpleChart) {
     //$scope.simpleGraph = simpleChart.getSimpleDataSvg();
-    $scope.barChart    = simpleChart.getApplePlot();
+    $scope.barChart    = simpleChart.getBarChart();
+    $scope.scatterplot = simpleChart.getApplePlot();
   });

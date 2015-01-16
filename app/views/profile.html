@@ -1,16 +1,18 @@
 <h2>Profile <small>Type: {{ user.type }}</small></h2>
 <div class="row">
   <div class="col-md-6">
-    <div class="form-group form-group-sm">
+    <div class="form-group form-group-sm" ng-show="inputData.showInput">
       <label for="name">Name: </label>
-      <input type="text" class="form-control input-sm" id="name">
+      <input type="text" class="form-control input-sm" id="name" ng-model="inputData.name">
     </div>
+    <h3 ng-show="!inputData.showInput">Name: <small>{{inputData.name}}</small></h3>
   </div>
   <div class="col-md-6">
-    <div class="form-group form-group-sm">
+    <div class="form-group form-group-sm" ng-show="inputData.showInput">
       <label for="matrikel">Student-ID: </label>
-      <input type="text" class="form-control input-sm" id="matrikel">
+      <input type="text" class="form-control input-sm" id="matrikel" ng-model="inputData.student_id">
     </div>
+    <h3 ng-show="!inputData.showInput && inputData.student_id != undefined">Student-ID: <small>{{inputData.student_id}}</small></h3>
   </div>
 </div>
 <h3>Description</h3>
@@ -37,7 +39,7 @@
 </table>
 <div class="col-md-12">
   <div class="text-right">
-    <button class="btn btn-success">Save</button>
+    <button class="btn btn-success" ng-click="saveData()">Save</button>
   </div>
 </div>
 <p>
