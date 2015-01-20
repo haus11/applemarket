@@ -59,6 +59,10 @@ angular
         templateUrl: 'views/trade/trade_fail.html',
         controller: 'TradeCtrl'
       })
+      .when('/gamemanager', {
+        templateUrl: 'views/gamemanager.html',
+        controller: 'GamemanagerCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });
