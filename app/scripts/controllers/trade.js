@@ -30,14 +30,6 @@ angular.module('applemarketApp')
       $scope.offer--;
     };
 
-    $scope.ok = function () {
-      $modalInstance.close();
-    };
-
-    $scope.cancel = function () {
-      $modalInstance.dismiss('cancel');
-    };
-
     $scope.sendOffer = function () {
       $scope.tradeInitiated = true;
     };

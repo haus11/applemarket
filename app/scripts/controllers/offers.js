@@ -8,7 +8,7 @@
  * Controller of the applemarketApp
  */
 angular.module('applemarketApp')
-  .controller('OffersCtrl', function ($scope, $modal) {
+  .controller('OffersCtrl', function ($scope) {
 
     $scope.trade = function(){
       var modalInstance = $modal.open({

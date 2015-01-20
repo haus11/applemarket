@@ -1,1 +1,33 @@
-<p>This is the gamemanager view.</p>
+<div ng-controller="GamemanagerCtrl">
+  <h3>Game Managing <small>{{gameInfoData.gameName}}</small></h3>
+  <div class="row row-buffer">
+    <div class="col-md-4">
+      <p><b>Sessions</b></p>
+      <p>Set the number of maximum sessions</p>
+      <button class="btn btn-default" ng-click="increaseSessions()"><span class="fa fa-plus"></span></button>
+      <b class="number-between-buttons">{{gameInfoData.sessionNumber}}</b>
+      <button class="btn btn-default" ng-click="decreaseSessions()"><span class="fa fa-minus"></span></button>
+    </div>
+    <div class="col-md-4">
+      <label>Rounds</label>
+      <p>Set the number of maximum rounds per session</p>
+      <button class="btn btn-default" ng-click="increaseRounds()"><span class="fa fa-plus"></span></button>
+      <b class="number-between-buttons">{{gameInfoData.roundNumber}}</b>
+      <button class="btn btn-default" ng-click="decreaseRounds()"><span class="fa fa-minus"></span></button>
+    </div>
+    <div class="col-md-4">
+      <label>Time</label>
+      <p>Set the number of maximum minutes per round</p>
+      <button class="btn btn-default" ng-click="increaseTime()"><span class="fa fa-plus"></span></button>
+      <b class="number-between-buttons">{{gameInfoData.timeLeft}}</b>
+      <button class="btn btn-default" ng-click="decreaseTime()"><span class="fa fa-minus"></span></button>
+    </div>
+  </div>
+  <div class="row row-buffer">
+    <div class="col-md-12">
+      <div class="text-right">
+        <button class="btn btn-success" ng-click="startGame()">Start Game</button>
+      </div>
+    </div>
+  </div>
+</div>
