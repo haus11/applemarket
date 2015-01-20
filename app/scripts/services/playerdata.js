@@ -16,8 +16,8 @@ angular.module('applemarketApp')
     //
     //var playerName = appCache.get(CACHE_NAME);
     //var studentId  = appCache.get(CACHE_STUDENT_ID);
-    var playerName;
-    var studentId;
+    var playerName = undefined;
+    var studentId  = undefined;
 
     return {
 
