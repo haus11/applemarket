@@ -49,6 +49,9 @@ body {
 .row-buffer {
   margin-top: 20px;
 }
+.number-between-buttons {
+  margin: 0px 10px 0px 10px;
+}
 /***********************
 * colors
 ***********************/

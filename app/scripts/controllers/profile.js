@@ -10,16 +10,18 @@
 angular.module('applemarketApp')
   .controller('ProfileCtrl', function ($scope, configData, playerData, roleGenerator) {
 
-    console.log(roleGenerator.generateTypeDistribution(29));
+    //console.log(roleGenerator.generateTypeDistribution(29));
 
     $scope.inputData =
     {
       'name'        : playerData.getPlayerName(),
-      'student_id'  : playerData.getStudentId(),
+      'studentId'   : playerData.getStudentId(),
       'showInput'   : playerData.getPlayerName() == undefined
     };
 
-    $scope.user = configData.getPlayerRule('B');
+    $scope.user         = configData.getPlayerRule('B');
+    $scope.supplierText = configData.getSupplierText();
+    $scope.demanderText = configData.getDemanderText();
 
 
     //#############################################################################

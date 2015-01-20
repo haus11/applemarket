@@ -8,12 +8,12 @@
  * Service in the applemarketApp.
  */
 angular.module('applemarketApp')
-  .service('gameData', function () {
+  .service('gameData', function ($rootScope) {
 
     var gameName        = 'Apple123';
     var sessionNumber   = 0;
     var roundNumber     = 0;
-    var time            = 0;
+    var time            = 0;  // in minutes
 
     return {
 
@@ -23,6 +23,7 @@ angular.module('applemarketApp')
 
       setGameName : function (_gameName) {
         gameName = _gameName;
+        $rootScope.$broadcast('onGameDataChange');
       },
 
       getSessionNumber : function () {
@@ -31,6 +32,7 @@ angular.module('applemarketApp')
 
       setSessionNumber : function (_sessionNumber) {
         sessionNumber = _sessionNumber;
+        $rootScope.$broadcast('onGameDataChange');
       },
 
       getRoundNumber : function () {
@@ -39,6 +41,7 @@ angular.module('applemarketApp')
 
       setRoundNumber : function (_roundNumber) {
         roundNumber = _roundNumber;
+        $rootScope.$broadcast('onGameDataChange');
       },
 
       getTime : function () {
@@ -47,6 +50,7 @@ angular.module('applemarketApp')
 
       setTime : function (_time) {
         time = _time;
+        $rootScope.$broadcast('onGameDataChange');
       }
     };
   });
