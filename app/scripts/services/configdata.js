@@ -188,7 +188,7 @@ angular.module('applemarketApp')
        * @returns {{session1: *, session2: *}}
        */
       getAlgorithms : function (_algorithmType) {
-        return {'session1' : distributionAlgorithms.session1[_algorithmType], 'session2' : distributionAlgorithms.session2[_algorithmType]}
+        return {'session1' : distributionAlgorithms.session1[_algorithmType], 'session2' : distributionAlgorithms.session2[_algorithmType]};
       },
 
       /**
