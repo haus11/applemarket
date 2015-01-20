@@ -19,7 +19,9 @@ angular.module('applemarketApp')
       'showInput'   : playerData.getPlayerName() == undefined
     };
 
-    $scope.user = configData.getPlayerRule('B');
+    $scope.user         = configData.getPlayerRule('B');
+    $scope.supplierText = configData.getSupplierText();
+    $scope.demanderText = configData.getDemanderText();
 
 
     //#############################################################################
