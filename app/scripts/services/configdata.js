@@ -26,6 +26,7 @@ angular.module('applemarketApp')
 
     var playerTypes = {
       'A': {
+        type     : 'A',
         session1 : {
           role        : 'demander',
           maxValue    : 40
@@ -36,6 +37,7 @@ angular.module('applemarketApp')
         }
       },
       'B': {
+        type     : 'B',
         session1 : {
           role        : 'demander',
           maxValue    : 20
@@ -46,6 +48,7 @@ angular.module('applemarketApp')
         }
       },
       'C': {
+        type     : 'C',
         session1 : {
           role        : 'demander',
           maxValue    : 20
@@ -56,6 +59,7 @@ angular.module('applemarketApp')
         }
       },
       'D': {
+        type     : 'D',
         session1 : {
           role        : 'supplier',
           maxValue    : 10
@@ -66,6 +70,7 @@ angular.module('applemarketApp')
         }
       },
       'E': {
+        type     : 'E',
         session1 : {
           role        : 'supplier',
           maxValue    : 30
@@ -76,6 +81,7 @@ angular.module('applemarketApp')
         }
       },
       'F': {
+        type     : 'F',
         session1 : {
           role        : 'supplier',
           maxValue    : 10
