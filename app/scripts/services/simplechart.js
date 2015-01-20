@@ -27,7 +27,7 @@ angular.module('applemarketApp')
         .attr('style', 'display: inline-block; width:25px; background-color:teal; margin-right: 2px;')
         .style('height', function(data) {
             var barHeight = data * 5;
-            return barHeight + "px";
+            return barHeight + 'px';
           });
     }
 
@@ -156,17 +156,6 @@ angular.module('applemarketApp')
         .attr('cy', function(d) { return yScale(d[1]); })
         .attr('r',  function(d) { return rScale(d[1]); });
 
-      //svg.selectAll('text')
-      //  .data(appleData)
-      //  .enter()
-      //  .append('text')
-      //  .text(function(d) { return d[0] + ',' + d[1]; })
-      //  .attr('x', function(d) { return xScale(d[0]); })
-      //  .attr('y', function(d) { return yScale(d[1]); })
-      //  .attr('font-family', 'sans-serif')
-      //  .attr('font-size', '11px')
-      //  .attr('fill', 'red');
-
       svg.append('g')
         .attr('class', 'axis')
         .attr('transform', 'translate(0,' + (h-padding) + ')')
@@ -176,6 +165,125 @@ angular.module('applemarketApp')
         .attr('transform', 'translate(' + (padding) + ',0)')
         .call(yAxis);
     }
+
+    function calcResponsiveBarChart() {
+
+      var data = [];
+      for (var i = 0; i < 25; ++i) {
+        var newNumber = Math.floor(Math.random() * 30);
+        data.push(newNumber);
+      }
+
+      var w = $('#respBarChart').width()
+        , aspect = 9/16;
+
+      var h = w * aspect;
+      var xScale = d3.scale.ordinal()
+        .domain(d3.range(data.length))
+        .rangeRoundBands([0, w], 0.05);
+
+      var yScale = d3.scale.linear()
+        .domain([0, d3.max(data)])
+        .range([0, h]);
+
+      var svg = d3.select('#respBarChart')
+        .append('svg')
+        .attr('width',  '100%')
+        .attr('height', '100%')
+        .attr('viewBox','0 0 '+Math.min(w,h)+' '+Math.min(w,h))
+        .attr('viewBox', '0 0 640 360');
+
+      svg.selectAll('rect')
+        .data(data)
+        .enter()
+        .append('rect')
+        .attr('x', function(d, i) {
+          return xScale(i);
+        })
+        .attr('y', function(d) {
+          return h - yScale(d);
+        })
+        .attr('width', xScale.rangeBand())
+        .attr('height', function(d) { return yScale(d);})
+        .attr('fill', function(d) {
+          return 'rgb(0, 0, ' + (d * 10) + ')';
+        });
+
+      svg.selectAll('text')
+        .data(data)
+        .enter()
+        .append('text')
+        .text(function(d) { return d; })
+        .attr({
+          x : function(d, i) { return xScale(i) + xScale.rangeBand() / 2; },
+          y : function(d)    { return h - yScale(d) + 14; },
+          'font-family' : 'sans-serif',
+          'font-size'   : '11px',
+          fill          : 'white',
+          'text-anchor' : 'middle'
+        });
+
+      $(window).resize(function() {
+        var width = $("#respBarChart").width();
+        svg.attr("width", width);
+        svg.attr("height", h);
+
+        var xScale = d3.scale.ordinal()
+          .domain(d3.range(data.length))
+          .rangeRoundBands([0, w], 0.05);
+
+        var yScale = d3.scale.linear()
+          .domain([0, d3.max(data)])
+          .range([0, h]);
+      });
+    }
+
+    function calcBostockChart() {
+
+      var margin = {top: 20, right: 30, bottom: 30, left: 40}
+        , width = 960 - margin.left - margin.right
+        , height = 500 - margin.top - margin.bottom;
+
+      var x = d3.scale.ordinal()
+        .rangeRoundBands([0, width], .1);
+
+      var y = d3.scale.linear()
+        .range([height, 0]);
+
+      var chart = d3.select("#respBarChart")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+      d3.csv("data.csv", type, function(error, data) {
+        console.log(data);
+        x.domain(data.map(function(d) { return d.letter; }));
+        y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+
+        var bar = chart.selectAll("g")
+          .data(data)
+          .enter().append("g")
+          .attr("transform", function(d) { return "translate(" + x(d.letter) + ",0)"; });
+
+        bar.append("rect")
+          .attr("y", function(d) { return y(d.frequency); })
+          .attr("height", function(d) { return height - y(d.frequency); })
+          .attr("width", x.rangeBand());
+
+        bar.append("text")
+          .attr("x", x.rangeBand() / 2)
+          .attr("y", function(d) { return y(d.frequency) + 3; })
+          .attr("dy", ".75em")
+          .text(function(d) { return d.frequency; });
+      });
+
+      function type(d) {
+        d.frequency = +d.frequency; // coerce to number
+        return d;
+      }
+    }
+
 
     return {
       getSimpleDataDiv : function () {
@@ -189,6 +297,12 @@ angular.module('applemarketApp')
       },
       getApplePlot : function () {
         calcApplePlot();
+      },
+      getResponsiveBarChart : function () {
+        calcResponsiveBarChart();
+      },
+      getBostock : function () {
+        calcBostockChart();
       }
     };
   });
