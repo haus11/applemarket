@@ -10,6 +10,8 @@
 angular.module('applemarketApp')
   .service('configData', function () {
 
+    var amountOfTypes = 6;
+
     var playerTypes = {
       A: {
         type    : 'A',
@@ -163,11 +165,110 @@ angular.module('applemarketApp')
       }
     };
 
-
+    var distributionAlgorithms = {
+      'session1' : {
+        'A' : {
+          'low_cost_supplier'   : '2 * n',
+          'high_cost_supplier'  : 'n',
+          'low_value_demander'  : 'n + 2',
+          'high_value_demander' : '2 * n'
+        },
+        'B' : {
+          'low_cost_supplier'   : '2 * n',
+          'high_cost_supplier'  : 'n',
+          'low_value_demander'  : 'n + 2',
+          'high_value_demander' : '2 * n + 1'
+        },
+        'C' : {
+          'low_cost_supplier'   : '2 * n',
+          'high_cost_supplier'  : 'n',
+          'low_value_demander'  : 'n + 2',
+          'high_value_demander' : '2 * n + 2'
+        },
+        'D' : {
+          'low_cost_supplier'   : '2 * n + 1',
+          'high_cost_supplier'  : 'n',
+          'low_value_demander'  : 'n + 2',
+          'high_value_demander' : '2 * n + 2'
+        },
+        'E' : {
+          'low_cost_supplier'   : '2 * n + 1',
+          'high_cost_supplier'  : 'n + 1',
+          'low_value_demander'  : 'n + 1',
+          'high_value_demander' : '2 * n + 2'
+        },
+        'F' : {
+          'low_cost_supplier'   : '2 * n',
+          'high_cost_supplier'  : 'n',
+          'low_value_demander'  : 'n',
+          'high_value_demander' : '2 * n'
+        }
+      },
+      'session2' : {
+        'A' : {
+          'low_cost_supplier'   : 'n',
+          'high_cost_supplier'  : '2 * n + 1',
+          'low_value_demander'  : '2 * n',
+          'high_value_demander' : 'n'
+        },
+        'B' : {
+          'low_cost_supplier'   : 'n + 1',
+          'high_cost_supplier'  : '2 * n + 1',
+          'low_value_demander'  : '2 * n',
+          'high_value_demander' : 'n'
+        },
+        'C' : {
+          'low_cost_supplier'   : 'n + 1',
+          'high_cost_supplier'  : '2 * n + 1',
+          'low_value_demander'  : '2 * n + 1',
+          'high_value_demander' : 'n'
+        },
+        'D' : {
+          'low_cost_supplier'   : 'n + 1',
+          'high_cost_supplier'  : '2 * n + 1',
+          'low_value_demander'  : '2 * n + 1',
+          'high_value_demander' : 'n + 1'
+        },
+        'E' : {
+          'low_cost_supplier'   : 'n + 1',
+          'high_cost_supplier'  : '2 * n + 1',
+          'low_value_demander'  : '2 * n + 2',
+          'high_value_demander' : 'n + 1'
+        },
+        'F' : {
+          'low_cost_supplier'   : 'n',
+          'high_cost_supplier'  : '2 * n',
+          'low_value_demander'  : '2 * n',
+          'high_value_demander' : 'n'
+        }
+      }
+    };
 
     return {
+      /**
+       *
+       * @param type
+       * @returns {*}
+       */
       getPlayerRule : function (type) {
         return playerTypes[type];
+      },
+
+      /**
+       * Returns the player type distribution algorithms for session 1 and session 2.
+       * @param _algorithmType
+       * @returns {{session1: *, session2: *}}
+       */
+      getAlgorithms : function (_algorithmType) {
+        return {'session1' : distributionAlgorithms.session1[_algorithmType], 'session2' : distributionAlgorithms.session2[_algorithmType]}
+      },
+
+      /**
+       *
+       * @returns {number}
+       */
+      getTypeCount : function () {
+        return amountOfTypes;
       }
     };
   });
