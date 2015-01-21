@@ -240,9 +240,9 @@ angular.module('applemarketApp')
 
     function calcBostockChart() {
 
-      var margin = {top: 20, right: 30, bottom: 30, left: 40}
-        , width = 960 - margin.left - margin.right
-        , height = 500 - margin.top - margin.bottom;
+      var margin = {top: 20, right: 20, bottom: 60, left: 80},
+        width = 960 - margin.left - margin.right,
+        height = 500 - margin.top - margin.bottom;
 
       var x = d3.scale.ordinal()
         .rangeRoundBands([0, width], .1);
@@ -250,36 +250,66 @@ angular.module('applemarketApp')
       var y = d3.scale.linear()
         .range([height, 0]);
 
-      var chart = d3.select("#respBarChart")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
+      var xAxis = d3.svg.axis()
+        .scale(x)
+        .orient("bottom")
+        .ticks(2);
+
+      var yAxis = d3.svg.axis()
+        .scale(y)
+        .orient("left")
+        .ticks(10);
+
+      var svg = d3.select("#respBarChart").append("svg")
+          //.attr("width", width + margin.left + margin.right)
+          //.attr("height", height + margin.top + margin.bottom)
+          .attr('preserveAspectRatio', 'xMinYMin meet')
+          .attr('viewBox', '0 0 960 500')
         .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+          .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
       d3.csv("data.csv", type, function(error, data) {
         console.log(data);
-        x.domain(data.map(function(d) { return d.letter; }));
-        y.domain([0, d3.max(data, function(d) { return d.frequency; })]);
+        x.domain(data.map(function(d) { return d.transaction; }));
+        y.domain([0, d3.max(data, function(d) { return d.price; })]);
 
-        var bar = chart.selectAll("g")
-          .data(data)
-          .enter().append("g")
-          .attr("transform", function(d) { return "translate(" + x(d.letter) + ",0)"; });
+        svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .style('stroke-width', '3px')
+            .call(xAxis)
+          .append('text')
+            .attr('x', '45%')
+            .attr('dy', '2.5em')
+            .style('text-anchor', 'middle')
+            .style('font-size', '18px')
+            .text('Round');
 
-        bar.append("rect")
-          .attr("y", function(d) { return y(d.frequency); })
-          .attr("height", function(d) { return height - y(d.frequency); })
-          .attr("width", x.rangeBand());
+        svg.append("g")
+            .attr("class", "y axis")
+            .style('stroke-width', '3px')
+            .call(yAxis)
+          .append('text')
+            .attr('transform', 'rotate(-90)')
+            .attr('x', '-20%')
+            .attr('y', 6)
+            .attr('dy', '-4em')
+            .style('text-anchor', 'middle')
+            .style('font-size', '18px')
+            .text('Price for bushel of apples');
 
-        bar.append("text")
-          .attr("x", x.rangeBand() / 2)
-          .attr("y", function(d) { return y(d.frequency) + 3; })
-          .attr("dy", ".75em")
-          .text(function(d) { return d.frequency; });
+        svg.selectAll(".bar")
+            .data(data)
+          .enter().append("rect")
+            .attr("class", "bar")
+            .attr("x", function(d) { return x(d.transaction); })
+            .attr("y", function(d) { return y(d.price); })
+            .attr("height", function(d) { return height - y(d.price); })
+            .attr("width", x.rangeBand());
       });
 
       function type(d) {
-        d.frequency = +d.frequency; // coerce to number
+        d.price = +d.price; // coerce to number
         return d;
       }
     }
