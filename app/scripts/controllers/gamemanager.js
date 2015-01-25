@@ -8,43 +8,52 @@
  * Controller of the applemarketApp
  */
 angular.module('applemarketApp')
-  .controller('GamemanagerCtrl', function ($scope, gameData) {
+  .controller('GamemanagerCtrl', function ($scope, gameData, $location) {
 
-    $scope.gameInfoData =
+    $scope.inputData =
     {
       'gameName'      : gameData.getGameName(),
-      'sessionNumber' : gameData.getSessionNumber(),
-      'roundNumber'   : gameData.getRoundNumber(),
-      'timeLeft'      : gameData.getTime() // in minutes
+      'sessionNumber' : 0,
+      'roundNumber'   : 0,
+      'timeLeft'      : 0,
+      'showInput'     : gameData.getGameName() == undefined
     };
 
     $scope.increaseSessions = function () {
-      $scope.gameInfoData.sessionNumber++;
+      $scope.inputData.sessionNumber++;
     };
 
     $scope.decreaseSessions = function () {
-      $scope.gameInfoData.sessionNumber--;
+      $scope.inputData.sessionNumber--;
     };
 
     $scope.increaseRounds = function () {
-      $scope.gameInfoData.roundNumber++;
+      $scope.inputData.roundNumber++;
     };
 
     $scope.decreaseRounds = function () {
-      $scope.gameInfoData.roundNumber--;
+      $scope.inputData.roundNumber--;
     };
 
     $scope.increaseTime = function () {
-      $scope.gameInfoData.timeLeft++;
+      $scope.inputData.timeLeft++;
     };
 
     $scope.decreaseTime = function () {
-      $scope.gameInfoData.timeLeft--;
+      $scope.inputData.timeLeft--;
     };
 
     $scope.startGame = function () {
-      gameData.setSessionNumber($scope.gameInfoData.sessionNumber);
-      gameData.setRoundNumber($scope.gameInfoData.roundNumber);
-      gameData.setTime($scope.gameInfoData.timeLeft * 60);
+      $scope.saveGameData();
+      $location.path("/offers");
     };
+
+    $scope.saveGameData = function() {
+
+      gameData.setGameName($scope.inputData.gameName);
+      gameData.setSessionNumber($scope.inputData.sessionNumber);
+      gameData.setRoundNumber($scope.inputData.roundNumber);
+      gameData.setTime($scope.inputData.timeLeft * 60);
+      $scope.inputData.showInput = false;
+    }
   });

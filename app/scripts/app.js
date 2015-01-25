@@ -60,6 +60,10 @@ angular
         templateUrl: 'views/trade/trade_fail.html',
         controller: 'TradeCtrl'
       })
+      .when('/trade/accept', {
+        templateUrl: 'views/trade/trade_accept.html',
+        controller: 'TradeCtrl'
+      })
       .when('/gamemanager', {
         templateUrl: 'views/gamemanager.html',
         controller: 'GamemanagerCtrl'

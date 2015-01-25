@@ -28,12 +28,21 @@
       </div>
     </div>
     <div class="row row-buffer">
-      <button type="button" class="btn btn-default" ng-click="sendOffer()" translate>TRADE_SEND_OFFER</button>
+
     </div>
     <div class="row row-buffer">
-      <a ng-href="#/trade/success" href="#/trade/success"><button class="btn btn-default" translate>TRADE_ACCEPTED</button></a>
-      <a ng-href="#/trade/fail" href="#/trade/fail"><button class="btn btn-default" translate>TRADE_DECLINED</button></a>
-      <a ng-href="#/offers" href="#/offers"><button class="btn btn-warning" translate>SYSTEM_CANCEL</button></a>
+      <div ng-show="isDemander">
+        <button type="button" class="btn btn-info" ng-click="sendOffer()" translate> TRADE_SEND_OFFER </button>
+        <a ng-href="#/trade/success" href="#/trade/success"><button class="btn btn-default" translate>TRADE_ACCEPTED</button></a>
+        <a ng-href="#/trade/fail" href="#/trade/fail"><button class="btn btn-default" translate>TRADE_DECLINED</button></a>
+        <a ng-href="#/offers" href="#/offers"><button class="btn btn-warning" translate>Back to Offers</button></a>
+      </div>
+      <div ng-show="isSupplier">
+        <button type="button" class="btn btn-info" ng-click="sendOffer()" translate> TRADE_SEND_NEW_OFFER </button>
+        <a ng-href="#/offers" href="#/offers"><button type="button" class="btn btn-warning"> Back to Offers </button></a>
+      </div>
+
+
     </div>
   </div>
 </div>

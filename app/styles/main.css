@@ -122,7 +122,7 @@ body {
 * styling
 ***********************/
 .label-as-badge {
-  border-radius: 1px;
+  border-radius: 50%;
 }
 /***********************
 * media

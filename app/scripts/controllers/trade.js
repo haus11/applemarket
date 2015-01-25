@@ -8,8 +8,9 @@
  * Controller of the applemarketApp
  */
 angular.module('applemarketApp')
-  .controller('TradeCtrl', function ($scope) {
+  .controller('TradeCtrl', function ($scope, playerData) {
 
+    //------ trading functions --------//
     $scope.negotiationPartner = 'Peter';
 
     $scope.tradeInitiated = false;
@@ -41,4 +42,17 @@ angular.module('applemarketApp')
     $scope.rejected = function () {
 
     };
+
+    //------- showing functions --------//
+    $scope.isDemander         = false;
+    $scope.isSupplier         = false;
+
+    $scope.demanderOrSupplier = playerData.getDemanderOrSupplier();
+
+    if ($scope.demanderOrSupplier == 'supplier') {
+      $scope.isSupplier = true;
+    }
+    else if ($scope.demanderOrSupplier == 'demander') {
+      $scope.isDemander = true;
+    }
   });

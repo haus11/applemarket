@@ -7,5 +7,5 @@
 var app = angular.module('applemarketApp');
 
 app.config(function ($translateProvider) {
-  $translateProvider.preferredLanguage('de');
+  $translateProvider.preferredLanguage('en');
 });

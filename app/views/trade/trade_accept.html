@@ -3,19 +3,15 @@
     <h3>
       <translate>TRADE_TITLE</translate> <small><translate>WORD_WITH</translate> {{ negotiationPartner }}</small>
     </h3>
-    <div class="row">
-      <p>Trade successful!</p>
-    </div>
-    <div class="row row-buffer">
-      <span class="fa fa-thumbs-o-up fa-4x green"></span>
-    </div>
     <div class="row row-buffer">
       <button type="button" class="btn btn-default">
         <translate>TRADE_PROFIT</translate> <span class="label label-success label-as-badge">+22</span>
       </button>
     </div>
     <div class="row row-buffer">
-      <a ng-href="#/profile" href="#/profile"><button class="btn btn-info" translate>SYSTEM_OK</button></a>
+      <a ng-href="#/trade/success" href="#/profile"><button class="btn btn-success">Accept</button></a>
+      <a ng-href="#/trade" href="#/trade"><button class="btn btn-info">Make new Offer</button></a>
+      <a ng-href="#/offers" href="#/offers"><button class="btn btn-warning">Decline</button></a>
     </div>
   </div>
 </div>
