@@ -2,7 +2,25 @@
 <div ng-controller="OffersCtrl">
   <!--view for the demander-->
   <div ng-show="isDemander">
-    <table class="table table-responsive table-hover row-buffer">
+    <table class="table table-responsive table-striped row-buffer">
+      <caption>Tradings</caption>
+      <tr>
+        <th>Seller</th>
+        <th>Price</th>
+        <th>Your price</th>
+        <div class="text-right"><th>Status</th></div>
+        <th>Trade again</th>
+      </tr>
+      <tr>
+        <td>test</td>
+        <td>12</td>
+        <td>11</td>
+        <td>Processing</td>
+        <td><a ng-href="#/trade"><button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-arrow-right"></span></button></a></td>
+      </tr>
+    </table>
+    <table class="table table-responsive table-striped row-buffer">
+      <caption>Available offers</caption>
       <tr>
         <th>Seller</th>
         <th>Price</th>
@@ -39,15 +57,18 @@
     </div>
     <div ng-show="showDemanders">
       <h4>Price you offer: <b>{{inputData.supplierPrice}}</b></h4>
-      <table class="table table-responsive table-hover row-buffer">
+      <table class="table table-responsive table-striped row-buffer">
+        <caption>Trading offers from Buyers</caption>
         <tr>
           <th>Buyer</th>
           <th>Price Offer</th>
+          <th>Status</th>
           <div class="text-right"><th>Trade</th></div>
         </tr>
         <tr>
           <td>test</td>
           <td>{{inputData.supplierPrice - 1}}</td>
+          <td>Processing</td>
           <td><a ng-href="#/trade/accept" href="#/trade/accept"><button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-arrow-right"></span></button></a></td>
         </tr>
       </table>
