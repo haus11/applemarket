@@ -8,17 +8,13 @@
  * Service in the applemarketApp.
  */
 angular.module('applemarketApp')
-  .service('playerData', function (appCache, configData) {
+  .service('playerData', function (configData) {
     // AngularJS will instantiate a singleton by calling "new" on this function
 
-    var CACHE_NAME        = 'playerName';
-    var CACHE_STUDENT_ID  = 'studentId';
-    //
-    //var playerName = appCache.get(CACHE_NAME);
-    //var studentId  = appCache.get(CACHE_STUDENT_ID);
-    var playerName          = undefined;
-    var studentId           = undefined;
-    var demanderOrSupplier  = 'supplier'; // later get it from configdata
+    var playerName   = undefined;
+    var studentId    = undefined;
+    var isDemander   = true; // later get it from configdata
+    var startPrice   = 30.0;
 
     return {
 
@@ -28,7 +24,6 @@ angular.module('applemarketApp')
 
       setPlayerName : function (_playerName) {
         playerName = _playerName;
-        //appCache.put(CACHE_NAME, _playerName);
       },
 
       getStudentId : function () {
@@ -37,15 +32,22 @@ angular.module('applemarketApp')
 
       setStudentId : function (_studentId) {
         studentId = _studentId;
-        //appCache.put(CACHE_STUDENT_ID, _studentId);
       },
 
-      getDemanderOrSupplier : function () {
-        return demanderOrSupplier;
+      isDemander : function () {
+        return isDemander;
       },
 
-      setDemanderOrSupplier : function (_demanderOrSupplier) {
-        demanderOrSupplier = _demanderOrSupplier;
+      setIsDemander : function (_demander) {
+        isDemander = _demander;
+      },
+
+      getStartPrice : function () {
+        return startPrice;
+      },
+
+      setStartPrice : function (_startPrice) {
+        startPrice = _startPrice;
       }
     };
   });

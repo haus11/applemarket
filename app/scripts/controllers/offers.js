@@ -8,7 +8,7 @@
  * Controller of the applemarketApp
  */
 angular.module('applemarketApp')
-  .controller('OffersCtrl', function ($scope, playerData) {
+  .controller('OffersCtrl', function ($scope, $location, playerData, tradeService) {
 
     //$scope.trade = function(){
     //  var modalInstance = $modal.open({
@@ -18,27 +18,99 @@ angular.module('applemarketApp')
     //  });
     //};
 
-    $scope.inputData =
-    {
-      'supplierPrice' : 0
-    };
 
-    $scope.isDemander         = false;
-    $scope.isSupplier         = false;
+    //#############################################################
+    //                           Base
+    //#############################################################
+
+    $scope.isDemander         = playerData.isDemander();
     $scope.showSupplierForm   = true;
-    $scope.showDemanders      = false;
+    $scope.startPrice         = 40.0;
 
-    $scope.demanderOrSupplier = playerData.getDemanderOrSupplier();
+    //#############################################################
+    //                         Demander
+    //#############################################################
 
-    if ($scope.demanderOrSupplier == 'supplier') {
-      $scope.isSupplier = true;
-    }
-    else if ($scope.demanderOrSupplier == 'demander') {
-      $scope.isDemander = true;
-    }
+    $scope.availableTrades = [
+      {
+        partner : 'Peter',
+        price   : 10.0
+      },
+      {
+        partner : 'Jon',
+        price   : 20.0
+      },
+      {
+        partner : 'Ken',
+        price   : 35.0
+      }
+    ];
+
+    $scope.runningTrades = [
+      {
+        partner : 'Peter',
+        price   : 10.0,
+        myPrice : 13.0,
+        status  : 'Waiting'
+      },
+      {
+        partner : 'Jon',
+        price   : 20.0,
+        myPrice : 18.0,
+        status  : 'Processing'
+      },
+      {
+        partner : 'Ken',
+        price   : 35.0,
+        myPrice : 25.0,
+        status  : 'Waiting'
+      }
+    ];
+
+
+    //#############################################################
+    //                         Supplier
+    //#############################################################
+
+    $scope.availableOffers = [
+      {
+        partner : 'Peter',
+        price   : 10.0,
+        status  : 'Waiting'
+      },
+      {
+        partner : 'Jon',
+        price   : 20.0,
+        status  : 'Processing'
+      },
+      {
+        partner : 'Ken',
+        price   : 35.0,
+        status  : 'Waiting'
+      }
+    ];
+
+
+    //#############################################################
+    //                    Functions
+    //#############################################################
 
     $scope.saveSupplierPrice = function () {
       $scope.showSupplierForm = false;
-      $scope.showDemanders    = true;
+    };
+
+    $scope.openTrade = function (_trade) {
+      tradeService.setTrade(_trade);
+      $location.path('/trade');
+    };
+
+    $scope.openRunningTrade = function (_trade) {
+      tradeService.setTrade(_trade);
+      $location.path('/trade');
+    };
+
+    $scope.openOffer = function (_offer) {
+      tradeService.setTrade(_offer);
+      $location.path('/trade/accept');
     };
   });

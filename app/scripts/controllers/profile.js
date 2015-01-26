@@ -30,7 +30,7 @@ angular.module('applemarketApp')
 
     $scope.saveData = function () {
       playerData.setPlayerName($scope.inputData.name);
-      playerData.setStudentId($scope.inputData.student_id);
+      playerData.setStudentId($scope.inputData.studentId);
 
       $scope.inputData.showInput = false;
     };

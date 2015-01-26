@@ -8,15 +8,15 @@
         <th>Seller</th>
         <th>Price</th>
         <th>Your price</th>
-        <div class="text-right"><th>Status</th></div>
-        <th>Trade again</th>
+        <th>Status</th>
+        <th class="text-right">Trade again</th>
       </tr>
-      <tr>
-        <td>test</td>
-        <td>12</td>
-        <td>11</td>
-        <td>Processing</td>
-        <td><a ng-href="#/trade"><button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-arrow-right"></span></button></a></td>
+      <tr ng-repeat="trade in runningTrades">
+        <td>{{trade.partner}}</td>
+        <td>{{trade.price}}</td>
+        <td>{{trade.myPrice}}</td>
+        <td>{{trade.status}}</td>
+        <td class="text-right"><button class="btn btn-default btn-sm" ng-click="openRunningTrade(trade);"><span class="glyphicon glyphicon-arrow-right"></span></button></td>
       </tr>
     </table>
     <table class="table table-responsive table-striped row-buffer">
@@ -24,25 +24,25 @@
       <tr>
         <th>Seller</th>
         <th>Price</th>
-        <div class="text-right"><th>Trade</th></div>
+        <th class="text-right">Trade</th>
       </tr>
-      <tr>
-        <td>test</td>
-        <td>test</td>
-        <td><a ng-href="#/trade"><button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-arrow-right"></span></button></a></td>
+      <tr ng-repeat="trade in availableTrades">
+        <td>{{trade.partner}}</td>
+        <td>{{trade.price}}</td>
+        <td class="text-right"><button class="btn btn-default btn-sm" ng-click="openTrade(trade);"><span class="glyphicon glyphicon-arrow-right"></span></button></td>
       </tr>
     </table>
   </div>
 
   <!--view for the supplier-->
-  <div ng-show="isSupplier">
+  <div ng-hide="isDemander">
     <div ng-show="showSupplierForm">
       <form name="supplierInputForm">
         <div class="row">
           <div class="col-md-4">
             <div class="form-group form-group-sm">
               <label for="supplierPrice">Price to offer: </label>
-              <input type="number" step="0.01" class="form-control input-sm" id="supplierPrice" name="uSupplierPrice" ng-model="inputData.supplierPrice" required="true">
+              <input type="number" step="1.0" class="form-control input-sm" id="supplierPrice" name="uSupplierPrice" ng-model="inputData.supplierPrice" required="true">
             </div>
           </div>
         </div>
@@ -55,21 +55,21 @@
         </div>
       </form>
     </div>
-    <div ng-show="showDemanders">
-      <h4>Price you offer: <b>{{inputData.supplierPrice}}</b></h4>
+    <div ng-hide="showSupplierForm">
+      <h4>Price you offer: <b>{{startPrice}}</b></h4>
       <table class="table table-responsive table-striped row-buffer">
         <caption>Trading offers from Buyers</caption>
         <tr>
           <th>Buyer</th>
           <th>Price Offer</th>
           <th>Status</th>
-          <div class="text-right"><th>Trade</th></div>
+          <th class="text-right">Trade</th>
         </tr>
-        <tr>
-          <td>test</td>
-          <td>{{inputData.supplierPrice - 1}}</td>
-          <td>Processing</td>
-          <td><a ng-href="#/trade/accept" href="#/trade/accept"><button class="btn btn-default btn-sm"><span class="glyphicon glyphicon-arrow-right"></span></button></a></td>
+        <tr ng-repeat="offer in availableOffers">
+          <td>{{offer.partner}}</td>
+          <td>{{offer.price}}</td>
+          <td>{{offer.status}}</td>
+          <td class="text-right"><button class="btn btn-default btn-sm" ng-click="openOffer(offer);"><span class="glyphicon glyphicon-arrow-right"></span></button></td>
         </tr>
       </table>
     </div>
