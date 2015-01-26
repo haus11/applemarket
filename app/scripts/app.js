@@ -68,6 +68,10 @@ angular
         templateUrl: 'views/gamemanager.html',
         controller: 'GamemanagerCtrl'
       })
+      .when('/gamemanager/playeractions', {
+        templateUrl: 'views/playeractions.html',
+        controller: 'GamemanagerCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

@@ -16,6 +16,7 @@ angular.module('applemarketApp')
       'sessionNumber' : 0,
       'roundNumber'   : 0,
       'timeLeft'      : 0,
+      'slots'         : 0,
       'showInput'     : gameData.getGameName() == undefined
     };
 
@@ -43,9 +44,17 @@ angular.module('applemarketApp')
       $scope.inputData.timeLeft--;
     };
 
+    $scope.increaseSlots = function () {
+      $scope.inputData.slots++;
+    };
+
+    $scope.decreaseSlots = function () {
+      $scope.inputData.slots--;
+    };
+
     $scope.startGame = function () {
       $scope.saveGameData();
-      $location.path("/offers");
+      $location.path("/gamemanager/playeractions");
     };
 
     $scope.saveGameData = function() {
