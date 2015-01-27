@@ -14,7 +14,8 @@ angular.module('applemarketApp')
     var playerName   = undefined;
     var studentId    = undefined;
     var isDemander   = true; // later get it from configdata
-    var startPrice   = 30.0;
+    var startPrice   = 20.0;
+    var customPrice  = 23.0;
 
     return {
 
@@ -48,6 +49,14 @@ angular.module('applemarketApp')
 
       setStartPrice : function (_startPrice) {
         startPrice = _startPrice;
+      },
+
+      getCustomPrice : function () {
+        return customPrice;
+      },
+
+      setCustomPrice : function (_customPrice) {
+        customPrice = _customPrice;
       }
     };
   });

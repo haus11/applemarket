@@ -23,9 +23,12 @@ angular.module('applemarketApp')
     //                           Base
     //#############################################################
 
+    $scope.prices             = {
+      startPrice  : playerData.getStartPrice(),
+      customPrice : playerData.getCustomPrice()
+    };
     $scope.isDemander         = playerData.isDemander();
-    $scope.showSupplierForm   = true;
-    $scope.startPrice         = 40.0;
+    $scope.showSupplierForm   = $scope.prices.customPrice == 0.0;
 
     //#############################################################
     //                         Demander
@@ -97,6 +100,7 @@ angular.module('applemarketApp')
 
     $scope.saveSupplierPrice = function () {
       $scope.showSupplierForm = false;
+      playerData.setCustomPrice($scope.prices.customPrice);
     };
 
     $scope.openTrade = function (_trade) {

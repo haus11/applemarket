@@ -5,13 +5,13 @@
     </h3>
     <div class="row row-buffer">
       <button type="button" class="btn btn-default">
-        <translate>TRADE_PROFIT</translate> <span class="label label-success label-as-badge">+22</span>
+        <translate>TRADE_PROFIT</translate> <span ng-class="{'label-success': profit > 0, 'label-danger': profit <= 0}" class="label label-as-badge">{{profit}}</span>
       </button>
     </div>
     <div class="row row-buffer">
-      <a ng-href="#/trade/success" href="#/profile"><button class="btn btn-success">Accept</button></a>
-      <a ng-href="#/trade" href="#/trade"><button class="btn btn-info">Make new Offer</button></a>
-      <a ng-href="#/offers" href="#/offers"><button class="btn btn-warning">Decline</button></a>
+      <a ng-click="accepted();" ><button class="btn btn-success">Accept</button></a>
+      <a ng-href="#/trade"><button class="btn btn-info">Make new Offer</button></a>
+      <a ng-href="#/offers"><button class="btn btn-warning">Decline</button></a>
     </div>
   </div>
 </div>

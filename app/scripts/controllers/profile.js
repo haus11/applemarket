@@ -8,7 +8,7 @@
  * Controller of the applemarketApp
  */
 angular.module('applemarketApp')
-  .controller('ProfileCtrl', function ($scope, configData, playerData, roleGenerator) {
+  .controller('ProfileCtrl', function ($scope, configData, playerData, tradeService, roleGenerator) {
 
     //console.log(roleGenerator.generateTypeDistribution(29));
 
@@ -22,6 +22,11 @@ angular.module('applemarketApp')
     $scope.user         = configData.getPlayerRule('B');
     $scope.supplierText = configData.getSupplierText();
     $scope.demanderText = configData.getDemanderText();
+
+    $scope.tradeData = {
+      pricePaid : tradeService.getPricePaid(),
+      profit    : tradeService.getProfit()
+    }
 
 
     //#############################################################################

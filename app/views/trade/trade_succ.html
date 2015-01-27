@@ -11,11 +11,11 @@
     </div>
     <div class="row row-buffer">
       <button type="button" class="btn btn-default">
-        <translate>TRADE_PROFIT</translate> <span class="label label-success label-as-badge">+22</span>
+        <translate>TRADE_PROFIT</translate> <span ng-class="{'label-success': profit > 0, 'label-danger': profit <= 0}" class="label label-as-badge">{{profit}}</span>
       </button>
     </div>
     <div class="row row-buffer">
-      <a ng-href="#/profile" href="#/profile"><button class="btn btn-info" translate>SYSTEM_OK</button></a>
+      <a ng-href="#/profile"><button class="btn btn-info" translate>SYSTEM_OK</button></a>
     </div>
   </div>
 </div>

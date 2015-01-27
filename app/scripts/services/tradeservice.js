@@ -13,6 +13,9 @@ angular.module('applemarketApp')
 
     var trade = undefined;
 
+    var pricePaid = 0.0;
+    var profit    = 0.0;
+
     return {
       setTrade : function (_trade) {
         trade = _trade;
@@ -20,6 +23,22 @@ angular.module('applemarketApp')
 
       getTrade : function () {
         return trade;
+      },
+
+      setPricePaid : function (_pricePaid) {
+        pricePaid = _pricePaid;
+      },
+
+      getPricePaid : function () {
+        return pricePaid;
+      },
+
+      setProfit : function (_profit) {
+        profit = _profit;
+      },
+
+      getProfit : function () {
+        return profit;
       }
 
     };
