@@ -9,10 +9,16 @@
  */
 angular.module('applemarketApp')
   .controller('StatisticsCtrl', function ($scope, simpleChart) {
-    $scope.respBarChart  = simpleChart.getBostock(5);
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+
+    var numberOfBarsDrawn = 5;
+
+    $scope.respBarChart  = simpleChart.drawBarChart(numberOfBarsDrawn, 5);
+
+
+    $scope.clickedPreviousStatistics = function(){
+
+    };
+    $scope.clickedNextStatistics = function(){
+
+    };
   });
