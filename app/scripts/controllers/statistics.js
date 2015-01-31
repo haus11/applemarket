@@ -9,7 +9,7 @@
  */
 angular.module('applemarketApp')
   .controller('StatisticsCtrl', function ($scope, simpleChart) {
-    $scope.respBarChart  = simpleChart.getBostock();
+    $scope.respBarChart  = simpleChart.getBostock(5);
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
