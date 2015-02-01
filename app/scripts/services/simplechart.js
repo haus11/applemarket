@@ -141,6 +141,7 @@ angular.module('applemarketApp')
     // -----------------------------------------------------------------------------
     // control chunks to navigate through them with <- or ->
     // left subtracts 1 from chunkPosition, right adds 1 to it
+    // chunkPosition has to be 0 <= chunkPosition < chunkCount
     // -----------------------------------------------------------------------------
     function controlBars(direction) {
       if ( (direction == 'left') && (chunkPosition - 1 >= 0) ) {
@@ -164,10 +165,10 @@ angular.module('applemarketApp')
 
       svg.selectAll('rect')
         .data(data)
-        .attr("y", function(d) { return y(d.price); })
-        .attr("height", function(d) { return height - y(d.price); })
         .transition()
-        .duration(5000);
+        .duration(1000)
+        .attr("y", function(d) { return y(d.price); })
+        .attr("height", function(d) { return height - y(d.price); });
 
       svg.selectAll(".x.axis")
         .call(xAxis);
