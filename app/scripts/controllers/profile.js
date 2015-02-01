@@ -23,10 +23,38 @@ angular.module('applemarketApp')
     $scope.supplierText = configData.getSupplierText();
     $scope.demanderText = configData.getDemanderText();
 
-    $scope.tradeData = {
-      pricePaid : tradeService.getPricePaid(),
-      profit    : tradeService.getProfit()
-    }
+    $scope.tradeData = [
+      {
+        value     : 40,
+        pricePaid : tradeService.getPricePaid(),
+        profit    : tradeService.getProfit()
+      },
+      {
+        value     : 30,
+        pricePaid : tradeService.getPricePaid(),
+        profit    : tradeService.getProfit()
+      },
+      {
+        value     : 20,
+        pricePaid : tradeService.getPricePaid(),
+        profit    : tradeService.getProfit()
+      },
+      {
+        value     : 40,
+        pricePaid : tradeService.getPricePaid(),
+        profit    : tradeService.getProfit()
+      },
+      {
+        value     : 30,
+        pricePaid : tradeService.getPricePaid(),
+        profit    : tradeService.getProfit()
+      },
+      {
+        value     : 20,
+        pricePaid : tradeService.getPricePaid(),
+        profit    : tradeService.getProfit()
+      }
+    ];
 
 
     //#############################################################################

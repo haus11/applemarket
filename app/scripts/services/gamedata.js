@@ -10,12 +10,21 @@
 angular.module('applemarketApp')
   .service('gameData', function ($rootScope) {
 
+    var gameStarted     = false;
     var gameName        = undefined;
     var sessionNumber   = undefined;
     var roundNumber     = undefined;
     var time            = undefined;  // in minutes
 
     return {
+
+      isGameStarted : function () {
+        return gameStarted;
+      },
+
+      setGameStarted : function (_gameStarted) {
+        gameStarted = _gameStarted;
+      },
 
       getGameName : function () {
         return gameName;
