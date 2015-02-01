@@ -52,12 +52,20 @@ angular.module('applemarketApp')
     // -----------------------------------------------------------------------------
     // variables to browse through dataset
     // -----------------------------------------------------------------------------
-    var chunks     = [];
-    var chunkCount = 0;
-    var chunkRest  = 0;
+    var chunks          = [];
+    var chunkCount      = 0;
+    var chunkRest       = 0;
+    var chunkPosition   = 0; // Position hast to be 0 <= chunkPosition < chunkCount
 
     function drawBarChart(amount) {
       d3.csv("data.csv", /*type,*/ function(error, data) {
+        // -----------------------------------------------------------------------------
+        // putting the y-domain here will guarantee the highest y-value from the
+        // the original data --> no confusion by looking at the data. The + 5.0 gives
+        // some additional space for headlines at the top.
+        // -----------------------------------------------------------------------------
+        y.domain([0, parseFloat(d3.max(data, function(d) { return d.price; })) + 5.0]);
+
         // -----------------------------------------------------------------------------
         // splitting data into evenly sized chunks of size $amount
         // -----------------------------------------------------------------------------
@@ -68,7 +76,7 @@ angular.module('applemarketApp')
         var end   = 0;
 
         for (var i = 0; i < chunkCount; ++i) {
-          end += chunkCount;
+          end += amount;
           chunks.push(data.slice(start, end));
           start = end;
         }
@@ -83,8 +91,9 @@ angular.module('applemarketApp')
             var transaction = parseInt(lastItemOfLastChunk.transaction) + 1;
             lastChunk.push(createEmptyObject(transaction, 0, 0));
           }
+          ++chunkCount; // Setting chunkCount + 1, since there's now one more to browse through
         }
-        drawBars(chunks[0]);
+        drawBars(chunks[chunkPosition]);
       });
 
       // -----------------------------------------------------------------------------
@@ -92,7 +101,6 @@ angular.module('applemarketApp')
       // -----------------------------------------------------------------------------
       function drawBars(data) {
         x.domain(data.map(function(d) { return d.transaction; }));
-        y.domain([0, d3.max(data, function(d) { return d.price; })]);
 
         svg.append("g")
           .attr("class", "x axis")
@@ -132,13 +140,21 @@ angular.module('applemarketApp')
 
     // -----------------------------------------------------------------------------
     // control chunks to navigate through them with <- or ->
+    // left subtracts 1 from chunkPosition, right adds 1 to it
     // -----------------------------------------------------------------------------
-    function controlBars(data, direction) {
-
-      updateBarChart(chunks[5]);
+    function controlBars(direction) {
+      if ( (direction == 'left') && (chunkPosition - 1 >= 0) ) {
+        --chunkPosition;
+      }
+      else if ( (direction == 'right') && (chunkPosition + 1 < chunkCount) ) {
+        ++chunkPosition;
+      }
+      else {
+        console.log('controlBarsError: position not accepted');
+        return 0;
+      }
+      updateBarChart(chunks[chunkPosition]);
     }
-
-    function go
 
     // -----------------------------------------------------------------------------
     // redraws the bars with data from new chunks
@@ -181,8 +197,8 @@ angular.module('applemarketApp')
       drawBarChart : function (amount) {
         drawBarChart(amount);
       },
-      updateBarChart : function(amount, start) {
-
+      controlBarChart : function(direction) {
+        controlBars(direction);
       }
     };
   });
