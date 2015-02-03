@@ -12,13 +12,13 @@ angular.module('applemarketApp')
 
     var numberOfBarsDrawn = 5;
 
-    $scope.respBarChart  = simpleChart.drawBarChart(numberOfBarsDrawn, 5);
+    $scope.respBarChart  = simpleChart.drawBarChart(numberOfBarsDrawn);
 
 
     $scope.clickedPreviousStatistics = function(){
-
+      $scope.resBarChart = simpleChart.controlBarChart('left');
     };
     $scope.clickedNextStatistics = function(){
-
+      $scope.resBarChart = simpleChart.controlBarChart('right');
     };
   });
