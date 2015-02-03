@@ -19,14 +19,16 @@ angular
     'angular.filter'
   ])
   .config(function ($routeProvider, $locationProvider) {
+
+    //$locationProvider.html5Mode({
+    //  enabled: true,
+    //  requireBase: false
+    //});
+
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
       })
       .when('/games', {
         templateUrl: 'views/games.html',
@@ -43,10 +45,6 @@ angular
       .when('/statistics', {
         templateUrl: 'views/statistics.html',
         controller: 'StatisticsCtrl'
-      })
-      .when('/simpleChart', {
-        templateUrl: 'views/simplechart.html',
-        controller: 'SimplechartCtrl'
       })
       .when('/trade', {
         templateUrl: 'views/trade/trade.html',
@@ -75,4 +73,31 @@ angular
       .otherwise({
         redirectTo: '/'
       });
+  })
+  .run(function ($rootScope, $location, playerData, connectionService) {
+
+
+    //connectionService.on(config.api.connect, function () {
+    //  console.log('Connect');
+    //  connectionService.post(config.api.authenticate, function (_data, _jwres) {
+    //    console.log('Authenticate');
+    //    console.log(_data);
+    //
+    //    if (Object.keys(_data).length === 0) {
+    //      // ask for name
+    //      // create user on /user POST
+    //      $location.path('/createUser');
+    //    }
+    //    else {
+    //      // get data from session
+    //      userService.setAlias(_data.username);
+    //      userService.setUserName(_data.username);
+    //
+    //      $location.path('/chatRoom');
+    //    }
+    //
+    //    $rootScope.$apply();
+    //  });
+    //});
   });
+
