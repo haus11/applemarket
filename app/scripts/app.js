@@ -64,13 +64,17 @@ angular
         templateUrl: 'views/trade/trade_accept.html',
         controller: 'TradeCtrl'
       })
-      .when('/gamemanager', {
-        templateUrl: 'views/gamemanager.html',
-        controller: 'GamemanagerCtrl'
+      .when('/manager/create-game', {
+        templateUrl: '/views/manager/create_game.html',
+        controller: 'CreateGameCtrl'
       })
-      .when('/gamemanager/settings', {
-        templateUrl: 'views/managersettings.html',
-        controller: 'ManagersettingsCtrl'
+      .when('/manager/start-game', {
+        templateUrl: '/views/manager/start_game.html',
+        controller: 'StartGameCtrl'
+      })
+      .when('/manager/manage-game', {
+        templateUrl: '/views/manager/manage_game.html',
+        controller: 'ManageGameCtrl'
       })
       .otherwise({
         redirectTo: '/'

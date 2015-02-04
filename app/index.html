@@ -27,7 +27,7 @@
           <li><a><span class="fa fa-apple"></span> Game <small class="nav-small">{{gameInfoData.gameName}}</small></a></li>
           <li><a><span class="fa fa-refresh"></span> Session <small class="nav-small">{{gameInfoData.sessionNumber}}</small></a></li>
           <li><a><span class="fa fa-repeat"></span> Round <small class="nav-small">{{gameInfoData.roundNumber}}</small></a></li>
-          <li><a><span class="fa fa-clock-o"></span> Time <small class="nav-small">{{gameInfoData.timeLeft}}s</small></a></li>
+          <!--<li><a><span class="fa fa-clock-o"></span> Time <small class="nav-small">{{gameInfoData.timeLeft}}s</small></a></li>-->
         </ul>
       </div>
     </div>
@@ -38,7 +38,7 @@
           <li ng-class="{'nav-active':selectedTab === 'offers'}" ng-click="selectedTab = 'offers'" id="offers"><a ng-href="#/offers" class="nav-hover"><span class="fa fa-list-alt"></span> Offers</a></li>
           <li ng-class="{'nav-active':selectedTab === 'profile'}" ng-click="selectedTab = 'profile'"><a ng-href="#/profile" class="nav-hover"><span class="fa fa-user"></span> Profile</a></li>
           <li ng-class="{'nav-active':selectedTab === 'statistics'}" ng-click="selectedTab = 'statistics'"><a ng-href="#/statistics" class="nav-hover"><span class="fa fa-line-chart"></span> Stats</a></li>
-          <li ng-class="{'nav-active':selectedTab === 'gamemanager'}" ng-click="selectedTab = 'gamemanager'"><a ng-href="#/gamemanager" class="nav-hover"><span class="fa fa-gamepad"></span> Manager</a></li>
+          <li ng-class="{'nav-active':selectedTab === 'gamemanager'}" ng-click="selectedTab = 'manager/create-game'"><a ng-href="#/manager/create-game" class="nav-hover"><span class="fa fa-gamepad"></span> Manager</a></li>
         </ul>
       </div>
     </div>
@@ -110,9 +110,10 @@
     <script src="scripts/controllers/trade.js"></script>
     <script src="scripts/controllers/simplechart.js"></script>
     <script src="scripts/controllers/navigation.js"></script>
-    <script src="scripts/controllers/gamemanager.js"></script>
+    <script src="scripts/controllers/manager/create_game.js"></script>
+    <script src="scripts/controllers/manager/manage_game.js"></script>
     <script src="scripts/services/tradeservice.js"></script>
-    <script src="scripts/controllers/managersettings.js"></script>
+    <script src="scripts/controllers/manager/start_game.js"></script>
     <!-- endbuild -->
 </body>
 </html>

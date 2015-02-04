@@ -2,13 +2,14 @@
 
 /**
  * @ngdoc function
- * @name applemarketApp.controller:ManagersettingsCtrl
+ * @name applemarketApp.controller:ManageGameCtrl
  * @description
- * # ManagersettingsCtrl
+ * # ManageGameCtrl
  * Controller of the applemarketApp
  */
 angular.module('applemarketApp')
-  .controller('ManagersettingsCtrl', function ($scope, gameData) {
+  .controller('ManageGameCtrl', function ($scope, gameData) {
+
     $scope.inputData =
     {
       'gameName'      : gameData.getGameName(),
