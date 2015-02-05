@@ -57,85 +57,95 @@ angular.module('applemarketApp')
     var chunkRest       = 0;
     var chunkPosition   = 0; // Position hast to be 0 <= chunkPosition < chunkCount
 
-    function drawBarChart(amount) {
-      d3.csv("data.csv", /*type,*/ function(error, data) {
-        // -----------------------------------------------------------------------------
-        // putting the y-domain here will guarantee the highest y-value from the
-        // the original data --> no confusion by looking at the data. The + 5.0 gives
-        // some additional space for headlines at the top.
-        // -----------------------------------------------------------------------------
-        y.domain([0, parseFloat(d3.max(data, function(d) { return d.price; })) + 5.0]);
+    // -----------------------------------------------------------------------------
+    // drawBarChart
+    // needs an Array of data
+    // -----------------------------------------------------------------------------
+    function drawBarChart(amount, data) {
 
-        // -----------------------------------------------------------------------------
-        // splitting data into evenly sized chunks of size $amount
-        // -----------------------------------------------------------------------------
-        chunkCount = Math.floor(data.length / amount);
-        chunkRest = data.length % amount;
-
-        var start = 0;
-        var end   = 0;
-
-        for (var i = 0; i < chunkCount; ++i) {
-          end += amount;
-          chunks.push(data.slice(start, end));
-          start = end;
-        }
-
-        if (chunkRest > 0) {
-          chunks.push(data.slice(start, data.length));
-
-          for (var i = 0; i < amount - chunkRest; ++i) {
-            var chunkIndex = chunks.length - 1;
-            var lastChunk = chunks[chunkIndex];
-            var lastItemOfLastChunk = lastChunk[lastChunk.length - 1];
-            var transaction = parseInt(lastItemOfLastChunk.transaction) + 1;
-            lastChunk.push(createEmptyObject(transaction, 0, 0));
-          }
-          ++chunkCount; // Setting chunkCount + 1, since there's now one more to browse through
-        }
-        drawBars(chunks[chunkPosition]);
-      });
+      if(data.constructor !== Array || data.length <= 0) { return; }
 
       // -----------------------------------------------------------------------------
-      // draw bars
+      // putting the y-domain here will guarantee the highest y-value from the
+      // the original data --> no confusion by looking at the data. The + 5.0 gives
+      // some additional space for headlines at the top.
       // -----------------------------------------------------------------------------
-      function drawBars(data) {
-        x.domain(data.map(function(d) { return d.transaction; }));
+      y.domain([0, parseFloat(d3.max(data, function(d) { return d.price; })) + 5.0]);
 
-        svg.append("g")
-          .attr("class", "x axis")
-          .attr("transform", "translate(0," + height + ")")
-          .style('stroke-width', '3px')
-          .call(xAxis)
-          .append('text')
-          .attr('x', '45%')
-          .attr('dy', '2.5em')
-          .style('text-anchor', 'middle')
-          .style('font-size', '18px')
-          .text('Transactions');
+      // -----------------------------------------------------------------------------
+      // splitting data into evenly sized chunks of size $amount
+      // -----------------------------------------------------------------------------
+      chunkCount = Math.floor(data.length / amount);
+      chunkRest = data.length % amount;
 
-        svg.append("g")
-          .attr("class", "y axis")
-          .style('stroke-width', '3px')
-          .call(yAxis)
-          .append('text')
-          .attr('transform', 'rotate(-90)')
-          .attr('x', '-20%')
-          .attr('y', 6)
-          .attr('dy', '-4em')
-          .style('text-anchor', 'middle')
-          .style('font-size', '18px')
-          .text('Price for bushel of apples');
+      var start = 0;
+      var end   = 0;
 
-        svg.selectAll(".bar")
-          .data(data)
-          .enter().append("rect")
-          .attr("class", "bar")
-          .attr("x", function(d) { return x(d.transaction); })
-          .attr("y", function(d) { return y(d.price); })
-          .attr("height", function(d) { return height - y(d.price); })
-          .attr("width", x.rangeBand());
+      for (var i = 0; i < chunkCount; ++i) {
+        end += amount;
+        chunks.push(data.slice(start, end));
+        start = end;
       }
+
+      // -----------------------------------------------------------------------------
+      // adding empty objects to the last chunk. Allows to show same sized bars for
+      // the last chunk in the frontend.
+      // -----------------------------------------------------------------------------
+      if (chunkRest > 0) {
+        chunks.push(data.slice(start, data.length));
+
+        for (var i = 0; i < amount - chunkRest; ++i) {
+          var chunkIndex = chunks.length - 1;
+          var lastChunk = chunks[chunkIndex];
+          var lastItemOfLastChunk = lastChunk[lastChunk.length - 1];
+          var transaction = parseInt(lastItemOfLastChunk.transactionNmbr) + 1;
+          lastChunk.push(createEmptyObject(transaction, 0, 0));
+        }
+        ++chunkCount; // Setting chunkCount + 1, since there's now one more to browse through
+      }
+
+      drawBars(chunks[chunkPosition]);
+    }
+
+    // -----------------------------------------------------------------------------
+    // draw bars
+    // -----------------------------------------------------------------------------
+    function drawBars(dataset) {
+      x.domain(dataset.map(function(d) { return d.transactionNmbr; }));
+
+      svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .style('stroke-width', '3px')
+        .call(xAxis)
+        .append('text')
+        .attr('x', '45%')
+        .attr('dy', '2.5em')
+        .style('text-anchor', 'middle')
+        .style('font-size', '18px')
+        .text('Transactions');
+
+      svg.append("g")
+        .attr("class", "y axis")
+        .style('stroke-width', '3px')
+        .call(yAxis)
+        .append('text')
+        .attr('transform', 'rotate(-90)')
+        .attr('x', '-20%')
+        .attr('y', 6)
+        .attr('dy', '-4em')
+        .style('text-anchor', 'middle')
+        .style('font-size', '18px')
+        .text('Price for bushel of apples');
+
+      svg.selectAll(".bar")
+        .data(dataset)
+        .enter().append("rect")
+        .attr("class", "bar")
+        .attr("x", function(d) { return x(d.transactionNmbr); })
+        .attr("y", function(d) { return y(d.price) - 1.0; })
+        .attr("height", function(d) { return height - y(d.price); })
+        .attr("width", x.rangeBand());
     }
 
     // -----------------------------------------------------------------------------
@@ -161,7 +171,7 @@ angular.module('applemarketApp')
     // redraws the bars with data from new chunks
     // -----------------------------------------------------------------------------
     function updateBarChart(data) {
-      x.domain(data.map(function(d) { return d.transaction; }));
+      x.domain(data.map(function(d) { return d.transactionNmbr; }));
 
       svg.selectAll('rect')
         .data(data)
@@ -180,7 +190,7 @@ angular.module('applemarketApp')
     // -----------------------------------------------------------------------------
     function createEmptyObject(transactionNmbr, session, round) {
       return {
-        transaction: transactionNmbr,
+        transactionNmbr: transactionNmbr,
         price: 0,
         session: session,
         round: round
@@ -189,14 +199,8 @@ angular.module('applemarketApp')
 
 
     return {
-      getSimpleDataDiv : function () {
-       calcDivGraph();
-      },
-      getSimpleDataSvg : function () {
-        calcSvgGraph();
-      },
-      drawBarChart : function (amount) {
-        drawBarChart(amount);
+      drawBarChart : function (amount, data) {
+        drawBarChart(amount, data);
       },
       controlBarChart : function(direction) {
         controlBars(direction);

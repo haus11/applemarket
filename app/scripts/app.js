@@ -8,6 +8,9 @@
  *
  * Main module of the application.
  */
+
+io.sails.autoConnect = false;
+
 angular
   .module('applemarketApp', [
     'ngAnimate',
