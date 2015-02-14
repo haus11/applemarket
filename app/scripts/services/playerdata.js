@@ -11,11 +11,11 @@ angular.module('applemarketApp')
   .service('playerData', function (configData) {
     // AngularJS will instantiate a singleton by calling "new" on this function
 
-    var playerName   = undefined;
-    var studentId    = undefined;
-    var isDemander   = true; // later get it from configdata
-    var startPrice   = 20.0;
-    var customPrice  = 23.0;
+    var playerName    = undefined;
+    var isDemander    = true; // later get it from configdata
+    var isGameManager = false;
+    var startPrice    = 20.0;
+    var customPrice   = 23.0;
 
     return {
 
@@ -27,20 +27,20 @@ angular.module('applemarketApp')
         playerName = _playerName;
       },
 
-      getStudentId : function () {
-        return studentId;
-      },
-
-      setStudentId : function (_studentId) {
-        studentId = _studentId;
-      },
-
       isDemander : function () {
         return isDemander;
       },
 
       setIsDemander : function (_demander) {
         isDemander = _demander;
+      },
+
+      isGameManager : function () {
+        return isGameManager;
+      },
+
+      setIsGameManager : function (_gameManager) {
+        isGameManager = _gameManager;
       },
 
       getStartPrice : function () {

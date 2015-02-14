@@ -8,7 +8,7 @@
  * Controller of the applemarketApp
  */
 angular.module('applemarketApp')
-  .controller('CreateGameCtrl', function ($scope, gameData, $location) {
+  .controller('GreateGameCtrl', function ($scope, gameData, $location, connectionService) {
 
     $scope.inputData =
     {
@@ -16,8 +16,7 @@ angular.module('applemarketApp')
       'sessionNumber' : 0,
       'roundNumber'   : 0,
       'timeLeft'      : 0,
-      'slots'         : 0,
-      'showInput'     : gameData.getGameName() == undefined
+      'slots'         : 0
     };
 
     $scope.increaseSessions = function () {
@@ -53,16 +52,22 @@ angular.module('applemarketApp')
     };
 
     $scope.createGame = function () {
-      $scope.saveGameData();
-      $location.path("/manager/start-game");
+      var postData = {
+        'game_id'     : 2,
+        'name'       : $scope.inputData.gameName,
+        'player_max'  : $scope.inputData.slots
+      };
+
+      connectionService.post(config.api.server_create, postData, function (_data, _jwres) {
+
+        gameData.setGameName(_data.name);
+        gameData.setSessionNumber($scope.inputData.sessionNumber);
+        gameData.setRoundNumber($scope.inputData.roundNumber);
+        gameData.setMaxPlayer(_data.playerMax);
+        gameData.setServerId(_data.id);
+
+        $location.path(config.routes.lobby);
+      });
+
     };
-
-    $scope.saveGameData = function() {
-
-      gameData.setGameName($scope.inputData.gameName);
-      gameData.setSessionNumber($scope.inputData.sessionNumber);
-      gameData.setRoundNumber($scope.inputData.roundNumber);
-      gameData.setTime($scope.inputData.timeLeft * 60);
-      $scope.inputData.showInput = false;
-    }
   });

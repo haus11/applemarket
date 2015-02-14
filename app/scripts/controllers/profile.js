@@ -12,13 +12,6 @@ angular.module('applemarketApp')
 
     //console.log(roleGenerator.generateTypeDistribution(29));
 
-    $scope.inputData =
-    {
-      'name'        : playerData.getPlayerName(),
-      'studentId'   : playerData.getStudentId(),
-      'showInput'   : playerData.getPlayerName() == undefined
-    };
-
     $scope.user         = configData.getPlayerRule('B');
     $scope.supplierText = configData.getSupplierText();
     $scope.demanderText = configData.getDemanderText();
@@ -61,10 +54,4 @@ angular.module('applemarketApp')
     //                          Scope Functions
     //#############################################################################
 
-    $scope.saveData = function () {
-      playerData.setPlayerName($scope.inputData.name);
-      playerData.setStudentId($scope.inputData.studentId);
-
-      $scope.inputData.showInput = false;
-    };
   });

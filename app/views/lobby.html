@@ -1,0 +1,10 @@
+<div class="container text-center">
+  <h3>Lobby <small>{{inputData.gameName}}</small></h3>
+  <h4>4 of 16 players joined the game</h4>
+
+  <div ng-repeat="user in userList">
+    <span >{{user}}</span>
+  </div>
+
+  <button class="btn btn-warning row row-buffer">StartGame</button>
+</div>

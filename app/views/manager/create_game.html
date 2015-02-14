@@ -4,13 +4,9 @@
   <form name="createNewGameForm">
     <div class="row row-buffer">
       <div class="col-md-4">
-        <div class="form-group form-group-sm" ng-show="inputData.showInput">
+        <div class="form-group form-group-sm">
           <label for="gameName">Name: </label>
           <input type="text" class="form-control input-sm" id="gameName" name="uGameName" ng-model="inputData.gameName" required="">
-        </div>
-        <div ng-show="!inputData.showInput">
-          <label>Name: </label>
-          <p>{{inputData.gameName}}</p>
         </div>
       </div>
       <div class="col-md-4">

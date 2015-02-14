@@ -6,8 +6,7 @@ function updateGameData($scope, gameData) {
   {
     'gameName'      : gameData.getGameName(),
     'sessionNumber' : gameData.getSessionNumber(),
-    'roundNumber'   : gameData.getRoundNumber(),
-    'timeLeft'      : gameData.getTime()
+    'roundNumber'   : gameData.getRoundNumber()
   };
 }
 

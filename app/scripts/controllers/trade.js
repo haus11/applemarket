@@ -50,14 +50,14 @@ angular.module('applemarketApp')
     };
 
     $scope.sendOffer = function () {
-      $location.path('/offers');
+      $location.path(config.routes.offers);
     };
 
     $scope.accepted = function () {
       console.log($scope.offer + " | " + $scope.profit);
       tradeService.setPricePaid($scope.offer);
       tradeService.setProfit($scope.profit);
-      $location.path('/trade/success');
+      $location.path(config.routes.trade_success);
     };
 
     $scope.rejected = function () {

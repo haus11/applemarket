@@ -8,7 +8,9 @@
  * # connectionService
  * Service in the assetsApp.
  */
-io.sails.autoConnect = false;
+io.sails.autoConnect = true;
+io.sails.url = 'http://192.168.0.107:1338';
+
 angular.module('applemarketApp')
   .service('connectionService', function ($rootScope) {
     // -----------------------------------------------------------------------------
@@ -17,7 +19,6 @@ angular.module('applemarketApp')
     // connect to the server here.
     // -----------------------------------------------------------------------------
     //io.sails.autoConnect = false;
-    io.sails.url = 'http://localhost:1337';
 
     var socket = io.sails.connect();
 
@@ -59,6 +60,24 @@ angular.module('applemarketApp')
 
       post: function(url, payload, callback) {
         socket.post(url, payload, function() {
+          var args = arguments;
+          $rootScope.$apply(function() {
+            callback.apply(socket, args);
+          });
+        });
+      },
+
+      put: function(url, payload, callback) {
+        socket.put(url, payload, function() {
+          var args = arguments;
+          $rootScope.$apply(function() {
+            callback.apply(socket, args);
+          });
+        });
+      },
+
+      delete: function(url, payload, callback) {
+        socket.delete(url, payload, function() {
           var args = arguments;
           $rootScope.$apply(function() {
             callback.apply(socket, args);
