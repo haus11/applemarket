@@ -11,6 +11,7 @@ angular.module('applemarketApp')
   .controller('MainCtrl', function ($scope, $location, playerData, gameData) {
 
     var serverId = $location.search().server_id;
+    $location.$$search = {};
 
     // Is GameManager
     if (serverId == undefined) {

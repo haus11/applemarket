@@ -23,7 +23,10 @@ var config = {
     user            : '/user',
     user_create     : 'user:create',
     user_reconnect  : 'user:reconnect',
-    user_disconnect : 'user:disconnect'
+    user_disconnect : 'user:disconnect',
+
+    server_create   : '/api/server',
+    server_join     : ''
   },
 
   nav : {

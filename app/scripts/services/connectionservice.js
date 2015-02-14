@@ -9,7 +9,8 @@
  * Service in the assetsApp.
  */
 io.sails.autoConnect = true;
-io.sails.url = 'http://localhost:1338';
+io.sails.url = 'http://192.168.0.107:1338';
+
 angular.module('applemarketApp')
   .service('connectionService', function ($rootScope) {
     // -----------------------------------------------------------------------------

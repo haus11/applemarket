@@ -16,6 +16,7 @@ angular.module('applemarketApp')
     var roundNumber     = undefined;
     var time            = undefined;  // in minutes
     var serverId        = undefined;
+    var maxPlayer       = undefined;
 
     return {
 
@@ -69,6 +70,14 @@ angular.module('applemarketApp')
 
       setServerId : function (_serverId) {
         serverId = _serverId;
+      },
+
+      getMaxPlayer : function () {
+        return maxPlayer;
+      },
+
+      setMaxPlayer : function (_maxPlayer) {
+        maxPlayer = _maxPlayer;
       }
     };
   });
