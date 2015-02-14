@@ -8,15 +8,18 @@
  * Controller of the applemarketApp
  */
 angular.module('applemarketApp')
-  .controller('MainCtrl', function ($scope, $location) {
+  .controller('MainCtrl', function ($scope, $location, playerData, gameData) {
 
     var serverId = $location.search().server_id;
 
     // Is GameManager
-    if (serverId != undefined) {
+    if (serverId == undefined) {
       playerData.setIsGameManager(true);
+      $location.path(config.routes.game_manager);
     }
-
-    $location.path('/gamemanager');
+    else {
+      gameData.setServerId(serverId);
+      $location.path(config.routes.init_player);
+    }
 
   });

@@ -1,35 +1,5 @@
 <h2>Profile <small>Type: {{ user.type }}</small></h2>
-<form name="playerInputForm">
-  <div class="row">
-    <div class="col-md-6">
-      <div class="form-group form-group-sm" ng-show="inputData.showInput">
-        <label for="name">Name: </label>
-        <input type="text" class="form-control input-sm" id="name" name="uName" ng-model="inputData.name" required="">
-      </div>
-      <div ng-show="!inputData.showInput">
-        <label>Name: </label>
-        <p>{{inputData.name}}</p>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="form-group form-group-sm" ng-show="inputData.showInput">
-        <label for="matrikel">Student-ID: </label>
-        <input type="text" class="form-control input-sm" id="matrikel" name="uStudentId" ng-model="inputData.studentId">
-      </div>
-      <div ng-show="!inputData.showInput && inputData.studentId != undefined">
-        <label>Student-ID: </label>
-        <p>{{inputData.studentId}}</p>
-      </div>
-    </div>
-  </div>
-  <div class="row top-buffer">
-    <div class="col-md-12" ng-show="inputData.showInput">
-      <div class="text-right">
-        <input type="submit" class="btn btn-success" ng-click="saveData()" ng-disabled="playerInputForm.$invalid" value="Save"/>
-      </div>
-    </div>
-  </div>
-</form>
+
 <h3>Description</h3>
 <p ng-bind-html="supplierText | stringular:user.session2.maxValue"></p>
 <table class="table table-responsive table-striped">

@@ -105,16 +105,16 @@ angular.module('applemarketApp')
 
     $scope.openTrade = function (_trade) {
       tradeService.setTrade(_trade);
-      $location.path('/trade');
+      $location.path(config.routes.trade);
     };
 
     $scope.openRunningTrade = function (_trade) {
       tradeService.setTrade(_trade);
-      $location.path('/trade');
+      $location.path(config.routes.trade);
     };
 
     $scope.openOffer = function (_offer) {
       tradeService.setTrade(_offer);
-      $location.path('/trade/accept');
+      $location.path(config.routes.trade_accept);
     };
   });

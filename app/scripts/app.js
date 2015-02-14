@@ -29,49 +29,49 @@ angular
     //});
 
     $routeProvider
-      .when('/', {
+      .when(config.routes.base, {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/games', {
-        templateUrl: 'views/games.html',
-        controller: 'GamesCtrl'
-      })
-      .when('/profile', {
+      .when(config.routes.profile, {
         templateUrl: 'views/profile.html',
         controller: 'ProfileCtrl'
       })
-      .when('/offers', {
+      .when(config.routes.offers, {
         templateUrl: 'views/offers.html',
         controller: 'OffersCtrl'
       })
-      .when('/statistics', {
+      .when(config.routes.statistics, {
         templateUrl: 'views/statistics.html',
         controller: 'StatisticsCtrl'
       })
-      .when('/trade', {
+      .when(config.routes.trade, {
         templateUrl: 'views/trade/trade.html',
         controller: 'TradeCtrl'
       })
-      .when('/trade/success', {
+      .when(config.routes.trade_success, {
         templateUrl: 'views/trade/trade_succ.html',
         controller: 'TradeCtrl'
       })
-      .when('/trade/fail', {
+      .when(config.routes.trade_fail, {
         templateUrl: 'views/trade/trade_fail.html',
         controller: 'TradeCtrl'
       })
-      .when('/trade/accept', {
+      .when(config.routes.trade_accept, {
         templateUrl: 'views/trade/trade_accept.html',
         controller: 'TradeCtrl'
       })
-      .when('/gamemanager', {
+      .when(config.routes.game_manager, {
         templateUrl: 'views/gamemanager.html',
         controller: 'GamemanagerCtrl'
       })
-      .when('/gamemanager/settings', {
-        templateUrl: 'views/managersettings.html',
-        controller: 'ManagersettingsCtrl'
+      .when(config.routes.lobby, {
+        templateUrl: '../views/lobby.html',
+        controller: 'LobbyCtrl'
+      })
+      .when(config.routes.init_player, {
+        templateUrl: 'views/initplayer.html',
+        controller: 'InitplayerCtrl'
       })
       .otherwise({
         redirectTo: '/'

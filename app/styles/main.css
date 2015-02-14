@@ -90,6 +90,7 @@ body {
 }
 .nav-fixed ul li {
   display: inline-block;
+  cursor: pointer;
 }
 .nav-fixed ul li .nav-hover:hover {
   background-color: #333333;

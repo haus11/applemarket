@@ -31,14 +31,14 @@
         </ul>
       </div>
     </div>
-    <div class="nav-fixed nav-bottom" ng-controller="IndexCtrl">
+    <div class="nav-fixed nav-bottom" ng-controller="NavigationCtrl">
       <div class="nav-wrapper">
         <ul>
-          <li ng-class="{'nav-active':selectedTab === 'home'}" ng-click="selectedTab = 'home'" id="home"><a ng-href="#" class="nav-hover"><span class="fa fa-home"></span></a></li>
-          <li ng-class="{'nav-active':selectedTab === 'offers'}" ng-click="selectedTab = 'offers'" id="offers"><a ng-href="#/offers" class="nav-hover"><span class="fa fa-list-alt"></span> Offers</a></li>
-          <li ng-class="{'nav-active':selectedTab === 'profile'}" ng-click="selectedTab = 'profile'"><a ng-href="#/profile" class="nav-hover"><span class="fa fa-user"></span> Profile</a></li>
-          <li ng-class="{'nav-active':selectedTab === 'statistics'}" ng-click="selectedTab = 'statistics'"><a ng-href="#/statistics" class="nav-hover"><span class="fa fa-line-chart"></span> Stats</a></li>
-          <li ng-class="{'nav-active':selectedTab === 'gamemanager'}" ng-click="selectedTab = 'gamemanager'"><a ng-href="#/gamemanager" class="nav-hover"><span class="fa fa-gamepad"></span> Manager</a></li>
+          <li ng-class="{'nav-active':selectedTab === 'home'}"    ng-click="selectTab('home');">   <a class="nav-hover"><span class="fa fa-home"></span></a></li>
+          <li ng-class="{'nav-active':selectedTab === 'offers'}"  ng-click="selectTab('offers');"> <a class="nav-hover"><span class="fa fa-list-alt"></span> Offers</a></li>
+          <li ng-class="{'nav-active':selectedTab === 'profile'}" ng-click="selectTab('profile');"><a class="nav-hover"><span class="fa fa-user"></span> Profile</a></li>
+          <li ng-class="{'nav-active':selectedTab === 'stats'}"   ng-click="selectTab('stats');">  <a class="nav-hover"><span class="fa fa-line-chart"></span> Stats</a></li>
+          <li ng-class="{'nav-active':selectedTab === 'manager'}" ng-click="selectTab('manager');"><a class="nav-hover"><span class="fa fa-gamepad"></span> Manager</a></li>
         </ul>
       </div>
     </div>
@@ -88,11 +88,11 @@
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
+    <script src="scripts/config.js"></script>
     <script src="scripts/localization/i18n.js"></script>
     <script src="scripts/localization/de.js"></script>
     <script src="scripts/localization/en.js"></script>
     <script src="scripts/controllers/main.js"></script>
-    <script src="scripts/controllers/games.js"></script>
     <script src="scripts/controllers/profile.js"></script>
     <script src="scripts/controllers/offers.js"></script>
     <script src="scripts/controllers/statistics.js"></script>
@@ -110,7 +110,8 @@
     <script src="scripts/controllers/navigation.js"></script>
     <script src="scripts/controllers/gamemanager.js"></script>
     <script src="scripts/services/tradeservice.js"></script>
-    <script src="scripts/controllers/managersettings.js"></script>
+    <script src="scripts/controllers/lobby.js"></script>
+    <script src="scripts/controllers/initplayer.js"></script>
     <!-- endbuild -->
 </body>
 </html>

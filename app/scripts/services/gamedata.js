@@ -15,6 +15,7 @@ angular.module('applemarketApp')
     var sessionNumber   = undefined;
     var roundNumber     = undefined;
     var time            = undefined;  // in minutes
+    var serverId        = undefined;
 
     return {
 
@@ -60,6 +61,14 @@ angular.module('applemarketApp')
       setTime : function (_time) {
         time = _time;
         $rootScope.$broadcast('onGameDataChange');
+      },
+
+      getServerId : function () {
+        return serverId;
+      },
+
+      setServerId : function (_serverId) {
+        serverId = _serverId;
       }
     };
   });

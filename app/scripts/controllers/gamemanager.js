@@ -54,7 +54,7 @@ angular.module('applemarketApp')
 
     $scope.startGame = function () {
       $scope.saveGameData();
-      $location.path("/gamemanager/settings");
+      $location.path(config.routes.lobby);
     };
 
     $scope.saveGameData = function() {

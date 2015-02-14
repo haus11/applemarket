@@ -8,7 +8,7 @@
  * Controller of the applemarketApp
  */
 angular.module('applemarketApp')
-  .controller('ManagersettingsCtrl', function ($scope, gameData) {
+  .controller('LobbyCtrl', function ($scope, gameData) {
     $scope.inputData =
     {
       'gameName'      : gameData.getGameName(),

@@ -66,6 +66,24 @@ angular.module('applemarketApp')
         });
       },
 
+      put: function(url, payload, callback) {
+        socket.put(url, payload, function() {
+          var args = arguments;
+          $rootScope.$apply(function() {
+            callback.apply(socket, args);
+          });
+        });
+      },
+
+      delete: function(url, payload, callback) {
+        socket.delete(url, payload, function() {
+          var args = arguments;
+          $rootScope.$apply(function() {
+            callback.apply(socket, args);
+          });
+        });
+      },
+
       on: function (eventName, callback) {
         socket.on(eventName, function () {
           var args = arguments;
