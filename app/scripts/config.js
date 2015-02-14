@@ -26,7 +26,7 @@ var config = {
     user_reconnect  : 'user:reconnect',
     user_disconnect : 'user:disconnect',
 
-    server_create   : '/api/server',
+    server_create   : '/game',
     server_join     : ''
   },
 
