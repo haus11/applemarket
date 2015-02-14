@@ -8,7 +8,13 @@
  * Controller of the applemarketApp
  */
 angular.module('applemarketApp')
-  .controller('NavigationCtrl', function ($scope, $location) {
+  .controller('NavigationCtrl', function ($scope, $rootScope, $location, playerData) {
+
+    $scope.isGameManager = false;
+
+    $rootScope.$on('onGameManagerSet', function() {
+      $scope.isGameManager = playerData.isGameManager();
+    });
 
     $scope.selectTab = function (_tabName) {
 

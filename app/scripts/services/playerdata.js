@@ -8,12 +8,12 @@
  * Service in the applemarketApp.
  */
 angular.module('applemarketApp')
-  .service('playerData', function (configData) {
+  .service('playerData', function () {
     // AngularJS will instantiate a singleton by calling "new" on this function
 
     var playerName    = undefined;
     var isDemander    = true; // later get it from configdata
-    var isGameManager = false;
+    var isGameManager;
     var startPrice    = 20.0;
     var customPrice   = 23.0;
 
