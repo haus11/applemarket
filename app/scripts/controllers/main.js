@@ -11,12 +11,10 @@ angular.module('applemarketApp')
   .controller('MainCtrl', function ($scope, $rootScope, $location, playerData, gameData) {
 
     var serverId = $location.search().server_id;
-    $location.$$search = {};
 
     if (serverId == undefined) {
       playerData.setIsGameManager(true);
-      $rootScope.$broadcast('onGameManagerSet');
-      $location.path(config.routes.game_manager);
+      $location.path(config.routes.manager_create);
     }
     else {
       // Is GameManager

@@ -21,6 +21,7 @@ angular.module('applemarketApp')
     $scope.saveData = function () {
       playerData.setPlayerName($scope.inputData.name);
 
+      $location.$$search = {};
       $location.path(config.routes.lobby);
     };
   });

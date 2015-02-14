@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc function
- * @name applemarketApp.controller:GamemanagerCtrl
+ * @name applemarketApp.controller:CreateGameCtrl
  * @description
- * # GamemanagerCtrl
+ * # CreateGameCtrl
  * Controller of the applemarketApp
  */
 angular.module('applemarketApp')
-  .controller('GamemanagerCtrl', function ($scope, gameData, $location, connectionService) {
+  .controller('CreateGameCtrl', function ($scope, gameData, $location, connectionService) {
 
     $scope.inputData =
     {
@@ -51,8 +51,7 @@ angular.module('applemarketApp')
       $scope.inputData.slots--;
     };
 
-    $scope.startGame = function () {
-
+    $scope.createGame = function () {
       var postData = {
         'game_id'     : 2,
         'name'       : $scope.inputData.gameName,
@@ -71,5 +70,4 @@ angular.module('applemarketApp')
       });
 
     };
-
   });

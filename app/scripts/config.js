@@ -4,17 +4,18 @@
 
 var config = {
   routes : {
-    base          : '/',
-    profile       : '/profile',
-    offers        : '/offers',
-    statistics    : '/statistics',
-    trade         : '/trade',
-    trade_success : '/trade/success',
-    trade_fail    : '/trade/fail',
-    trade_accept  : '/trade/accept',
-    game_manager  : '/gamemanager',
-    lobby         : '/lobby',
-    init_player   : '/initPlayer'
+    base            : '/',
+    profile         : '/profile',
+    offers          : '/offers',
+    statistics      : '/statistics',
+    trade           : '/trade',
+    trade_success   : '/trade/success',
+    trade_fail      : '/trade/fail',
+    trade_accept    : '/trade/accept',
+    manager_create  : '/manager/create-game',
+    manager_manage  : '/manager/manage-game',
+    lobby           : '/lobby',
+    init_player     : '/initPlayer'
   },
 
   api : {

@@ -61,9 +61,13 @@ angular
         templateUrl: 'views/trade/trade_accept.html',
         controller: 'TradeCtrl'
       })
-      .when(config.routes.game_manager, {
-        templateUrl: 'views/gamemanager.html',
-        controller: 'GamemanagerCtrl'
+      .when(config.routes.manager_create, {
+        templateUrl: '/views/manager/create_game.html',
+        controller: 'CreateGameCtrl'
+      })
+      .when(config.routes.manager_manage, {
+        templateUrl: '/views/manager/manage_game.html',
+        controller: 'ManageGameCtrl'
       })
       .when(config.routes.lobby, {
         templateUrl: '../views/lobby.html',
