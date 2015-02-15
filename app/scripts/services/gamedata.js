@@ -17,6 +17,7 @@ angular.module('applemarketApp')
     var time            = undefined;  // in minutes
     var serverId        = undefined;
     var maxPlayer       = undefined;
+    var playerList      = [];
 
     return {
 
@@ -78,6 +79,14 @@ angular.module('applemarketApp')
 
       setMaxPlayer : function (_maxPlayer) {
         maxPlayer = _maxPlayer;
+      },
+
+      setPlayerList : function (_playerList) {
+        playerList = _playerList;
+      },
+
+      getPlayerList : function () {
+        return playerList;
       }
     };
   });

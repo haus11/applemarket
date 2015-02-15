@@ -53,10 +53,12 @@ angular.module('applemarketApp')
 
     $scope.createGame = function () {
       var postData = {
-        'game_id'     : 2,
+        'secret'     : "penis1234",
         'name'       : $scope.inputData.gameName,
-        'player_max'  : $scope.inputData.slots
+        'playerMax'  : $scope.inputData.slots
       };
+
+      console.log(postData);
 
       connectionService.post(config.api.server_create, postData, function (_data, _jwres) {
 
@@ -65,6 +67,9 @@ angular.module('applemarketApp')
         gameData.setRoundNumber($scope.inputData.roundNumber);
         gameData.setMaxPlayer(_data.playerMax);
         gameData.setServerId(_data.id);
+
+        console.log(_data);
+        console.log(_jwres);
 
         $location.path(config.routes.lobby);
       });

@@ -25,9 +25,18 @@ var config = {
     user_create     : 'user:create',
     user_reconnect  : 'user:reconnect',
     user_disconnect : 'user:disconnect',
+    user_update     : 'user:update',
 
     server_create   : '/game',
-    server_join     : ''
+    server_join     : '',
+
+    player_joined       : 'game:playerJoined',
+    player_leaved       : 'game:playerLeaved',
+    player_reconnected  : '',
+
+    game_started    : 'game:started',
+    game_finished   : 'game:finished',
+
   },
 
   nav : {

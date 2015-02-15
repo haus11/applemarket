@@ -19,48 +19,51 @@ angular.module('applemarketApp')
       'showInput'     : gameData.getGameName() == undefined
     };
 
-    $scope.userList = ['Penis', 'papa', 'glub glub'];
+    $scope.playerList = [];
 
     // #################################################################################################################
     //                                                Socket callbacks
     // #################################################################################################################
 
-    connectionService.get(config.api.user, function (_data, _jwres) {
-      //console.log('getUser');
-      //console.log(_data);
-      $scope.userList = _data;
-    });
+    // Event: on player joins
+    connectionService.on(config.api.player_joined, function (_data) {
 
-    connectionService.on(config.api.user_create, function (_data) {
-      //console.log('UserCreate');
-      //console.log(_data);
-      $scope.userList.push(_data);
-    });
-
-    connectionService.on(config.api.user_reconnect, function (_data) {
-      //console.log('UserReconnect');
-      //console.log(_data);
-      $scope.userList.push(_data);
-    });
-
-    connectionService.on('user:update', function (_data) {
-      //console.log('UserUpdate');
-      //console.log(_data);
-      for (var i = 0; i < $scope.userList.length; i++) {
-        if ($scope.userList[i].id == _data.id) {
-          console.log('test');
-          $scope.userList[i] = _data;
-          break;
-        }
-      }
-    });
-
-    connectionService.on(config.api.user_disconnect, function (_data) {
-      console.log('UserDisconnect');
       console.log(_data);
-      for (var i = 0; i < $scope.userList.length; i++) {
-        if ($scope.userList[i].id == _data.id) {
-          $scope.userList.splice(i, 1);
+      $scope.playerList.push(_data);
+
+      gameData.setPlayerList($scope.playerList);
+      $scope.apply();
+      console.log(gameData.getPlayerList());
+    });
+
+    // on player reconnects
+    connectionService.on(config.api.player_reconnected, function (_data) {
+
+      $scope.playerList.push(_data);
+      //gameData.setPlayerList($scope.playerList);
+      $scope.apply();
+    });
+
+    // on player disconnects
+    connectionService.on(config.api.player_leaved, function (_data) {
+        console.log('UserDisconnect');
+
+        for (var i = 0; i < $scope.playerList.length; i++) {
+            if ($scope.playerList[i].id == _data.id) {
+                $scope.playerList.splice(i, 1);
+                //gameData.setPlayerList($scope.playerList);
+                break;
+            }
+        }
+    });
+
+    // on player data changes
+    connectionService.on(config.api.user_update, function (_data) {
+
+      for (var i = 0; i < $scope.playerList.length; i++) {
+        if ($scope.playerList[i].id == _data.id) {
+          $scope.playerList[i] = _data;
+          //gameData.setPlayerList($scope.playerList);
           break;
         }
       }
