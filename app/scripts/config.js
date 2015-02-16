@@ -35,7 +35,7 @@ var config = {
     player_reconnected  : '',
 
     game_started    : 'game:started',
-    game_finished   : 'game:finished',
+    game_finished   : 'game:finished'
 
   },
 

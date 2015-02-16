@@ -30,14 +30,20 @@ angular.module('applemarketApp')
 
       $scope.playerList.push(_data);
       gameData.setPlayerList($scope.playerList);
-      $scope.$apply();
+
+      //if ($scope.$root.$$phase !== '$apply' && $scope.$root.$$phase !== '$digest') {
+      //  $scope.$apply();
+      //}
     });
 
     // on player reconnects
     connectionService.on(config.api.player_reconnected, function (_data) {
 
       $scope.playerList.push(_data);
-      $scope.$apply();
+
+      //if ($scope.$root.$$phase !== '$apply' && $scope.$root.$$phase !== '$digest') {
+      //  $scope.$apply();
+      //}
     });
 
     // on player disconnects
