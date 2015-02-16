@@ -19,7 +19,7 @@ angular.module('applemarketApp')
       'showInput'     : gameData.getGameName() == undefined
     };
 
-    $scope.playerList = [];
+    $scope.playerList = gameData.getPlayerList();
 
     // #################################################################################################################
     //                                                Socket callbacks
@@ -28,20 +28,16 @@ angular.module('applemarketApp')
     // Event: on player joins
     connectionService.on(config.api.player_joined, function (_data) {
 
-      console.log(_data);
       $scope.playerList.push(_data);
-
       gameData.setPlayerList($scope.playerList);
-      $scope.apply();
-      console.log(gameData.getPlayerList());
+      $scope.$apply();
     });
 
     // on player reconnects
     connectionService.on(config.api.player_reconnected, function (_data) {
 
       $scope.playerList.push(_data);
-      //gameData.setPlayerList($scope.playerList);
-      $scope.apply();
+      $scope.$apply();
     });
 
     // on player disconnects
@@ -51,7 +47,6 @@ angular.module('applemarketApp')
         for (var i = 0; i < $scope.playerList.length; i++) {
             if ($scope.playerList[i].id == _data.id) {
                 $scope.playerList.splice(i, 1);
-                //gameData.setPlayerList($scope.playerList);
                 break;
             }
         }
@@ -63,7 +58,6 @@ angular.module('applemarketApp')
       for (var i = 0; i < $scope.playerList.length; i++) {
         if ($scope.playerList[i].id == _data.id) {
           $scope.playerList[i] = _data;
-          //gameData.setPlayerList($scope.playerList);
           break;
         }
       }
