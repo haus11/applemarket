@@ -23,6 +23,7 @@ angular.module('applemarketApp')
     var numberOfPlayers;
     var playerList        = [];
     var gameFinished      = false;
+    var playerId;
 
     return {
 
@@ -109,6 +110,14 @@ angular.module('applemarketApp')
         playerList = _playerList;
       },
 
+      setNumberOfPlayers : function (_numberOfPlayers) {
+        numberOfPlayers = _numberOfPlayers;
+      },
+
+      getNumberOfPlayers : function () {
+        return numberOfPlayers;
+      },
+
       getPlayerList : function () {
         return playerList;
       },
@@ -119,6 +128,14 @@ angular.module('applemarketApp')
 
       isGameFinished : function () {
         return gameFinished;
+      },
+
+      setPlayerId : function (_playerId) {
+        playerId = _playerId;
+      },
+
+      getPlayerOd : function () {
+        return playerId;
       }
     };
   });

@@ -41,92 +41,98 @@ angular.module('applemarketApp')
           $scope.lobbyData.playerList      = _data.user;
           $scope.lobbyData.playerMax       = _data.playerMax;
           $scope.lobbyData.numberOfPlayers = _data.user.length;
+          gameData.setPlayerId(_data.user.id)
         })
         .catch(function (_reason) {
           Notification('Error joining Game: ' + _reason);
         });
 
-      connectionService.on(config.api.gameStarted, function () {
+      connectionService.on(config.api.gameStarted, function (_data) {
+        gameData.setPlayerList($scope.lobbyData.playerList);
+        gameData.setNumberOfPlayers($scope.numberOfPlayers);
         gameData.setGameStarted();
         $location.path(config.routes.offers);
       });
     }
-    // Gamemanager
-    else {
-      // Event: on player joins
-      connectionService.on(config.api.playerJoined, function (_data) {
 
-        $scope.lobbyData.playerList.push(_data);
-        $scope.lobbyData.numberOfPlayers++;
-        gameData.setPlayerList($scope.lobbyData.playerList);
+    // Event: on player joins
+    connectionService.on(config.api.playerJoined, function (_data) {
 
-        //if ($scope.$root.$$phase !== '$apply' && $scope.$root.$$phase !== '$digest') {
-        //  $scope.$apply();
-        //}
-      });
+      $scope.lobbyData.playerList.push(_data);
+      $scope.lobbyData.numberOfPlayers++;
+      gameData.setPlayerList($scope.lobbyData.playerList);
+      gameData.setNumberOfPlayers($scope.numberOfPlayers);
 
-      // on player reconnects
-      connectionService.on(config.api.playerReconnected, function (_data) {
+      //if ($scope.$root.$$phase !== '$apply' && $scope.$root.$$phase !== '$digest') {
+      //  $scope.$apply();
+      //}
+    });
 
-        $scope.lobbyData.playerList.push(_data);
-        $scope.lobbyData.numberOfPlayers++;
-        gameData.setPlayerList($scope.lobbyData.playerList);
+    // on player reconnects
+    connectionService.on(config.api.playerReconnected, function (_data) {
 
-        //if ($scope.$root.$$phase !== '$apply' && $scope.$root.$$phase !== '$digest') {
-        //  $scope.$apply();
-        //}
+      $scope.lobbyData.playerList.push(_data);
+      $scope.lobbyData.numberOfPlayers++;
+      gameData.setPlayerList($scope.lobbyData.playerList);
+      gameData.setNumberOfPlayers($scope.numberOfPlayers);
 
-      });
+      //if ($scope.$root.$$phase !== '$apply' && $scope.$root.$$phase !== '$digest') {
+      //  $scope.$apply();
+      //}
 
-      // on player disconnects
-      connectionService.on(config.api.playerLeaved, function (_data) {
-        console.log('UserDisconnect');
+    });
 
-        for (var i = 0; i < $scope.lobbyData.playerList.length; i++) {
-          if ($scope.lobbyData.playerList[i].id === _data.id) {
-            $scope.lobbyData.playerList.splice(i, 1);
-            $scope.lobbyData.numberOfPlayers--;
-            gameData.setPlayerList($scope.lobbyData.playerList);
-            break;
-          }
+    // on player disconnects
+    connectionService.on(config.api.playerLeaved, function (_data) {
+      console.log('UserDisconnect');
+
+      for (var i = 0; i < $scope.lobbyData.playerList.length; i++) {
+        if ($scope.lobbyData.playerList[i].id === _data.id) {
+          $scope.lobbyData.playerList.splice(i, 1);
+          $scope.lobbyData.numberOfPlayers--;
+          gameData.setPlayerList($scope.lobbyData.playerList);
+          gameData.setNumberOfPlayers($scope.numberOfPlayers);
+          break;
         }
-      });
+      }
+    });
 
-      // on player data changes
-      connectionService.on(config.api.userUpdate, function (_data) {
+    // on player data changes
+    connectionService.on(config.api.userUpdate, function (_data) {
 
-        for (var i = 0; i < $scope.lobbyData.playerList.length; i++) {
-          if ($scope.lobbyData.playerList[i].id === _data.id) {
-            $scope.lobbyData.playerList[i] = _data;
-            gameData.setPlayerList($scope.lobbyData.playerList);
-            break;
-          }
+      for (var i = 0; i < $scope.lobbyData.playerList.length; i++) {
+        if ($scope.lobbyData.playerList[i].id === _data.id) {
+          $scope.lobbyData.playerList[i] = _data;
+          gameData.setPlayerList($scope.lobbyData.playerList);
+          break;
         }
-      });
+      }
+    });
 
-      $scope.startGame = function () {
+    $scope.startGame = function () {
 
-        var url = config.api.gameStart.replace('id', gameData.getGameId());
-        connectionService.put(url, null)
-          .then(function () {
-            gameData.increaseSessionNumber();
+      var url = config.api.gameStart.replace('id', gameData.getGameId());
+      connectionService.put(url, null)
+        .then(function () {
+          gameData.increaseSessionNumber();
 
-            url = config.api.sessionNew.replace('gameId', gameData.getGameId());
-            return connectionService.post(url, null);
-          })
-          .then(function () {
-            gameData.resetRoundNumber();
-            url = config.api.roundNew.replace('gameId', gameData.getGameId());
-            url = url.replace('sessionCount', gameData.getSessionNumber());
-            return connectionService.post(url, null);
-          })
-          .then(function (_data) {
-            console.log(_data);
-            $location.path(config.routes.managerManage);
-          })
-          .catch(function (_reason) {
-            new Notification('Could not start Game: ' + _reason);
-          });
-      };
-    }
+          url = config.api.sessionNew.replace('gameId', gameData.getGameId());
+          return connectionService.post(url, null);
+        })
+        .then(function () {
+          gameData.resetRoundNumber();
+          url = config.api.roundNew.replace('gameId', gameData.getGameId());
+          url = url.replace('sessionCount', gameData.getSessionNumber());
+          return connectionService.post(url, null);
+        })
+        .then(function (_data) {
+          gameData.setPlayerList($scope.lobbyData.playerList);
+          gameData.setNumberOfPlayers($scope.numberOfPlayers);
+          gameData.setGameStarted();
+          $location.path(config.routes.managerManage);
+        })
+        .catch(function (_reason) {
+          new Notification('Could not start Game: ' + _reason);
+        });
+    };
   });

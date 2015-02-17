@@ -10,16 +10,7 @@
  * Controller of the applemarketApp
  */
 angular.module('applemarketApp')
-  .controller('OffersCtrl', function ($scope, $location, playerData, tradeService) {
-
-    //$scope.trade = function(){
-    //  var modalInstance = $modal.open({
-    //    templateUrl: '../views/trade/trade.html',
-    //    controller: 'ModalCtrl',
-    //    size: 'sm'
-    //  });
-    //};
-
+  .controller('OffersCtrl', function ($scope, $location, playerData, tradeService, connectionService) {
 
     //#############################################################
     //                           Base
@@ -101,6 +92,8 @@ angular.module('applemarketApp')
     //#############################################################
 
     $scope.saveSupplierPrice = function () {
+
+
       $scope.showSupplierForm = false;
       playerData.setCustomPrice($scope.prices.customPrice);
     };

@@ -12,10 +12,10 @@ angular.module('applemarketApp')
         // AngularJS will instantiate a singleton by calling "new" on this function
 
         var playerName;
-        var isDemander = true; // later get it from configdata
+        var isDemander = false; // later get it from server
         var isGameManager;
         var startPrice = 20.0;
-        var customPrice = 23.0;
+        var customPrice = 0;//23.0;
 
         return {
 
