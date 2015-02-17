@@ -77,7 +77,7 @@ angular.module('applemarketApp')
     });
 
     $scope.startGame = function () {
-      var url = config.api.gameStart.replace('id', gameData.getServerId());
+      var url = config.api.gameStart.replace('id', gameData.getGameId());
       console.log(url);
 
       connectionService.put(url, null)

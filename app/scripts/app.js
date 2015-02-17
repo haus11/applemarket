@@ -27,11 +27,6 @@ angular
   ])
   .config(function ($routeProvider) {
 
-    //$locationProvider.html5Mode({
-    //  enabled: true,
-    //  requireBase: false
-    //});
-
     $routeProvider
       .when(config.routes.base, {
         templateUrl: 'views/main.html',
@@ -77,12 +72,16 @@ angular
         templateUrl: '../views/lobby.html',
         controller: 'LobbyCtrl'
       })
-      .when(config.routes.initPlayer, {
-        templateUrl: 'views/initplayer.html',
-        controller: 'InitplayerCtrl'
+      .when(config.routes.join, {
+        templateUrl: '../views/join.html',
+        controller: 'JoinCtrl'
+      })
+      .when(config.routes.error, {
+        templateUrl: 'views/error.html',
+        controller: 'ErrorCtrl'
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: config.routes.error
       });
   })
   .run(function () {

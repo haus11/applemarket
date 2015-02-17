@@ -66,7 +66,7 @@ angular.module('applemarketApp')
           gameData.setMaxSessionNumber($scope.inputData.maxSessionNumber);
           gameData.setMaxRoundNumber($scope.inputData.maxRoundNumber);
           gameData.setPlayerMax(_data.playerMax);
-          gameData.setServerId(_data.id);
+          gameData.setGameId(_data.id);
 
           console.log(_data);
           $location.path(config.routes.lobby);

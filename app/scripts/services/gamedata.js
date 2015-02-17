@@ -13,14 +13,14 @@ angular.module('applemarketApp')
   .service('gameData', function ($rootScope) {
 
     var gameStarted       = false;
-    var gameName          = undefined;
+    var gameName;
     var sessionNumber     = 0;
     var maxSessionNumber  = 2;
     var roundNumber       = 0;
     var maxRoundNumber    = 2;
-    var serverId          = undefined;
-    var playerMax         = undefined;
-    var numberOfPlayers   = undefined;
+    var gameId;
+    var playerMax;
+    var numberOfPlayers;
     var playerList        = [];
 
     return {
@@ -78,21 +78,12 @@ angular.module('applemarketApp')
         $rootScope.$broadcast('onGameDataChange');
       },
 
-      getTime : function () {
-        return time;
+      getGameId : function () {
+        return gameId;
       },
 
-      setTime : function (_time) {
-        time = _time;
-        $rootScope.$broadcast('onGameDataChange');
-      },
-
-      getServerId : function () {
-        return serverId;
-      },
-
-      setServerId : function (_serverId) {
-        serverId = _serverId;
+      setGameId : function (_gameId) {
+        gameId = _gameId;
       },
 
       getPlayerMax : function () {
