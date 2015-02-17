@@ -12,9 +12,9 @@
       <div class="col-md-4">
         <p><b>Slots</b></p>
         <p>Set the number of player slots</p>
-        <button class="btn btn-default" ng-click="increaseSlots()"><span class="fa fa-plus"></span></button>
-        <b class="number-between-buttons">{{inputData.slots}}</b>
-        <button class="btn btn-default" ng-click="decreaseSlots()"><span class="fa fa-minus"></span></button>
+        <button class="btn btn-default" ng-click="increasePlayerMax()"><span class="fa fa-plus"></span></button>
+        <b class="number-between-buttons">{{inputData.playerMax}}</b>
+        <button class="btn btn-default" ng-click="decreasePlayerMax()"><span class="fa fa-minus"></span></button>
       </div>
     </div>
     <div class="row row-buffer">
@@ -32,13 +32,6 @@
         <b class="number-between-buttons">{{inputData.roundNumber}}</b>
         <button class="btn btn-default" ng-click="decreaseRounds()"><span class="fa fa-minus"></span></button>
       </div>
-      <!--<div class="col-md-4">-->
-        <!--<label>Time</label>-->
-        <!--<p>Set the number of maximum minutes per round</p>-->
-        <!--<button class="btn btn-default" ng-click="increaseTime()"><span class="fa fa-plus"></span></button>-->
-        <!--<b class="number-between-buttons">{{inputData.timeLeft}}</b>-->
-        <!--<button class="btn btn-default" ng-click="decreaseTime()"><span class="fa fa-minus"></span></button>-->
-      <!--</div>-->
     </div>
     <div class="row row-buffer">
       <div class="col-md-8">

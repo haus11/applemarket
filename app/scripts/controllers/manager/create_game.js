@@ -16,7 +16,7 @@ angular.module('applemarketApp')
       'sessionNumber' : 0,
       'roundNumber'   : 0,
       'timeLeft'      : 0,
-      'slots'         : 0
+      'playerMax'     : 0
     };
 
     $scope.increaseSessions = function () {
@@ -43,18 +43,19 @@ angular.module('applemarketApp')
       $scope.inputData.timeLeft--;
     };
 
-    $scope.increaseSlots = function () {
-      $scope.inputData.slots++;
+    $scope.increasePlayerMax = function () {
+      $scope.inputData.playerMax++;
     };
 
-    $scope.decreaseSlots = function () {
-      $scope.inputData.slots--;
+    $scope.decreasePlayerMax = function () {
+      $scope.inputData.playerMax--;
     };
 
     $scope.createGame = function () {
       var postData = {
-        'secret'     : 'apple',
-        'name'       : $scope.inputData.gameName
+        'secret'     : "apple",
+        'name'       : $scope.inputData.gameName,
+        'playerMax'  : $scope.inputData.playerMax
       };
 
       console.log(postData);
