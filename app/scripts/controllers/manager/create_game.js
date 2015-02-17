@@ -1,3 +1,5 @@
+/*global config*/
+
 'use strict';
 
 /**
@@ -52,12 +54,12 @@ angular.module('applemarketApp')
 
     $scope.createGame = function () {
       var postData = {
-        'secret'     : "penis1234", // apple
+        'secret'     : "penis1234",
         'name'       : $scope.inputData.gameName,
         'playerMax'  : $scope.inputData.playerMax
       };
 
-      connectionService.post(config.api.server_create, postData)
+      connectionService.post(config.api.serverCreate, postData)
         .then(function (_data) {
 
           gameData.setGameName(_data.name);

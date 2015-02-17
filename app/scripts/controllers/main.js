@@ -1,3 +1,5 @@
+/*global config:false */
+
 'use strict';
 
 /**
@@ -10,17 +12,17 @@
 angular.module('applemarketApp')
   .controller('MainCtrl', function ($scope, $rootScope, $location, playerData, gameData) {
 
-    var serverId = $location.search().server_id;
+    var serverId = $location.search().serverId;
 
-    if (serverId == undefined) {
+    if (serverId === undefined) {
       playerData.setIsGameManager(true);
-      $location.path(config.routes.manager_create);
+      $location.path(config.routes.managerCreate);
     }
     else {
       // Is GameManager
       gameData.setServerId(serverId);
       playerData.setIsGameManager(false);
-      $location.path(config.routes.init_player);
+      $location.path(config.routes.initPlayer);
     }
 
   });

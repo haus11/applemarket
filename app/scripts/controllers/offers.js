@@ -1,3 +1,5 @@
+/*global config:false */
+
 'use strict';
 
 /**
@@ -28,7 +30,7 @@ angular.module('applemarketApp')
       customPrice : playerData.getCustomPrice()
     };
     $scope.isDemander         = playerData.isDemander();
-    $scope.showSupplierForm   = $scope.prices.customPrice == 0.0;
+    $scope.showSupplierForm   = $scope.prices.customPrice === 0.0;
 
     //#############################################################
     //                         Demander
@@ -115,6 +117,6 @@ angular.module('applemarketApp')
 
     $scope.openOffer = function (_offer) {
       tradeService.setTrade(_offer);
-      $location.path(config.routes.trade_accept);
+      $location.path(config.routes.tradeAccept);
     };
   });

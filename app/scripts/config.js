@@ -1,41 +1,42 @@
 /**
  * Created by paul on 14.02.15.
  */
+/*jshint unused:false*/
 
 var config = {
   routes : {
-    base            : '/',
-    profile         : '/profile',
-    offers          : '/offers',
-    statistics      : '/statistics',
-    trade           : '/trade',
-    trade_success   : '/trade/success',
-    trade_fail      : '/trade/fail',
-    trade_accept    : '/trade/accept',
-    manager_create  : '/manager/create-game',
-    manager_manage  : '/manager/manage-game',
-    lobby           : '/lobby',
-    init_player     : '/initPlayer'
+    base                : '/',
+    profile             : '/profile',
+    offers              : '/offers',
+    statistics          : '/statistics',
+    trade               : '/trade',
+    tradeSuccess        : '/trade/success',
+    tradeFail           : '/trade/fail',
+    tradeAccept         : '/trade/accept',
+    managerCreate       : '/manager/create-game',
+    managerManage       : '/manager/manage-game',
+    lobby               : '/lobby',
+    initPlayer          : '/initPlayer'
   },
 
   api : {
-    connect         : 'connect',
-    authenticate    : '/user/authenticate',
-    user            : '/user',
-    user_create     : 'user:create',
-    user_reconnect  : 'user:reconnect',
-    user_disconnect : 'user:disconnect',
-    user_update     : 'user:update',
+    connect             : 'connect',
+    authenticate        : '/user/authenticate',
+    user                : '/user',
+    userCreate          : 'user:create',
+    userReconnect       : 'user:reconnect',
+    userDisconnect      : 'user:disconnect',
+    userUpdate          : 'user:update',
 
-    server_create   : '/game',
-    server_join     : '',
+    serverCreate        : '/game',
+    serverJoin          : '',
 
-    player_joined       : 'game:playerJoined',
-    player_leaved       : 'game:playerLeaved',
-    player_reconnected  : '',
+    playerJoined        : 'game:playerJoined',
+    playerLeaved        : 'game:playerLeaved',
+    playerReconnected   : '',
 
-    game_start      : '/game/id/start',
-    game_finished   : '/game:finished'
+    gameStart           : '/game/id/start',
+    gameFinished        : '/game:finished'
 
   },
 

@@ -1,3 +1,5 @@
+/*jshint unused:false*/
+
 'use strict';
 
 /**
@@ -16,7 +18,6 @@ angular.module('applemarketApp')
     var maxSessionNumber  = 2;
     var roundNumber       = 0;
     var maxRoundNumber    = 2;
-    var time              = undefined;  // in minutes
     var serverId          = undefined;
     var playerMax         = undefined;
     var numberOfPlayers   = undefined;

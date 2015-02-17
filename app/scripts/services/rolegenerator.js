@@ -1,3 +1,6 @@
+/*jshint -W061 */
+/*jshint unused:false*/
+
 'use strict';
 
 /**
@@ -22,16 +25,16 @@ angular.module('applemarketApp')
 
       return {
         'session1': {
-          'low_cost_supplier'   : eval(algorithms.session1.low_cost_supplier),
-          'high_cost_supplier'  : eval(algorithms.session1.high_cost_supplier),
-          'low_value_demander'  : eval(algorithms.session1.low_value_demander),
-          'high_value_demander' : eval(algorithms.session1.high_value_demander)
+          'lowCostSupplier'   : eval(algorithms.session1.lowCostSupplier),
+          'highCostSupplier'  : eval(algorithms.session1.highCostSupplier),
+          'lowValueDemander'  : eval(algorithms.session1.lowValueDemander),
+          'highValueDemander' : eval(algorithms.session1.highValueDemander)
         },
         'session2': {
-          'low_cost_supplier'   : eval(algorithms.session2.low_cost_supplier),
-          'high_cost_supplier'  : eval(algorithms.session2.high_cost_supplier),
-          'low_value_demander'  : eval(algorithms.session2.low_value_demander),
-          'high_value_demander' : eval(algorithms.session2.high_value_demander)
+          'lowCostSupplier'   : eval(algorithms.session2.lowCostSupplier),
+          'highCostSupplier'  : eval(algorithms.session2.highCostSupplier),
+          'lowValueDemander'  : eval(algorithms.session2.lowValueDemander),
+          'highValueDemander' : eval(algorithms.session2.highValueDemander)
         }
       };
     }
@@ -64,16 +67,16 @@ angular.module('applemarketApp')
        *
        * Output: {
        *  'session1' : {
-       *                 'low_cost_supplier'   : 2,
-       *                 'high_cost_supplier'  : 2,
-       *                 'low_value_demander'  : 2,
-       *                 'high_value_demander' : 2
+       *                 'lowCostSupplier'   : 2,
+       *                 'highCostSupplier'  : 2,
+       *                 'lowValueDemander'  : 2,
+       *                 'highValueDemander' : 2
        *               },
        *  'session2' : {
-       *                 'low_cost_supplier'   : 2,
-       *                 'high_cost_supplier'  : 2,
-       *                 'low_value_demander'  : 2,
-       *                 'high_value_demander' : 2
+       *                 'lowCostSupplier'   : 2,
+       *                 'highCostSupplier'  : 2,
+       *                 'lowValueDemander'  : 2,
+       *                 'highValueDemander' : 2
        *               },
        * }
        *

@@ -11,7 +11,7 @@ angular.module('applemarketApp')
     .service('playerData', function ($rootScope) {
         // AngularJS will instantiate a singleton by calling "new" on this function
 
-        var playerName = undefined;
+        var playerName;
         var isDemander = true; // later get it from configdata
         var isGameManager;
         var startPrice = 20.0;
