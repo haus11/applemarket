@@ -30,7 +30,7 @@ var config = {
     userUpdate        : 'user:update',
 
     serverCreate      : '/game',
-    serverJoin        : '',
+    serverJoin        : '/game/:gameId/join',
 
     playerJoined      : 'game:playerJoined',
     playerLeaved      : 'game:playerLeaved',

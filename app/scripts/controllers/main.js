@@ -13,11 +13,11 @@ angular.module('applemarketApp')
   .controller('MainCtrl', function ($scope, $rootScope, $location, playerData) {
 
     // If game manager sate has already been set (user has joined a game before)
-    if (!playerData.isGameManager()) {
-      $location.path(config.routes.error);
-    }
-    else {
+    //if (!playerData.isGameManager()) {
+    //  $location.path(config.routes.error);
+    //}
+    //else {
       playerData.setIsGameManager(true);
       $location.path(config.routes.managerCreate);
-    }
+    //}
   });

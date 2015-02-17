@@ -10,7 +10,7 @@
  * Controller of the applemarketApp
  */
 angular.module('applemarketApp')
-  .controller('JoinCtrl', function ($scope, $location, $routeParams, playerData, gameData) {
+  .controller('JoinCtrl', function ($scope, $location, $routeParams, playerData, gameData, connectionService) {
 
     var gameId = $routeParams.gameId || 0;
 
@@ -18,7 +18,6 @@ angular.module('applemarketApp')
       'name' : playerData.getPlayerName()
     };
 
-    console.log('GameId: ' + gameId);
     gameData.setGameId(gameId);
 
     //#############################################################################

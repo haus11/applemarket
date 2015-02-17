@@ -10,7 +10,7 @@
  * Controller of the applemarketApp
  */
 angular.module('applemarketApp')
-  .controller('CreateGameCtrl', function ($scope, gameData, $location, connectionService, Notification) {
+  .controller('CreateGameCtrl', function ($scope, $location, connectionService, Notification, gameData, playerData) {
 
     $scope.inputData =
     {
@@ -19,6 +19,8 @@ angular.module('applemarketApp')
       'maxRoundNumber'    : gameData.getMaxRoundNumber(),
       'playerMax'         : 0
     };
+
+    playerData.setIsGameManager(true);
 
     $scope.increaseMaxSessions = function () {
       $scope.inputData.maxSessionNumber++;
