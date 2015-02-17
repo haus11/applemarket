@@ -12,11 +12,11 @@ angular.module('applemarketApp')
 
     $scope.inputData =
     {
-      'gameName'      : gameData.getGameName(),
-      'sessionNumber' : 0,
-      'roundNumber'   : 0,
-      'timeLeft'      : 0,
-      'slots'         : 0,
-      'showInput'     : gameData.getGameName() == undefined
+      'gameName'         : gameData.getGameName(),
+      'maxSessionNumber' : 0,
+      'maxRoundNumber'   : 0,
+      'timeLeft'         : 0,
+      'slots'            : 0,
+      'showInput'        : gameData.getGameName() == undefined
     };
   });

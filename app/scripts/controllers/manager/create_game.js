@@ -12,27 +12,26 @@ angular.module('applemarketApp')
 
     $scope.inputData =
     {
-      'gameName'      : gameData.getGameName(),
-      'sessionNumber' : 0,
-      'roundNumber'   : 0,
-      'timeLeft'      : 0,
-      'playerMax'     : 0
+      'gameName'          : gameData.getGameName(),
+      'maxSessionNumber'  : gameData.getMaxSessionNumber(),
+      'maxRoundNumber'    : gameData.getMaxRoundNumber(),
+      'playerMax'         : 0
     };
 
-    $scope.increaseSessions = function () {
-      $scope.inputData.sessionNumber++;
+    $scope.increaseMaxSessions = function () {
+      $scope.inputData.maxSessionNumber++;
     };
 
-    $scope.decreaseSessions = function () {
-      $scope.inputData.sessionNumber--;
+    $scope.decreaseMaxSessions = function () {
+      $scope.inputData.maxSessionNumber--;
     };
 
-    $scope.increaseRounds = function () {
-      $scope.inputData.roundNumber++;
+    $scope.increaseMaxRounds = function () {
+      $scope.inputData.maxRoundNumber++;
     };
 
-    $scope.decreaseRounds = function () {
-      $scope.inputData.roundNumber--;
+    $scope.decreaseMaxRounds = function () {
+      $scope.inputData.maxRoundNumber--;
     };
 
     $scope.increaseTime = function () {
@@ -53,22 +52,21 @@ angular.module('applemarketApp')
 
     $scope.createGame = function () {
       var postData = {
-        'secret'     : "apple",
+        'secret'     : "penis1234", // apple
         'name'       : $scope.inputData.gameName,
         'playerMax'  : $scope.inputData.playerMax
       };
-
-      console.log(postData);
 
       connectionService.post(config.api.server_create, postData)
         .then(function (_data) {
 
           gameData.setGameName(_data.name);
-          gameData.setSessionNumber($scope.inputData.sessionNumber);
-          gameData.setRoundNumber($scope.inputData.roundNumber);
+          gameData.setMaxSessionNumber($scope.inputData.maxSessionNumber);
+          gameData.setMaxRoundNumber($scope.inputData.maxRoundNumber);
           gameData.setPlayerMax(_data.playerMax);
           gameData.setServerId(_data.id);
 
+          console.log(_data);
           $location.path(config.routes.lobby);
         })
         .catch(function (_reason) {

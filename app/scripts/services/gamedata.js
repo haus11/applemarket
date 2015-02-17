@@ -10,15 +10,17 @@
 angular.module('applemarketApp')
   .service('gameData', function ($rootScope) {
 
-    var gameStarted     = false;
-    var gameName        = undefined;
-    var sessionNumber   = undefined;
-    var roundNumber     = undefined;
-    var time            = undefined;  // in minutes
-    var serverId        = undefined;
-    var playerMax       = undefined;
-    var numberOfPlayers = undefined;
-    var playerList      = [];
+    var gameStarted       = false;
+    var gameName          = undefined;
+    var sessionNumber     = 0;
+    var maxSessionNumber  = 2;
+    var roundNumber       = 0;
+    var maxRoundNumber    = 2;
+    var time              = undefined;  // in minutes
+    var serverId          = undefined;
+    var playerMax         = undefined;
+    var numberOfPlayers   = undefined;
+    var playerList        = [];
 
     return {
 
@@ -43,8 +45,17 @@ angular.module('applemarketApp')
         return sessionNumber;
       },
 
+      getMaxSessionNumber : function () {
+        return maxSessionNumber;
+      },
+
       setSessionNumber : function (_sessionNumber) {
         sessionNumber = _sessionNumber;
+        $rootScope.$broadcast('onGameDataChange');
+      },
+
+      setMaxSessionNumber : function (_maxSessionNumber) {
+        maxSessionNumber = _maxSessionNumber;
         $rootScope.$broadcast('onGameDataChange');
       },
 
@@ -52,8 +63,17 @@ angular.module('applemarketApp')
         return roundNumber;
       },
 
+      getMaxRoundNumber : function () {
+        return maxRoundNumber;
+      },
+
       setRoundNumber : function (_roundNumber) {
         roundNumber = _roundNumber;
+        $rootScope.$broadcast('onGameDataChange');
+      },
+
+      setMaxRoundNumber : function (_maxRoundNumber) {
+        maxRoundNumber = _maxRoundNumber;
         $rootScope.$broadcast('onGameDataChange');
       },
 
