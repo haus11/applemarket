@@ -38,6 +38,8 @@ var config = {
 
     gameStart           : '/game/id/start',
     gameFinish          : '/game/id/finish',
+    gameStarted         : 'game:started',
+    gameFinished        : 'game:finished',
 
     sessionNew          : '/game/gameId/session',
     roundNew            : '/game/gameId/session/sessionCount/round',

@@ -25,10 +25,10 @@ angular.module('applemarketApp')
     $scope.endRound = function () {
 
       if (gameData.getRoundNumber() === gameData.getMaxRoundNumber()) {
-        // if this is the last round of the last session end the game and redirect to the serverlist
+        // if this is the last round of the last session end the game and redirect to the Gamelist
         if (gameData.getSessionNumber() === gameData.getMaxSessionNumber())
         {
-          var url = config.api.gameFinish.replace('id', gameData.getServerId());
+          var url = config.api.gameFinish.replace('id', gameData.getGameId());
 
           connectionService.put(url, null)
             .then(function (_data) {
@@ -45,7 +45,7 @@ angular.module('applemarketApp')
         // this is the last round of the session, so end the session by creating a new one and start a new round by creating a new one
         else {
           // start new session
-          var url = config.api.sessionNew.replace('gameId', gameData.getServerId());
+          var url = config.api.sessionNew.replace('gameId', gameData.getGameId());
 
           connectionService.post(url, null)
             .then(function (_data) {
@@ -58,7 +58,7 @@ angular.module('applemarketApp')
             });
 
           // start new round
-          url = config.api.roundNew.replace('gameId', gameData.getServerId());
+          url = config.api.roundNew.replace('gameId', gameData.getGameId());
           url = url.replace('sessionCount', gameData.getSessionNumber());
 
           connectionService.post(url, null)
@@ -74,7 +74,7 @@ angular.module('applemarketApp')
       }
       // just start a new round
       else {
-        var url = config.api.roundNew.replace('gameId', gameData.getServerId());
+        var url = config.api.roundNew.replace('gameId', gameData.getGameId());
         url = url.replace('sessionCount', gameData.getSessionNumber());
 
         connectionService.post(url, null)

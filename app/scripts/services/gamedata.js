@@ -30,8 +30,8 @@ angular.module('applemarketApp')
         return gameStarted;
       },
 
-      setGameStarted : function (_gameStarted) {
-        gameStarted = _gameStarted;
+      setGameStarted : function () {
+        gameStarted = true;
       },
 
       getGameName : function () {

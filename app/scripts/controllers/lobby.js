@@ -27,8 +27,9 @@ angular.module('applemarketApp')
     //                                                Socket callbacks
     // #################################################################################################################
 
-    // Join server if player is not game manager
+    // Player
     if (!$scope.isGameManager) {
+      // Join Game if player is not game manager
       var apiAddress = config.api.serverJoin.replace(':gameId', gameData.getGameId());
       var payload = {
         'username' : playerData.getPlayerName(),
@@ -42,83 +43,90 @@ angular.module('applemarketApp')
           $scope.lobbyData.numberOfPlayers = _data.user.length;
         })
         .catch(function (_reason) {
-          Notification('Error joining server: ' + _reason);
+          Notification('Error joining Game: ' + _reason);
         });
+
+      connectionService.on(config.api.gameStarted, function () {
+        gameData.setGameStarted();
+        $location.path(config.routes.offers);
+      });
     }
+    // Gamemanager
+    else {
+      // Event: on player joins
+      connectionService.on(config.api.playerJoined, function (_data) {
 
-    // Event: on player joins
-    connectionService.on(config.api.playerJoined, function (_data) {
+        $scope.lobbyData.playerList.push(_data);
+        $scope.lobbyData.numberOfPlayers++;
+        gameData.setPlayerList($scope.lobbyData.playerList);
 
-      $scope.lobbyData.playerList.push(_data);
-      $scope.lobbyData.numberOfPlayers++;
-      gameData.setPlayerList($scope.lobbyData.playerList);
+        //if ($scope.$root.$$phase !== '$apply' && $scope.$root.$$phase !== '$digest') {
+        //  $scope.$apply();
+        //}
+      });
 
-      //if ($scope.$root.$$phase !== '$apply' && $scope.$root.$$phase !== '$digest') {
-      //  $scope.$apply();
-      //}
-    });
+      // on player reconnects
+      connectionService.on(config.api.playerReconnected, function (_data) {
 
-    // on player reconnects
-    connectionService.on(config.api.playerReconnected, function (_data) {
+        $scope.lobbyData.playerList.push(_data);
+        $scope.lobbyData.numberOfPlayers++;
+        gameData.setPlayerList($scope.lobbyData.playerList);
 
-      $scope.lobbyData.playerList.push(_data);
-      $scope.lobbyData.numberOfPlayers++;
-      gameData.setPlayerList($scope.lobbyData.playerList);
+        //if ($scope.$root.$$phase !== '$apply' && $scope.$root.$$phase !== '$digest') {
+        //  $scope.$apply();
+        //}
 
-      //if ($scope.$root.$$phase !== '$apply' && $scope.$root.$$phase !== '$digest') {
-      //  $scope.$apply();
-      //}
+      });
 
-    });
+      // on player disconnects
+      connectionService.on(config.api.playerLeaved, function (_data) {
+        console.log('UserDisconnect');
 
-    // on player disconnects
-    connectionService.on(config.api.playerLeaved, function (_data) {
-      console.log('UserDisconnect');
-
-      for (var i = 0; i < $scope.lobbyData.playerList.length; i++) {
+        for (var i = 0; i < $scope.lobbyData.playerList.length; i++) {
           if ($scope.lobbyData.playerList[i].id === _data.id) {
-              $scope.lobbyData.playerList.splice(i, 1);
-              $scope.lobbyData.numberOfPlayers--;
-              gameData.setPlayerList($scope.lobbyData.playerList);
-              break;
+            $scope.lobbyData.playerList.splice(i, 1);
+            $scope.lobbyData.numberOfPlayers--;
+            gameData.setPlayerList($scope.lobbyData.playerList);
+            break;
           }
-      }
-    });
-
-    // on player data changes
-    connectionService.on(config.api.userUpdate, function (_data) {
-
-      for (var i = 0; i < $scope.lobbyData.playerList.length; i++) {
-        if ($scope.lobbyData.playerList[i].id === _data.id) {
-          $scope.lobbyData.playerList[i] = _data;
-          gameData.setPlayerList($scope.lobbyData.playerList);
-          break;
         }
-      }
-    });
+      });
 
-    $scope.startGame = function () {
+      // on player data changes
+      connectionService.on(config.api.userUpdate, function (_data) {
 
-      var url = config.api.gameStart.replace('id', gameData.getGameId());
-      connectionService.put(url, null)
-        .then(function () {
-          gameData.increaseSessionNumber();
+        for (var i = 0; i < $scope.lobbyData.playerList.length; i++) {
+          if ($scope.lobbyData.playerList[i].id === _data.id) {
+            $scope.lobbyData.playerList[i] = _data;
+            gameData.setPlayerList($scope.lobbyData.playerList);
+            break;
+          }
+        }
+      });
 
-          url = config.api.sessionNew.replace('gameId', gameData.getServerId());
-          return connectionService.post(url, null);
-        })
-        .then(function () {
-          gameData.resetRoundNumber();
-          url = config.api.roundNew.replace('gameId', gameData.getServerId());
-          url = url.replace('sessionCount', gameData.getSessionNumber());
-          return connectionService.post(url, null);
-        })
-        .then(function (_data) {
-          console.log(_data);
-          $location.path(config.routes.managerManage);
-        })
-        .catch(function (_reason) {
-          new Notification('Could not start Game: ' + _reason);
-        });
-    };
+      $scope.startGame = function () {
+
+        var url = config.api.gameStart.replace('id', gameData.getGameId());
+        connectionService.put(url, null)
+          .then(function () {
+            gameData.increaseSessionNumber();
+
+            url = config.api.sessionNew.replace('gameId', gameData.getGameId());
+            return connectionService.post(url, null);
+          })
+          .then(function () {
+            gameData.resetRoundNumber();
+            url = config.api.roundNew.replace('gameId', gameData.getGameId());
+            url = url.replace('sessionCount', gameData.getSessionNumber());
+            return connectionService.post(url, null);
+          })
+          .then(function (_data) {
+            console.log(_data);
+            $location.path(config.routes.managerManage);
+          })
+          .catch(function (_reason) {
+            new Notification('Could not start Game: ' + _reason);
+          });
+      };
+    }
   });
