@@ -11,7 +11,7 @@ angular.module('applemarketApp')
   .service('tradeService', function () {
     // AngularJS will instantiate a singleton by calling "new" on this function
 
-    var trade = undefined;
+    var trade;
 
     var pricePaid = 0.0;
     var profit    = 0.0;

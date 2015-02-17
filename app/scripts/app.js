@@ -19,7 +19,8 @@ angular
     'ui.bootstrap',
     'ngSanitize',
     'pascalprecht.translate',
-    'angular.filter'
+    'angular.filter',
+    'ui-notification'
   ])
   .config(function ($routeProvider, $locationProvider) {
 

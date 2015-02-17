@@ -33,21 +33,21 @@ angular.module('applemarketApp')
     // -----------------------------------------------------------------------------
     var xAxis = d3.svg.axis()
       .scale(x)
-      .orient("bottom");
+      .orient('bottom');
 
     var yAxis = d3.svg.axis()
       .scale(y)
-      .orient("left")
+      .orient('left')
       .ticks(10);
 
     // -----------------------------------------------------------------------------
     // targets id in which the chart will be drawn
     // -----------------------------------------------------------------------------
-    var svg = d3.select("#respBarChart").append("svg")
+    var svg = d3.select('#respBarChart').append('svg')
       .attr('preserveAspectRatio', 'xMinYMin meet')
       .attr('viewBox', '0 0 960 500')
-      .append("g")
-      .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+      .append('g')
+      .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
     // -----------------------------------------------------------------------------
     // variables to browse through dataset
@@ -94,7 +94,7 @@ angular.module('applemarketApp')
       if (chunkRest > 0) {
         chunks.push(data.slice(start, data.length));
 
-        for (var i = 0; i < amount - chunkRest; ++i) {
+        for (var j = 0; j < amount - chunkRest; ++j) {
           var chunkIndex = chunks.length - 1;
           var lastChunk = chunks[chunkIndex];
           var lastItemOfLastChunk = lastChunk[lastChunk.length - 1];
@@ -113,9 +113,9 @@ angular.module('applemarketApp')
     function drawBars(dataset) {
       x.domain(dataset.map(function(d) { return d.transactionNmbr; }));
 
-      svg.append("g")
-        .attr("class", "x axis")
-        .attr("transform", "translate(0," + height + ")")
+      svg.append('g')
+        .attr('class', 'x axis')
+        .attr('transform', 'translate(0,' + height + ')')
         .style('stroke-width', '3px')
         .call(xAxis)
         .append('text')
@@ -125,8 +125,8 @@ angular.module('applemarketApp')
         .style('font-size', '18px')
         .text('Transactions');
 
-      svg.append("g")
-        .attr("class", "y axis")
+      svg.append('g')
+        .attr('class', 'y axis')
         .style('stroke-width', '3px')
         .call(yAxis)
         .append('text')
@@ -138,14 +138,14 @@ angular.module('applemarketApp')
         .style('font-size', '18px')
         .text('Price for bushel of apples');
 
-      svg.selectAll(".bar")
+      svg.selectAll('.bar')
         .data(dataset)
-        .enter().append("rect")
-        .attr("class", "bar")
-        .attr("x", function(d) { return x(d.transactionNmbr); })
-        .attr("y", function(d) { return y(d.price) - 1.0; })
-        .attr("height", function(d) { return height - y(d.price); })
-        .attr("width", x.rangeBand());
+        .enter().append('rect')
+        .attr('class', 'bar')
+        .attr('x', function(d) { return x(d.transactionNmbr); })
+        .attr('y', function(d) { return y(d.price) - 1.0; })
+        .attr('height', function(d) { return height - y(d.price); })
+        .attr('width', x.rangeBand());
     }
 
     // -----------------------------------------------------------------------------
@@ -154,10 +154,10 @@ angular.module('applemarketApp')
     // chunkPosition has to be 0 <= chunkPosition < chunkCount
     // -----------------------------------------------------------------------------
     function controlBars(direction) {
-      if ( (direction == 'left') && (chunkPosition - 1 >= 0) ) {
+      if ( (direction === 'left') && (chunkPosition - 1 >= 0) ) {
         --chunkPosition;
       }
-      else if ( (direction == 'right') && (chunkPosition + 1 < chunkCount) ) {
+      else if ( (direction === 'right') && (chunkPosition + 1 < chunkCount) ) {
         ++chunkPosition;
       }
       else {
@@ -177,10 +177,10 @@ angular.module('applemarketApp')
         .data(data)
         .transition()
         .duration(1000)
-        .attr("y", function(d) { return y(d.price); })
-        .attr("height", function(d) { return height - y(d.price); });
+        .attr('y', function(d) { return y(d.price); })
+        .attr('height', function(d) { return height - y(d.price); });
 
-      svg.selectAll(".x.axis")
+      svg.selectAll('.x.axis')
         .call(xAxis);
     }
 
