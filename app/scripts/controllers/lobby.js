@@ -27,26 +27,24 @@ angular.module('applemarketApp')
     //                                                Socket callbacks
     // #################################################################################################################
 
-    //connectionService.on(config.api.connect, function () {
-      // Join server if player
-      if (!$scope.isGameManager) {
-        var apiAddress = config.api.serverJoin.replace(':gameId', gameData.getGameId());
-        var payload = {
-          "username" : playerData.getPlayerName(),
-          "gameID"   : gameData.getGameId()
-        };
+    // Join server if player is not game manager
+    if (!$scope.isGameManager) {
+      var apiAddress = config.api.serverJoin.replace(':gameId', gameData.getGameId());
+      var payload = {
+        'username' : playerData.getPlayerName(),
+        'gameID'   : gameData.getGameId()
+      };
 
-        connectionService.put(apiAddress, payload)
-          .then(function (_data) {
-            $scope.lobbyData.playerList      = _data.user;
-            $scope.lobbyData.playerMax       = _data.playerMax;
-            $scope.lobbyData.numberOfPlayers = _data.user.length;
-          })
-          .catch(function (_reason) {
-            Notification('Error joining server: ' + _reason);
-          });
-      }
-    //});
+      connectionService.put(apiAddress, payload)
+        .then(function (_data) {
+          $scope.lobbyData.playerList      = _data.user;
+          $scope.lobbyData.playerMax       = _data.playerMax;
+          $scope.lobbyData.numberOfPlayers = _data.user.length;
+        })
+        .catch(function (_reason) {
+          Notification('Error joining server: ' + _reason);
+        });
+    }
 
     // Event: on player joins
     connectionService.on(config.api.playerJoined, function (_data) {
