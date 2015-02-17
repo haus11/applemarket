@@ -62,10 +62,11 @@ angular.module('applemarketApp')
 
       connectionService.post(config.api.server_create, postData)
         .then(function (_data) {
+
           gameData.setGameName(_data.name);
           gameData.setSessionNumber($scope.inputData.sessionNumber);
           gameData.setRoundNumber($scope.inputData.roundNumber);
-          gameData.setMaxPlayer(_data.playerMax);
+          gameData.setPlayerMax(_data.playerMax);
           gameData.setServerId(_data.id);
 
           $location.path(config.routes.lobby);

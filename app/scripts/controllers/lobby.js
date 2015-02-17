@@ -50,16 +50,16 @@ angular.module('applemarketApp')
 
     // on player disconnects
     connectionService.on(config.api.player_leaved, function (_data) {
-        console.log('UserDisconnect');
+      console.log('UserDisconnect');
 
-        for (var i = 0; i < $scope.playerList.length; i++) {
-            if ($scope.playerList[i].id == _data.id) {
-                $scope.playerList.splice(i, 1);
-                $scope.lobbyData.numberOfPlayers--;
-                gameData.setPlayerList($scope.playerList);
-                break;
-            }
-        }
+      for (var i = 0; i < $scope.playerList.length; i++) {
+          if ($scope.playerList[i].id == _data.id) {
+              $scope.playerList.splice(i, 1);
+              $scope.lobbyData.numberOfPlayers--;
+              gameData.setPlayerList($scope.playerList);
+              break;
+          }
+      }
     });
 
     // on player data changes
@@ -78,12 +78,14 @@ angular.module('applemarketApp')
       var url = config.api.game_start.replace("id", gameData.getServerId());
       console.log(url);
 
-      connectionService.put(url, null, function (_data, _jwres) {
+      connectionService.put(url, null)
+        .then(function (_data) {
 
-        console.log(_data);
-        console.log(_jwres);
+          console.log(_data);
+          $location.path(config.routes.manager_manage);
+        })
+        .catch(function (_reason) {
 
-        $location.path(config.routes.manager_manage);
-      });
+        });
     };
   });
