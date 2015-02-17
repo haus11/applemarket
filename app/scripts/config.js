@@ -36,6 +36,7 @@ var config = {
 
     game_start      : '/game/id/start',
     game_finished   : '/game:finished'
+
   },
 
   nav : {

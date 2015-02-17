@@ -29,7 +29,10 @@ angular.module('applemarketApp')
       $scope.playerList.push(_data);
       $scope.lobbyData.numberOfPlayers++;
       gameData.setPlayerList($scope.playerList);
-      $scope.$apply();
+
+      //if ($scope.$root.$$phase !== '$apply' && $scope.$root.$$phase !== '$digest') {
+      //  $scope.$apply();
+      //}
     });
 
     // on player reconnects
@@ -38,7 +41,11 @@ angular.module('applemarketApp')
       $scope.playerList.push(_data);
       $scope.lobbyData.numberOfPlayers++;
       gameData.setPlayerList($scope.playerList);
-      $scope.$apply();
+
+      //if ($scope.$root.$$phase !== '$apply' && $scope.$root.$$phase !== '$digest') {
+      //  $scope.$apply();
+      //}
+
     });
 
     // on player disconnects
