@@ -34,9 +34,8 @@ var config = {
     player_leaved       : 'game:playerLeaved',
     player_reconnected  : '',
 
-    game_started    : 'game:started',
-    game_finished   : 'game:finished',
-
+    game_start      : '/game/id/start',
+    game_finished   : '/game:finished'
   },
 
   nav : {

@@ -1,10 +1,10 @@
 <div class="container text-center">
   <h3>Lobby <small>{{inputData.gameName}}</small></h3>
-  <h4>4 of 16 players joined the game</h4>
+  <h4>{{lobbyData.numberOfPlayers}} of {{lobbyData.playerMax}} players joined the game</h4>
 
   <div ng-repeat="player in playerList">
     <span >{{player.name}}</span>
   </div>
 
-  <button class="btn btn-warning row row-buffer">StartGame</button>
+  <button class="btn btn-warning row row-buffer" ng-click="startGame();">StartGame</button>
 </div>
