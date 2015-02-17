@@ -10,19 +10,14 @@
  * Controller of the applemarketApp
  */
 angular.module('applemarketApp')
-  .controller('MainCtrl', function ($scope, $rootScope, $location, playerData, gameData) {
+  .controller('MainCtrl', function ($scope, $rootScope, $location, playerData) {
 
-    var serverId = $location.search().serverId;
-
-    if (serverId === undefined) {
+    // If game manager sate has already been set (user has joined a game before)
+    //if (!playerData.isGameManager()) {
+    //  $location.path(config.routes.error);
+    //}
+    //else {
       playerData.setIsGameManager(true);
       $location.path(config.routes.managerCreate);
-    }
-    else {
-      // Is GameManager
-      gameData.setServerId(serverId);
-      playerData.setIsGameManager(false);
-      $location.path(config.routes.initPlayer);
-    }
-
+    //}
   });

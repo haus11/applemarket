@@ -18,7 +18,7 @@ angular.module('applemarketApp')
     var maxSessionNumber  = 2;
     var roundNumber       = 0;
     var maxRoundNumber    = 2;
-    var serverId;
+    var gameId;
     var playerMax;
     var numberOfPlayers;
     var playerList        = [];
@@ -89,12 +89,12 @@ angular.module('applemarketApp')
         $rootScope.$broadcast('onGameDataChange');
       },
 
-      getServerId : function () {
-        return serverId;
+      getGameId : function () {
+        return gameId;
       },
 
-      setServerId : function (_serverId) {
-        serverId = _serverId;
+      setGameId : function (_gameId) {
+        gameId = _gameId;
       },
 
       getPlayerMax : function () {

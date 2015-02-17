@@ -10,27 +10,48 @@
  * Controller of the applemarketApp
  */
 angular.module('applemarketApp')
-  .controller('LobbyCtrl', function ($scope, $location, gameData, connectionService, Notification) {
+  .controller('LobbyCtrl', function ($scope, $location, playerData, gameData, connectionService, Notification) {
+
     $scope.lobbyData =
     {
-      'gameName'        : gameData.getGameName(),
-      'playerMax'       : gameData.getPlayerMax(),
-      'numberOfPlayers' : 0,
-      'showInput'       : gameData.getGameName() === undefined
+      gameName        : gameData.getGameName(),
+      playerMax       : gameData.getPlayerMax(),
+      numberOfPlayers : 0,
+      playerList      : gameData.getPlayerList()
     };
 
-    $scope.playerList = gameData.getPlayerList();
+    $scope.isGameManager = playerData.isGameManager();
+
 
     // #################################################################################################################
     //                                                Socket callbacks
     // #################################################################################################################
 
+    // Join server if player is not game manager
+    if (!$scope.isGameManager) {
+      var apiAddress = config.api.serverJoin.replace(':gameId', gameData.getGameId());
+      var payload = {
+        'username' : playerData.getPlayerName(),
+        'gameID'   : gameData.getGameId()
+      };
+
+      connectionService.put(apiAddress, payload)
+        .then(function (_data) {
+          $scope.lobbyData.playerList      = _data.user;
+          $scope.lobbyData.playerMax       = _data.playerMax;
+          $scope.lobbyData.numberOfPlayers = _data.user.length;
+        })
+        .catch(function (_reason) {
+          Notification('Error joining server: ' + _reason);
+        });
+    }
+
     // Event: on player joins
     connectionService.on(config.api.playerJoined, function (_data) {
 
-      $scope.playerList.push(_data);
+      $scope.lobbyData.playerList.push(_data);
       $scope.lobbyData.numberOfPlayers++;
-      gameData.setPlayerList($scope.playerList);
+      gameData.setPlayerList($scope.lobbyData.playerList);
 
       //if ($scope.$root.$$phase !== '$apply' && $scope.$root.$$phase !== '$digest') {
       //  $scope.$apply();
@@ -40,9 +61,9 @@ angular.module('applemarketApp')
     // on player reconnects
     connectionService.on(config.api.playerReconnected, function (_data) {
 
-      $scope.playerList.push(_data);
+      $scope.lobbyData.playerList.push(_data);
       $scope.lobbyData.numberOfPlayers++;
-      gameData.setPlayerList($scope.playerList);
+      gameData.setPlayerList($scope.lobbyData.playerList);
 
       //if ($scope.$root.$$phase !== '$apply' && $scope.$root.$$phase !== '$digest') {
       //  $scope.$apply();
@@ -54,11 +75,11 @@ angular.module('applemarketApp')
     connectionService.on(config.api.playerLeaved, function (_data) {
       console.log('UserDisconnect');
 
-      for (var i = 0; i < $scope.playerList.length; i++) {
-          if ($scope.playerList[i].id === _data.id) {
-              $scope.playerList.splice(i, 1);
+      for (var i = 0; i < $scope.lobbyData.playerList.length; i++) {
+          if ($scope.lobbyData.playerList[i].id === _data.id) {
+              $scope.lobbyData.playerList.splice(i, 1);
               $scope.lobbyData.numberOfPlayers--;
-              gameData.setPlayerList($scope.playerList);
+              gameData.setPlayerList($scope.lobbyData.playerList);
               break;
           }
       }
@@ -67,18 +88,18 @@ angular.module('applemarketApp')
     // on player data changes
     connectionService.on(config.api.userUpdate, function (_data) {
 
-      for (var i = 0; i < $scope.playerList.length; i++) {
-        if ($scope.playerList[i].id === _data.id) {
-          $scope.playerList[i] = _data;
-          gameData.setPlayerList($scope.playerList);
+      for (var i = 0; i < $scope.lobbyData.playerList.length; i++) {
+        if ($scope.lobbyData.playerList[i].id === _data.id) {
+          $scope.lobbyData.playerList[i] = _data;
+          gameData.setPlayerList($scope.lobbyData.playerList);
           break;
         }
       }
     });
 
     $scope.startGame = function () {
-      // start the game
-      var url = config.api.gameStart.replace('id', gameData.getServerId());
+
+      var url = config.api.gameStart.replace('id', gameData.getGameId());
       connectionService.put(url, null)
         .then(function () {
           gameData.increaseSessionNumber();

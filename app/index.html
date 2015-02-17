@@ -34,10 +34,10 @@
     <div class="nav-fixed nav-bottom" ng-controller="NavigationCtrl">
       <div class="nav-wrapper">
         <ul>
-          <li ng-class="{'nav-active':selectedTab === 'home'}"    ng-click="selectTab('home');">   <a class="nav-hover"><span class="fa fa-home"></span></a></li>
-          <li ng-class="{'nav-active':selectedTab === 'offers'}"  ng-click="selectTab('offers');"> <a class="nav-hover"><span class="fa fa-list-alt"></span> Offers</a></li>
-          <li ng-class="{'nav-active':selectedTab === 'profile'}" ng-click="selectTab('profile');"><a class="nav-hover"><span class="fa fa-user"></span> Profile</a></li>
-          <li ng-class="{'nav-active':selectedTab === 'stats'}"   ng-click="selectTab('stats');">  <a class="nav-hover"><span class="fa fa-line-chart"></span> Stats</a></li>
+          <li ng-class="{'nav-active':selectedTab === 'home'}"    ng-click="selectTab('home');">                           <a class="nav-hover"><span class="fa fa-home"></span></a></li>
+          <li ng-class="{'nav-active':selectedTab === 'offers'}"  ng-click="selectTab('offers');"  ng-hide="isGameManager"><a class="nav-hover"><span class="fa fa-list-alt"></span> Offers</a></li>
+          <li ng-class="{'nav-active':selectedTab === 'profile'}" ng-click="selectTab('profile');" ng-hide="isGameManager"><a class="nav-hover"><span class="fa fa-user"></span> Profile</a></li>
+          <li ng-class="{'nav-active':selectedTab === 'stats'}"   ng-click="selectTab('stats');">                          <a class="nav-hover"><span class="fa fa-line-chart"></span> Stats</a></li>
           <li ng-class="{'nav-active':selectedTab === 'manager'}" ng-click="selectTab('manager');" ng-show="isGameManager"><a class="nav-hover"><span class="fa fa-gamepad"></span> Manager</a></li>
         </ul>
       </div>
@@ -113,7 +113,8 @@
     <script src="scripts/controllers/manager/create_game.js"></script>
     <script src="scripts/controllers/manager/manage_game.js"></script>
     <script src="scripts/controllers/lobby.js"></script>
-    <script src="scripts/controllers/initplayer.js"></script>
+    <script src="scripts/controllers/join.js"></script>
+    <script src="scripts/controllers/error.js"></script>
     <!-- endbuild -->
 </body>
 </html>

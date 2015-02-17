@@ -10,11 +10,15 @@
  * Controller of the applemarketApp
  */
 angular.module('applemarketApp')
-  .controller('InitplayerCtrl', function ($scope, $location, playerData) {
+  .controller('JoinCtrl', function ($scope, $location, $routeParams, playerData, gameData, connectionService) {
+
+    var gameId = $routeParams.gameId || 0;
 
     $scope.inputData = {
       'name' : playerData.getPlayerName()
     };
+
+    gameData.setGameId(gameId);
 
     //#############################################################################
     //                          Scope Functions
@@ -22,6 +26,7 @@ angular.module('applemarketApp')
 
     $scope.saveData = function () {
       playerData.setPlayerName($scope.inputData.name);
+      playerData.setIsGameManager(false);
 
       $location.$$search = {};
       $location.path(config.routes.lobby);
