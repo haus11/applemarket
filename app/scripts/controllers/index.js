@@ -4,9 +4,11 @@ function updateGameData($scope, gameData) {
 
   $scope.gameInfoData =
   {
-    'gameName'      : gameData.getGameName(),
-    'sessionNumber' : gameData.getSessionNumber(),
-    'roundNumber'   : gameData.getRoundNumber()
+    'gameName'        : gameData.getGameName(),
+    'sessionNumber'   : gameData.getSessionNumber(),
+    'maxSessionNumber': gameData.getMaxSessionNumber(),
+    'roundNumber'     : gameData.getRoundNumber(),
+    'maxRoundNumber'  : gameData.getMaxRoundNumber()
   };
 }
 

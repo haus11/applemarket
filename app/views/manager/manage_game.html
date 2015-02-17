@@ -1,5 +1,5 @@
 <div class="container text-center row-buffer">
     <h3>Game Managing <small>{{inputData.gameName}}</small></h3>
-    <h4>4 of 16 players finished transaction</h4>
-    <button class="btn btn-warning row-buffer">End Round</button>
+    <h4 class="row-buffer">{{manageData.playerFinished}} of {{manageData.playerMax}} players finished transaction</h4>
+    <button class="btn btn-warning row-buffer" ng-click="endRound();">End Round</button>
 </div>

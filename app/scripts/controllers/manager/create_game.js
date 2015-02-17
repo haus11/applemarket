@@ -68,12 +68,10 @@ angular.module('applemarketApp')
           gameData.setPlayerMax(_data.playerMax);
           gameData.setServerId(_data.id);
 
-          console.log(_data);
           $location.path(config.routes.lobby);
         })
         .catch(function (_reason) {
           Notification('Game creation failed: ' + _reason);
-        });
-
+      });
     };
   });

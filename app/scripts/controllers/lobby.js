@@ -10,7 +10,7 @@
  * Controller of the applemarketApp
  */
 angular.module('applemarketApp')
-  .controller('LobbyCtrl', function ($scope, $location, gameData, connectionService) {
+  .controller('LobbyCtrl', function ($scope, $location, gameData, connectionService, Notification) {
     $scope.lobbyData =
     {
       'gameName'        : gameData.getGameName(),
@@ -77,17 +77,27 @@ angular.module('applemarketApp')
     });
 
     $scope.startGame = function () {
+      // start the game
       var url = config.api.gameStart.replace('id', gameData.getServerId());
-      console.log(url);
-
       connectionService.put(url, null)
-        .then(function (_data) {
+        .then(function () {
+          gameData.increaseSessionNumber();
 
+          url = config.api.sessionNew.replace('gameId', gameData.getServerId());
+          return connectionService.post(url, null);
+        })
+        .then(function () {
+          gameData.resetRoundNumber();
+          url = config.api.roundNew.replace('gameId', gameData.getServerId());
+          url = url.replace('sessionCount', gameData.getSessionNumber());
+          return connectionService.post(url, null);
+        })
+        .then(function (_data) {
           console.log(_data);
           $location.path(config.routes.managerManage);
         })
         .catch(function (_reason) {
-          console.log(_reason);
+          new Notification('Could not start Game: ' + _reason);
         });
     };
   });

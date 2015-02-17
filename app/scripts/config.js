@@ -36,7 +36,11 @@ var config = {
     playerReconnected   : '',
 
     gameStart           : '/game/id/start',
-    gameFinished        : '/game:finished'
+    gameFinish          : '/game/id/finish',
+
+    sessionNew          : '/game/gameId/session',
+    roundNew            : '/game/gameId/session/sessionCount/round',
+    sessionsGet         : '/game/gameId/sessions'
 
   },
 

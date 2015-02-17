@@ -13,15 +13,16 @@ angular.module('applemarketApp')
   .service('gameData', function ($rootScope) {
 
     var gameStarted       = false;
-    var gameName          = undefined;
+    var gameName;
     var sessionNumber     = 0;
     var maxSessionNumber  = 2;
     var roundNumber       = 0;
     var maxRoundNumber    = 2;
-    var serverId          = undefined;
-    var playerMax         = undefined;
-    var numberOfPlayers   = undefined;
+    var serverId;
+    var playerMax;
+    var numberOfPlayers;
     var playerList        = [];
+    var gameFinished      = false;
 
     return {
 
@@ -50,13 +51,18 @@ angular.module('applemarketApp')
         return maxSessionNumber;
       },
 
-      setSessionNumber : function (_sessionNumber) {
-        sessionNumber = _sessionNumber;
+      increaseSessionNumber : function () {
+        sessionNumber++;
         $rootScope.$broadcast('onGameDataChange');
       },
 
       setMaxSessionNumber : function (_maxSessionNumber) {
         maxSessionNumber = _maxSessionNumber;
+        $rootScope.$broadcast('onGameDataChange');
+      },
+
+      resetSessionNumber : function () {
+        sessionNumber = 1;
         $rootScope.$broadcast('onGameDataChange');
       },
 
@@ -68,22 +74,18 @@ angular.module('applemarketApp')
         return maxRoundNumber;
       },
 
-      setRoundNumber : function (_roundNumber) {
-        roundNumber = _roundNumber;
+      increaseRoundNumber : function () {
+        roundNumber++;
+        $rootScope.$broadcast('onGameDataChange');
+      },
+
+      resetRoundNumber : function () {
+        roundNumber = 1;
         $rootScope.$broadcast('onGameDataChange');
       },
 
       setMaxRoundNumber : function (_maxRoundNumber) {
         maxRoundNumber = _maxRoundNumber;
-        $rootScope.$broadcast('onGameDataChange');
-      },
-
-      getTime : function () {
-        return time;
-      },
-
-      setTime : function (_time) {
-        time = _time;
         $rootScope.$broadcast('onGameDataChange');
       },
 
@@ -109,6 +111,14 @@ angular.module('applemarketApp')
 
       getPlayerList : function () {
         return playerList;
+      },
+
+      setGameFinished : function () {
+        gameFinished = true;
+      },
+
+      isGameFinished : function () {
+        return gameFinished;
       }
     };
   });
