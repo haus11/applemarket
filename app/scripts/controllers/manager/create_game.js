@@ -1,3 +1,5 @@
+/*global config*/
+
 'use strict';
 
 /**
@@ -60,7 +62,7 @@ angular.module('applemarketApp')
 
       console.log(postData);
 
-      connectionService.post(config.api.server_create, postData)
+      connectionService.post(config.api.serverCreate, postData)
         .then(function (_data) {
 
           gameData.setGameName(_data.name);

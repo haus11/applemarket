@@ -1,4 +1,4 @@
-/*global config:false */
+/*global config */
 
 'use strict';
 

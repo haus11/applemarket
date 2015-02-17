@@ -1,4 +1,4 @@
-/*global config:false */
+/*global config */
 
 'use strict';
 
@@ -26,7 +26,7 @@ angular.module('applemarketApp')
     // #################################################################################################################
 
     // Event: on player joins
-    connectionService.on(config.api.player_joined, function (_data) {
+    connectionService.on(config.api.playerJoined, function (_data) {
 
       $scope.playerList.push(_data);
       $scope.lobbyData.numberOfPlayers++;
@@ -38,7 +38,7 @@ angular.module('applemarketApp')
     });
 
     // on player reconnects
-    connectionService.on(config.api.player_reconnected, function (_data) {
+    connectionService.on(config.api.playerReconnected, function (_data) {
 
       $scope.playerList.push(_data);
       $scope.lobbyData.numberOfPlayers++;
@@ -51,7 +51,7 @@ angular.module('applemarketApp')
     });
 
     // on player disconnects
-    connectionService.on(config.api.player_leaved, function (_data) {
+    connectionService.on(config.api.playerLeaved, function (_data) {
       console.log('UserDisconnect');
 
       for (var i = 0; i < $scope.playerList.length; i++) {
@@ -65,7 +65,7 @@ angular.module('applemarketApp')
     });
 
     // on player data changes
-    connectionService.on(config.api.user_update, function (_data) {
+    connectionService.on(config.api.userUpdate, function (_data) {
 
       for (var i = 0; i < $scope.playerList.length; i++) {
         if ($scope.playerList[i].id === _data.id) {
@@ -77,17 +77,17 @@ angular.module('applemarketApp')
     });
 
     $scope.startGame = function () {
-      var url = config.api.game_start.replace('id', gameData.getServerId());
+      var url = config.api.gameStart.replace('id', gameData.getServerId());
       console.log(url);
 
       connectionService.put(url, null)
         .then(function (_data) {
 
           console.log(_data);
-          $location.path(config.routes.manager_manage);
+          $location.path(config.routes.managerManage);
         })
         .catch(function (_reason) {
-
+          console.log(_reason);
         });
     };
   });

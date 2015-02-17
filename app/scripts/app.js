@@ -1,5 +1,5 @@
-/*global config:false */
-/*global io:false */
+/*global config */
+/*global io */
 
 'use strict';
 
@@ -53,23 +53,23 @@ angular
         templateUrl: 'views/trade/trade.html',
         controller: 'TradeCtrl'
       })
-      .when(config.routes.trade_success, {
+      .when(config.routes.tradeSuccess, {
         templateUrl: 'views/trade/trade_succ.html',
         controller: 'TradeCtrl'
       })
-      .when(config.routes.trade_fail, {
+      .when(config.routes.tradeFail, {
         templateUrl: 'views/trade/trade_fail.html',
         controller: 'TradeCtrl'
       })
-      .when(config.routes.trade_accept, {
+      .when(config.routes.tradeAccept, {
         templateUrl: 'views/trade/trade_accept.html',
         controller: 'TradeCtrl'
       })
-      .when(config.routes.manager_create, {
+      .when(config.routes.managerCreate, {
         templateUrl: '/views/manager/create_game.html',
         controller: 'CreateGameCtrl'
       })
-      .when(config.routes.manager_manage, {
+      .when(config.routes.managerManage, {
         templateUrl: '/views/manager/manage_game.html',
         controller: 'ManageGameCtrl'
       })
@@ -77,7 +77,7 @@ angular
         templateUrl: '../views/lobby.html',
         controller: 'LobbyCtrl'
       })
-      .when(config.routes.init_player, {
+      .when(config.routes.initPlayer, {
         templateUrl: 'views/initplayer.html',
         controller: 'InitplayerCtrl'
       })

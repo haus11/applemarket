@@ -37,7 +37,7 @@ angular.module('applemarketApp')
 
       }
       else if (_tabName === config.nav.manager) {
-        $location.path(config.routes.manager_create);
+        $location.path(config.routes.managerCreate);
 
       }
     };

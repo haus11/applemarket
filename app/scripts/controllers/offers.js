@@ -117,6 +117,6 @@ angular.module('applemarketApp')
 
     $scope.openOffer = function (_offer) {
       tradeService.setTrade(_offer);
-      $location.path(config.routes.trade_accept);
+      $location.path(config.routes.tradeAccept);
     };
   });

@@ -59,7 +59,7 @@ angular.module('applemarketApp')
       console.log($scope.offer + ' | ' + $scope.profit);
       tradeService.setPricePaid($scope.offer);
       tradeService.setProfit($scope.profit);
-      $location.path(config.routes.trade_success);
+      $location.path(config.routes.tradeSuccess);
     };
 
     $scope.rejected = function () {

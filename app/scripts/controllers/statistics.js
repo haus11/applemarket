@@ -32,6 +32,6 @@ angular.module('applemarketApp')
         };
       })
       .catch(function (_reason) {
-
+        console.log(_reason);
       });
   });
