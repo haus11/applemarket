@@ -1,3 +1,5 @@
+/*global config:false */
+
 'use strict';
 
 /**

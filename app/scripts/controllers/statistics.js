@@ -15,19 +15,23 @@ angular.module('applemarketApp')
     // -----------------------------------------------------------------------------
     // establish socket connection
     // -----------------------------------------------------------------------------
-    connectionService.get('/api/apple/transactions', function(data, jwres) {
+    connectionService.get('/api/apple/transactions')
+      .then(function(data) {
 
-      // draw first set of bars
-      $scope.respBarChart  = simpleChart.drawBarChart(numberOfBarsDrawn, data);
+        // draw first set of bars
+        $scope.respBarChart  = simpleChart.drawBarChart(numberOfBarsDrawn, data);
 
-      // -----------------------------------------------------------------------------
-      // navigate through the statistics
-      // -----------------------------------------------------------------------------
-      $scope.clickedPreviousStatistics = function(){
-        $scope.resBarChart = simpleChart.controlBarChart('left');
-      };
-      $scope.clickedNextStatistics = function(){
-        $scope.resBarChart = simpleChart.controlBarChart('right');
-      };
-    });
+        // -----------------------------------------------------------------------------
+        // navigate through the statistics
+        // -----------------------------------------------------------------------------
+        $scope.clickedPreviousStatistics = function () {
+          $scope.resBarChart = simpleChart.controlBarChart('left');
+        };
+        $scope.clickedNextStatistics = function () {
+          $scope.resBarChart = simpleChart.controlBarChart('right');
+        };
+      })
+      .catch(function (_reason) {
+
+      });
   });

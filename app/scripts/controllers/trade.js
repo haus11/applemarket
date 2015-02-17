@@ -1,3 +1,5 @@
+/*global config:false */
+
 'use strict';
 
 /**
@@ -54,7 +56,7 @@ angular.module('applemarketApp')
     };
 
     $scope.accepted = function () {
-      console.log($scope.offer + " | " + $scope.profit);
+      console.log($scope.offer + ' | ' + $scope.profit);
       tradeService.setPricePaid($scope.offer);
       tradeService.setProfit($scope.profit);
       $location.path(config.routes.trade_success);

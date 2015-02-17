@@ -1,3 +1,5 @@
+/*global config:false */
+
 'use strict';
 
 /**
@@ -12,7 +14,7 @@ angular.module('applemarketApp')
 
     var serverId = $location.search().server_id;
 
-    if (serverId == undefined) {
+    if (serverId === undefined) {
       playerData.setIsGameManager(true);
       $location.path(config.routes.manager_create);
     }

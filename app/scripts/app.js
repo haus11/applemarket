@@ -1,3 +1,6 @@
+/*global config:false */
+/*global io:false */
+
 'use strict';
 
 /**
@@ -22,7 +25,7 @@ angular
     'angular.filter',
     'ui-notification'
   ])
-  .config(function ($routeProvider, $locationProvider) {
+  .config(function ($routeProvider) {
 
     //$locationProvider.html5Mode({
     //  enabled: true,
@@ -82,7 +85,7 @@ angular
         redirectTo: '/'
       });
   })
-  .run(function ($rootScope, $location, playerData, connectionService) {
+  .run(function () {
 
 
     //connectionService.on(config.api.connect, function () {

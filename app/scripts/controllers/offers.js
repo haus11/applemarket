@@ -1,3 +1,5 @@
+/*global config:false */
+
 'use strict';
 
 /**
@@ -28,7 +30,7 @@ angular.module('applemarketApp')
       customPrice : playerData.getCustomPrice()
     };
     $scope.isDemander         = playerData.isDemander();
-    $scope.showSupplierForm   = $scope.prices.customPrice == 0.0;
+    $scope.showSupplierForm   = $scope.prices.customPrice === 0.0;
 
     //#############################################################
     //                         Demander

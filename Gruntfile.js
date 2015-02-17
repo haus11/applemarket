@@ -358,10 +358,10 @@ module.exports = function (grunt) {
     less: {
       development: {
         options: {
-          paths: ["assets/css"]
+          paths: ['assets/css']
         },
         files: {
-          "app/styles/main.css": "app/styles/main.less"
+          'app/styles/main.css': 'app/styles/main.less'
         }
       }
     }

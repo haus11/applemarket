@@ -53,7 +53,7 @@ angular.module('applemarketApp')
 
     $scope.createGame = function () {
       var postData = {
-        'secret'     : "apple",
+        'secret'     : "penis1234",
         'name'       : $scope.inputData.gameName,
         'playerMax'  : $scope.inputData.playerMax
       };

@@ -1,3 +1,5 @@
+/*global config:false */
+
 'use strict';
 
 /**
@@ -14,7 +16,7 @@ angular.module('applemarketApp')
       'gameName'        : gameData.getGameName(),
       'playerMax'       : gameData.getPlayerMax(),
       'numberOfPlayers' : 0,
-      'showInput'       : gameData.getGameName() == undefined
+      'showInput'       : gameData.getGameName() === undefined
     };
 
     $scope.playerList = gameData.getPlayerList();
@@ -53,7 +55,7 @@ angular.module('applemarketApp')
       console.log('UserDisconnect');
 
       for (var i = 0; i < $scope.playerList.length; i++) {
-          if ($scope.playerList[i].id == _data.id) {
+          if ($scope.playerList[i].id === _data.id) {
               $scope.playerList.splice(i, 1);
               $scope.lobbyData.numberOfPlayers--;
               gameData.setPlayerList($scope.playerList);
@@ -66,7 +68,7 @@ angular.module('applemarketApp')
     connectionService.on(config.api.user_update, function (_data) {
 
       for (var i = 0; i < $scope.playerList.length; i++) {
-        if ($scope.playerList[i].id == _data.id) {
+        if ($scope.playerList[i].id === _data.id) {
           $scope.playerList[i] = _data;
           gameData.setPlayerList($scope.playerList);
           break;
@@ -75,7 +77,7 @@ angular.module('applemarketApp')
     });
 
     $scope.startGame = function () {
-      var url = config.api.game_start.replace("id", gameData.getServerId());
+      var url = config.api.game_start.replace('id', gameData.getServerId());
       console.log(url);
 
       connectionService.put(url, null)

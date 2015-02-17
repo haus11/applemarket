@@ -8,7 +8,7 @@
  * Controller of the applemarketApp
  */
 angular.module('applemarketApp')
-  .controller('ProfileCtrl', function ($scope, configData, playerData, tradeService, roleGenerator) {
+  .controller('ProfileCtrl', function ($scope, configData, playerData, tradeService) {
 
     //console.log(roleGenerator.generateTypeDistribution(29));
 
