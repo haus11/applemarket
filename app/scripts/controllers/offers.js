@@ -101,7 +101,7 @@ angular.module('applemarketApp')
           playerData.setCustomPrice($scope.prices.customPrice);
         })
         .catch(function (_reason) {
-          Notification('Offer creation failed: ' + _reason);
+          new Notification('Offer creation failed: ' + _reason);
         });
     };
 

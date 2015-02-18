@@ -46,13 +46,13 @@ angular.module('applemarketApp')
           gameData.setNumberOfPlayers(_data.game.user.length - 1);
           gameData.setPlayerMax(_data.game.playerMax);
           gameData.setPlayerList(_data.game.user);
-          gameData.setPlayerId(_data.user.id)
+          gameData.setPlayerId(_data.user.id);
         })
         .catch(function (_reason) {
-          Notification('Error joining Game: ' + _reason);
+          new Notification('Error joining Game: ' + _reason);
         });
 
-      connectionService.on(config.api.gameStarted, function (_data) {
+      connectionService.on(config.api.gameStarted, function () {
         gameData.setPlayerList($scope.lobbyData.playerList);
         gameData.setNumberOfPlayers($scope.numberOfPlayers);
         gameData.setGameStarted();
@@ -130,7 +130,7 @@ angular.module('applemarketApp')
           url = url.replace('sessionCount', gameData.getSessionNumber());
           return connectionService.post(url, null);
         })
-        .then(function (_data) {
+        .then(function () {
           gameData.setPlayerList($scope.lobbyData.playerList);
           gameData.setNumberOfPlayers($scope.numberOfPlayers);
           gameData.setGameStarted();
