@@ -128,7 +128,7 @@ angular.module('applemarketApp')
     });
 
     // game finished
-    connectionService.on(config.api.gameFinished, function (_data) {
+    connectionService.on(config.api.gameFinished, function () {
       gameData.setGameFinished();
       $location.path(config.routes.profile);
     });

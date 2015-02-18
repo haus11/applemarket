@@ -40,11 +40,11 @@ angular.module('applemarketApp')
       connectionService.put(apiAddress, payload)
         .then(function (_data) {
           $scope.lobbyData.gameName         = _data.game.name;
-          $scope.lobbyData.playerList       = _data.game.user.splice(1, 1); // remove gamemanager from player list
+          $scope.lobbyData.playerList       = _data.game.user; // remove gamemanager from player list
           $scope.lobbyData.playerMax        = _data.game.playerMax;
-          $scope.lobbyData.numberOfPlayers  = _data.game.user.length;
-          console.log($scope.lobbyData.playerList);
+          $scope.lobbyData.numberOfPlayers  = _data.game.user.length - 1;
           gameData.setNumberOfPlayers(_data.game.user.length);
+          gameData.setGameName(_data.game.name);
           gameData.setPlayerMax(_data.game.playerMax);
           gameData.setPlayerList(_data.game.user);
           gameData.setPlayerId(_data.user.id);
@@ -119,7 +119,7 @@ angular.module('applemarketApp')
       // start game
       var url = config.api.gameStart.replace('id', gameData.getGameId());
       connectionService.put(url, null)
-        .then(function (_data) {
+        .then(function () {
           //start new session
           return connectionService.post(config.api.sessionCreate, null);
         })

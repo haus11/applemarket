@@ -8,7 +8,9 @@
           <label for="name">Name: </label>
           <input type="text" class="form-control input-sm" id="name" name="uName" ng-model="inputData.name" required="">
         </div>
-        <input type="submit" class="btn btn-success" ng-click="saveData()" ng-disabled="playerInputForm.$invalid" value="Save"/>
+        <div class="text-right">
+          <button class="btn btn-success" ng-click="saveData()" ng-disabled="playerInputForm.$invalid" value="Save">Save</button>
+        </div>
       </form>
     </div>
     <div class="col-md-4"></div>

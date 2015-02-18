@@ -23,7 +23,7 @@ angular.module('applemarketApp')
       $scope.selectedTab = _tabName;
 
       if (_tabName === config.nav.home) {
-        // Return to server list
+        window.location.href = config.api.sails;
       }
       else if (_tabName === config.nav.offers) {
         $location.path(config.routes.offers);
