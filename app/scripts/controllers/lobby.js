@@ -38,10 +38,11 @@ angular.module('applemarketApp')
 
       connectionService.put(apiAddress, payload)
         .then(function (_data) {
-          $scope.lobbyData.playerList       = _data.user;
+          $scope.lobbyData.gameName         = _data.game.name;
+          $scope.lobbyData.playerList       = _data.game.user;
           $scope.lobbyData.playerMax        = _data.game.playerMax;
           $scope.lobbyData.numberOfPlayers  = _data.game.user.length - 1;
-
+          console.log($scope.lobbyData.playerList);
           gameData.setNumberOfPlayers(_data.game.user.length - 1);
           gameData.setPlayerMax(_data.game.playerMax);
           gameData.setPlayerList(_data.game.user);
@@ -61,6 +62,7 @@ angular.module('applemarketApp')
 
     // Event: on player joins
     connectionService.on(config.api.playerJoined, function (_data) {
+      console.log('Player Joined');
       $scope.lobbyData.playerList.push(_data);
       $scope.lobbyData.numberOfPlayers++;
       gameData.setPlayerList($scope.lobbyData.playerList);
