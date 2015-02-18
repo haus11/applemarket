@@ -10,7 +10,7 @@
  * Controller of the applemarketApp
  */
 angular.module('applemarketApp')
-  .controller('OffersCtrl', function ($scope, $location, playerData, tradeService, connectionService) {
+  .controller('OffersCtrl', function ($scope, $location, gameData, playerData, tradeService, connectionService, Notification) {
 
     //#############################################################
     //                           Base
@@ -92,10 +92,20 @@ angular.module('applemarketApp')
     //#############################################################
 
     $scope.saveSupplierPrice = function () {
-
-
-      $scope.showSupplierForm = false;
-      playerData.setCustomPrice($scope.prices.customPrice);
+      // post initial supplier price
+      var postData = {
+        'price'   : $scope.prices.customPrice,
+        'userId'  : gameData.getPlayerId()
+      };
+      connectionService.post(config.api.offerCreate, postData)
+        .then(function (_data) {
+          console.log(_data);
+          $scope.showSupplierForm = false;
+          playerData.setCustomPrice($scope.prices.customPrice);
+        })
+        .catch(function (_reason) {
+          Notification('Offer creation failed: ' + _reason);
+        });
     };
 
     $scope.openTrade = function (_trade) {

@@ -20,7 +20,7 @@ angular.module('applemarketApp')
     var maxRoundNumber    = 2;
     var gameId;
     var playerMax;
-    var numberOfPlayers;
+    var numberOfPlayers   = 0;
     var playerList        = [];
     var gameFinished      = false;
     var playerId;
@@ -134,7 +134,7 @@ angular.module('applemarketApp')
         playerId = _playerId;
       },
 
-      getPlayerOd : function () {
+      getPlayerId : function () {
         return playerId;
       }
     };

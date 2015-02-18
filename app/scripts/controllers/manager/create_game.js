@@ -14,7 +14,7 @@ angular.module('applemarketApp')
 
     $scope.inputData =
     {
-      'gameName'          : gameData.getGameName(),
+      'gameName'          : undefined,
       'maxSessionNumber'  : gameData.getMaxSessionNumber(),
       'maxRoundNumber'    : gameData.getMaxRoundNumber(),
       'playerMax'         : 0
@@ -64,11 +64,12 @@ angular.module('applemarketApp')
       connectionService.post(config.api.serverCreate, postData)
         .then(function (_data) {
 
-          gameData.setGameName(_data.name);
+          gameData.setGameName($scope.inputData.gameName);
           gameData.setMaxSessionNumber($scope.inputData.maxSessionNumber);
           gameData.setMaxRoundNumber($scope.inputData.maxRoundNumber);
-          gameData.setPlayerMax(_data.playerMax);
-          gameData.setGameId(_data.id);
+          gameData.setPlayerMax(_data.game.playerMax);
+          gameData.setGameId(_data.game.id);
+          gameData.setPlayerId(_data.user.id);
 
           $location.path(config.routes.lobby);
         })
