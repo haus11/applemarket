@@ -1,22 +1,20 @@
-<div ng-controller="TradeCtrl">
-  <div class="container text-center">
-    <h3>
-      <translate>TRADE_TITLE</translate> <small><translate>WORD_WITH</translate> {{ trade.partner }}</small>
-    </h3>
-    <div class="row">
-      <p>Trade successful!</p>
-    </div>
-    <div class="row row-buffer">
-      <span class="fa fa-thumbs-o-up fa-4x green"></span>
-    </div>
-    <div class="row row-buffer">
-      <button type="button" class="btn btn-default">
-        <translate>TRADE_PROFIT</translate> <span ng-class="{'label-success': profit > 0, 'label-danger': profit <= 0}" class="label label-as-badge">{{profit}}</span>
-      </button>
-    </div>
-    <div class="row row-buffer">
-      <a ng-href="#/profile"><button class="btn btn-info" translate>SYSTEM_OK</button></a>
-    </div>
+<div class="container text-center">
+  <h3>
+    <translate>TRADE_TITLE</translate> <small><translate>WORD_WITH</translate> {{ trade.partner }}</small>
+  </h3>
+  <div class="row">
+    <p>Trade successful!</p>
+  </div>
+  <div class="row row-buffer">
+    <span class="fa fa-thumbs-o-up fa-4x green"></span>
+  </div>
+  <div class="row row-buffer">
+    <button type="button" class="btn btn-default">
+      <translate>TRADE_PROFIT</translate> <span ng-class="{'label-success': profit > 0, 'label-danger': profit <= 0}" class="label label-as-badge">{{profit}}</span>
+    </button>
+  </div>
+  <div class="row row-buffer">
+    <a ng-href="#/profile"><button class="btn btn-info" translate>SYSTEM_OK</button></a>
   </div>
 </div>
 

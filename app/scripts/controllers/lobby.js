@@ -10,7 +10,7 @@
  * Controller of the applemarketApp
  */
 angular.module('applemarketApp')
-  .controller('LobbyCtrl', function ($scope, $location, playerData, gameData, connectionService, Notification) {
+  .controller('LobbyCtrl', function ($scope, $location, playerData, gameData, connectionService, notificationService) {
 
     $scope.lobbyData =
     {
@@ -50,7 +50,7 @@ angular.module('applemarketApp')
           gameData.setPlayerId(_data.user.id);
         })
         .catch(function (_reason) {
-          new Notification('Error joining Game: ' + _reason);
+          notificationService.notify($scope, 'Error joining Game', _reason);
         });
 
       // event game started
@@ -141,7 +141,7 @@ angular.module('applemarketApp')
           $location.path(config.routes.managerManage);
         })
         .catch(function (_reason) {
-          new Notification('Could not start Game: ' + _reason);
+          notificationService.notify($scope, 'Could not start Game', _reason);
         });
     };
   });
