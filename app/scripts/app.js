@@ -16,16 +16,23 @@ io.sails.autoConnect = false;
 
 angular
   .module('applemarketApp', [
-    'ngAnimate',
     'ngResource',
     'ngRoute',
-    'ui.bootstrap',
     'ngSanitize',
     'pascalprecht.translate',
     'angular.filter',
-    'ui-notification'
+    'ngDialog'
   ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, ngDialogProvider) {
+
+    ngDialogProvider.setDefaults({
+      className: 'ngdialog-theme-default',
+      plain: false,
+      showClose: false,
+      closeByDocument: true,
+      closeByEscape: true,
+      appendTo: false
+    });
 
     $routeProvider
       .when(config.routes.base, {
@@ -84,30 +91,6 @@ angular
         redirectTo: config.routes.error
       });
   })
-  .run(function () {
+  .run(function (connectionService) {
 
-
-    //connectionService.on(config.api.connect, function () {
-    //  console.log('Connect');
-    //  connectionService.post(config.api.authenticate, function (_data, _jwres) {
-    //    console.log('Authenticate');
-    //    console.log(_data);
-    //
-    //    if (Object.keys(_data).length === 0) {
-    //      // ask for name
-    //      // create user on /user POST
-    //      $location.path('/createUser');
-    //    }
-    //    else {
-    //      // get data from session
-    //      userService.setAlias(_data.username);
-    //      userService.setUserName(_data.username);
-    //
-    //      $location.path('/chatRoom');
-    //    }
-    //
-    //    $rootScope.$apply();
-    //  });
-    //});
   });
-

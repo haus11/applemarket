@@ -1,4 +1,5 @@
-/* global io, config */
+/* global io */
+/* global config */
 'use strict';
 
 /**

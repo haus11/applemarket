@@ -10,7 +10,7 @@
  * Controller of the applemarketApp
  */
 angular.module('applemarketApp')
-  .controller('OffersCtrl', function ($scope, $location, gameData, playerData, tradeService, connectionService, Notification) {
+  .controller('OffersCtrl', function ($scope, $location, gameData, playerData, tradeService, connectionService, notificationService) {
 
     //#############################################################
     //                           Base
@@ -101,7 +101,7 @@ angular.module('applemarketApp')
           playerData.setCustomPrice($scope.prices.customPrice);
         })
         .catch(function (_reason) {
-          new Notification('Offer creation failed: ' + _reason);
+          notificationService.notify($scope, 'Offer creation failed', _reason);
         });
     };
 

@@ -10,7 +10,7 @@
  * Controller of the applemarketApp
  */
 angular.module('applemarketApp')
-  .controller('CreateGameCtrl', function ($scope, $location, connectionService, Notification, gameData, playerData) {
+  .controller('CreateGameCtrl', function ($scope, $location, connectionService, notificationService, gameData, playerData) {
 
     $scope.inputData =
     {
@@ -74,7 +74,7 @@ angular.module('applemarketApp')
           $location.path(config.routes.lobby);
         })
         .catch(function (_reason) {
-          Notification('Game creation failed: ' + _reason);
+          notificationService.notify($scope, 'Game creation failed', _reason);
       });
     };
   });

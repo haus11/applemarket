@@ -8,7 +8,7 @@
  * Controller of the applemarketApp
  */
 angular.module('applemarketApp')
-  .controller('ManageGameCtrl', function ($scope, $location, gameData, connectionService, Notification) {
+  .controller('ManageGameCtrl', function ($scope, $location, gameData, connectionService, notificationService) {
 
     $scope.manageData =
     {
@@ -38,7 +38,7 @@ angular.module('applemarketApp')
               $location.path(config.routes.base);
             })
             .catch(function (_reason) {
-              Notification('End Game failed: ' + _reason);
+              notificationService.notify($scope, 'End Game failed', _reason);
               console.log(_reason);
             });
         }
@@ -54,7 +54,7 @@ angular.module('applemarketApp')
               gameData.setRoundNumber(_data.count);
             })
             .catch(function (_reason) {
-              Notification('New Session failed: ' + _reason);
+              notificationService.notify($scope, 'New Session failed', _reason);
             });
         }
       }
@@ -65,7 +65,7 @@ angular.module('applemarketApp')
             gameData.setRoundNumber(_data.count);
           })
           .catch(function (_reason) {
-            Notification('New Round failed: ' + _reason);
+            notificationService.notify($scope, 'New Round failed', _reason);
           });
       }
     };
