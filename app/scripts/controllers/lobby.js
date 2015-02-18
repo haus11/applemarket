@@ -26,20 +26,21 @@ angular.module('applemarketApp')
     // #################################################################################################################
     //                                                Socket callbacks
     // #################################################################################################################
-
     // Player
     if (!$scope.isGameManager) {
       // Join Game if player is not game manager
+
       var apiAddress = config.api.serverJoin.replace(':gameId', gameData.getGameId());
       var payload = {
         'username' : playerData.getPlayerName(),
         'gameID'   : gameData.getGameId()
       };
 
+      // save game data and users list
       connectionService.put(apiAddress, payload)
         .then(function (_data) {
           $scope.lobbyData.gameName         = _data.game.name;
-          $scope.lobbyData.playerList       = _data.game.user;
+          $scope.lobbyData.playerList       = _data.game.user.splice(1, 1); // remove gamemanager from player list
           $scope.lobbyData.playerMax        = _data.game.playerMax;
           $scope.lobbyData.numberOfPlayers  = _data.game.user.length - 1;
           console.log($scope.lobbyData.playerList);
@@ -52,9 +53,12 @@ angular.module('applemarketApp')
           new Notification('Error joining Game: ' + _reason);
         });
 
+      // event game started
       connectionService.on(config.api.gameStarted, function () {
         gameData.setPlayerList($scope.lobbyData.playerList);
         gameData.setNumberOfPlayers($scope.numberOfPlayers);
+        gameData.increaseRoundNumber();
+        gameData.increaseSessionNumber();
         gameData.setGameStarted();
         $location.path(config.routes.offers);
       });
@@ -121,12 +125,12 @@ angular.module('applemarketApp')
         .then(function () {
           gameData.increaseSessionNumber();
 
-          url = config.api.sessionNew.replace('gameId', gameData.getGameId());
+          url = config.api.sessionCreate.replace('gameId', gameData.getGameId());
           return connectionService.post(url, null);
         })
         .then(function () {
           gameData.resetRoundNumber();
-          url = config.api.roundNew.replace('gameId', gameData.getGameId());
+          url = config.api.roundCreate.replace('gameId', gameData.getGameId());
           url = url.replace('sessionCount', gameData.getSessionNumber());
           return connectionService.post(url, null);
         })
