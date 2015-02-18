@@ -18,7 +18,7 @@ angular.module('applemarketApp')
     // connect to the server here.
     // -----------------------------------------------------------------------------
     io.sails.autoConnect = false;
-    io.sails.url         = 'http://192.168.0.198:1338';
+    io.sails.url         = config.api.sails;
 
     var socket = io.sails.connect();
 
