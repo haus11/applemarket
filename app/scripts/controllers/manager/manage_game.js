@@ -45,23 +45,13 @@ angular.module('applemarketApp')
         // this is the last round of the session, so end the session by creating a new one and start a new round by creating a new one
         else {
           // start new session
-          var url = config.api.sessionCreate.replace('gameId', gameData.getGameId());
-
-          connectionService.post(url, null)
+          connectionService.post(config.api.sessionCreate, null)
             .then(function (_data) {
-              gameData.increaseSessionNumber();
+              gameData.setSessionNumber(_data.count);
+              return connectionService.post(config.api.roundCreate, null);
             })
-            .catch(function (_reason) {
-              Notification('New Session failed: ' + _reason);
-            });
-
-          // start new round
-          url = config.api.roundCreate.replace('gameId', gameData.getGameId());
-          url = url.replace('sessionCount', gameData.getSessionNumber());
-
-          connectionService.post(url, null)
             .then(function (_data) {
-              gameData.resetRoundNumber();
+              gameData.setRoundNumber(_data.count);
             })
             .catch(function (_reason) {
               Notification('New Session failed: ' + _reason);
@@ -70,12 +60,9 @@ angular.module('applemarketApp')
       }
       // just start a new round
       else {
-        var url = config.api.roundCreate.replace('gameId', gameData.getGameId());
-        url = url.replace('sessionCount', gameData.getSessionNumber());
-
-        connectionService.post(url, null)
+        connectionService.post(config.api.roundCreate, null)
           .then(function (_data) {
-            gameData.increaseRoundNumber();
+            gameData.setRoundNumber(_data.count);
           })
           .catch(function (_reason) {
             Notification('New Round failed: ' + _reason);

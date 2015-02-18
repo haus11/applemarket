@@ -38,21 +38,20 @@ var config = {
     playerLeaved      : 'game:playerLeaved',
     playerReconnected : '',
 
-    gameStart           : '/game/id/start',
-    gameFinish          : '/game/id/finish',
-    gameStarted         : 'game:started',
-    gameFinished        : 'game:finished',
+    gameStart         : '/game/id/start',
+    gameFinish        : '/game/id/finish',
+    gameStarted       : 'game:started',
+    gameFinished      : 'game:finished',
 
-    sessionCreate       : '/game/gameId/session',
-    roundCreate         : '/game/gameId/session/sessionCount/round',
-    sessionsGet         : '/game/gameId/sessions',
-    sessionCreated      : 'session:new',
-    roundCreated        : 'session:newRound',
+    sessionCreate     : '/game/session',
+    roundCreate       : '/game/session/round',
+    sessionCreated    : 'session:new',
+    roundCreated      : 'session:newRound',
 
-    offer               : '/apple/offer/',
-    offerCreated        : 'offer:create',
+    offer             : '/apple/offer/',
+    offerCreated      : 'offer:create',
 
-    secret              : 'apple'
+    secret            : 'apple'
   },
 
   nav : {

@@ -117,35 +117,21 @@ angular.module('applemarketApp')
 
     // a new round is started
     connectionService.on(config.api.roundCreated, function (_data) {
-      console.log('new round');
-      console.log(_data);
-      // if round number = max round number, a new session is started or game is ended
-      if (gameData.getRoundNumber() === gameData.getMaxRoundNumber) {
-        // game finished
-        if (gameData.getSessionNumber() === gameData.getMaxSessionNumber) {
-          // locate to the stats
-        }
-        // a new session is started
-        else {
-          gameData.resetRoundNumber();
-          gameData.increaseSessionNumber();
-        }
-      }
-      // just new round started
-      else {
-        gameData.increaseRoundNumber();
-      }
+      gameData.setRoundNumber(_data.count);
       tradeService.availableOffers = []; // later get offers from server, if somebody is faster than this instance of client
     });
 
-    //// a new session is started
-    //connectionService.on(config.api.sessionCreated, function (_data) {
-    //  console.log("new session");
-    //  console.log(_data);
-    //  gameData.increaseSessionNumber();
-    //  gameData.resetRoundNumber();
-    //  tradeService.availableOffers = [];
-    //});
+    // a new session is started
+    connectionService.on(config.api.sessionCreated, function (_data) {
+      gameData.setSessionNumber(_data.count);
+      tradeService.availableOffers = [];
+    });
+
+    // game finished
+    connectionService.on(config.api.gameFinished, function (_data) {
+      gameData.setGameFinished();
+      $location.path(config.routes.profile);
+    });
 
     $scope.openTrade = function (_trade) {
       tradeService.setTrade(_trade);

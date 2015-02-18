@@ -52,8 +52,8 @@ angular.module('applemarketApp')
         return maxSessionNumber;
       },
 
-      increaseSessionNumber : function () {
-        sessionNumber++;
+      setSessionNumber : function (_sessionNumber) {
+        sessionNumber = _sessionNumber;
         $rootScope.$broadcast('onGameDataChange');
       },
 
@@ -75,8 +75,8 @@ angular.module('applemarketApp')
         return maxRoundNumber;
       },
 
-      increaseRoundNumber : function () {
-        roundNumber++;
+      setRoundNumber : function (_roundNumber) {
+        roundNumber = _roundNumber;
         $rootScope.$broadcast('onGameDataChange');
       },
 

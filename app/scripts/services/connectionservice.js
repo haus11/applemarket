@@ -1,4 +1,4 @@
-/* global io */
+/* global io, config */
 'use strict';
 
 /**
@@ -17,7 +17,7 @@ angular.module('applemarketApp')
     // connect to the server here.
     // -----------------------------------------------------------------------------
     io.sails.autoConnect = false;
-    io.sails.url         = config.api.sails;
+    io.sails.url         = 'http://192.168.0.198:1338';
 
     var socket = io.sails.connect();
 
