@@ -42,7 +42,7 @@ angular.module('applemarketApp')
           $scope.lobbyData.gameName         = _data.game.name;
           $scope.lobbyData.playerList       = _data.game.user.splice(1, 1); // remove gamemanager from player list
           $scope.lobbyData.playerMax        = _data.game.playerMax;
-          $scope.lobbyData.numberOfPlayers  = _data.game.user.length - 1;
+          $scope.lobbyData.numberOfPlayers  = _data.game.user.length;
           console.log($scope.lobbyData.playerList);
           gameData.setNumberOfPlayers(_data.game.user.length - 1);
           gameData.setPlayerMax(_data.game.playerMax);

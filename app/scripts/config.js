@@ -19,7 +19,6 @@ var config = {
     join              : '/join/:gameId',
     error             : '/error',
 
-    sails             : 'http://192.168.0.198:1338'
   },
 
   api : {
@@ -52,7 +51,8 @@ var config = {
     offer               : '/apple/offer/',
     offerCreated        : 'offer:create',
 
-    secret              : 'apple'
+    secret              : 'apple',
+    sails               : 'http://localhost:1338'
   },
 
   nav : {

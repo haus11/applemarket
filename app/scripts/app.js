@@ -91,6 +91,6 @@ angular
         redirectTo: config.routes.error
       });
   })
-  .run(function () {
+  .run(function (connectionService) {
 
   });
