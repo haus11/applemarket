@@ -56,7 +56,7 @@ angular.module('applemarketApp')
 
     $scope.createGame = function () {
       var postData = {
-        'secret'     : "apple",
+        'secret'     : config.api.secret,
         'name'       : $scope.inputData.gameName,
         'playerMax'  : $scope.inputData.playerMax
       };

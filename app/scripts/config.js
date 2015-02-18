@@ -17,7 +17,9 @@ var config = {
     managerManage     : '/manager/manage-game',
     lobby             : '/lobby',
     join              : '/join/:gameId',
-    error             : '/error'
+    error             : '/error',
+
+    sails             : 'http://192.168.0.198:1338'
   },
 
   api : {
@@ -48,7 +50,9 @@ var config = {
     roundCreated        : 'session:newRound',
 
     offer               : '/apple/offer/',
-    offerCreated        : 'offer:create'
+    offerCreated        : 'offer:create',
+
+    secret              : 'apple'
   },
 
   nav : {
