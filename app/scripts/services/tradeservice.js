@@ -16,6 +16,8 @@ angular.module('applemarketApp')
     var pricePaid = 0.0;
     var profit    = 0.0;
 
+    var availableOffers = [];
+
     return {
       setTrade : function (_trade) {
         trade = _trade;
@@ -39,7 +41,18 @@ angular.module('applemarketApp')
 
       getProfit : function () {
         return profit;
-      }
+      },
 
+      pushAvailableOffer : function (_offer) {
+        availableOffers.push(_offer);
+      },
+
+      setAvailableOffers : function (_offers) {
+        availableOffers = _offers;
+      },
+
+      getAvailableOffers : function () {
+        return availableOffers;
+      }
     };
   });

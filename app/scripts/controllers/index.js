@@ -30,3 +30,15 @@ angular.module('applemarketApp')
     });
   });
 
+// prevent user from reloading or closing tab, because game connection will be lost
+window.onbeforeunload = function (e) {
+  var message = "Do you really want to reload or close this page? Your gamesession will be lost and you will be disconnected from the game!";
+  e = e || window.event;
+  // For IE and Firefox
+  if (e) {
+    e.returnValue = message;
+  }
+
+  // For Safari
+  return message;
+};

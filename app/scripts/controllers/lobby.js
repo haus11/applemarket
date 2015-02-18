@@ -38,14 +38,13 @@ angular.module('applemarketApp')
 
       connectionService.put(apiAddress, payload)
         .then(function (_data) {
-          console.log(_data);
-          $scope.lobbyData.playerList.push(_data.user);
+          $scope.lobbyData.playerList       = _data.user;
           $scope.lobbyData.playerMax        = _data.game.playerMax;
-          $scope.lobbyData.numberOfPlayers  = $scope.lobbyData.playerList.length;
+          $scope.lobbyData.numberOfPlayers  = _data.game.user.length - 1;
 
-          gameData.setNumberOfPlayers($scope.lobbyData.numberOfPlayers);
+          gameData.setNumberOfPlayers(_data.game.user.length - 1);
           gameData.setPlayerMax(_data.game.playerMax);
-          gameData.setPlayerList(_data.user);
+          gameData.setPlayerList(_data.game.user);
           gameData.setPlayerId(_data.user.id)
         })
         .catch(function (_reason) {

@@ -68,36 +68,33 @@ angular.module('applemarketApp')
     //                         Supplier
     //#############################################################
 
-    $scope.availableOffers = [
-      {
-        partner : 'Peter',
-        price   : 10.0,
-        status  : 'Waiting'
-      },
-      {
-        partner : 'Jon',
-        price   : 20.0,
-        status  : 'Processing'
-      },
-      {
-        partner : 'Ken',
-        price   : 35.0,
-        status  : 'Waiting'
-      }
-    ];
+    $scope.availableOffers = [];
+    //$scope.availableOffers = [
+    //  {
+    //    partner : 'Peter',
+    //    price   : 10.0,
+    //    status  : 'Waiting'
+    //  },
+    //  {
+    //    partner : 'Jon',
+    //    price   : 20.0,
+    //    status  : 'Processing'
+    //  },
+    //  {
+    //    partner : 'Ken',
+    //    price   : 35.0,
+    //    status  : 'Waiting'
+    //  }
+    //];
 
-
-    //#############################################################
-    //                    Functions
-    //#############################################################
-
+    // create an initial offer as supplier
     $scope.saveSupplierPrice = function () {
       // post initial supplier price
       var postData = {
         'price'   : $scope.prices.customPrice,
         'userId'  : gameData.getPlayerId()
       };
-      connectionService.post(config.api.offerCreate, postData)
+      connectionService.post(config.api.offer, postData)
         .then(function (_data) {
           console.log(_data);
           $scope.showSupplierForm = false;
@@ -107,6 +104,16 @@ angular.module('applemarketApp')
           Notification('Offer creation failed: ' + _reason);
         });
     };
+
+    // when a new offer is created
+    connectionService.on(config.api.offerCreated, function (_data) {
+      tradeService.pushAvailableOffer(_data);
+      $scope.availableOffers = tradeService.getAvailableOffers();
+    });
+
+    //#############################################################
+    //                    Functions
+    //#############################################################
 
     $scope.openTrade = function (_trade) {
       tradeService.setTrade(_trade);

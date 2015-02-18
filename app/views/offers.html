@@ -26,10 +26,10 @@
         <th>Price</th>
         <th class="text-right">Trade</th>
       </tr>
-      <tr ng-repeat="trade in availableTrades">
-        <td>{{trade.partner}}</td>
-        <td>{{trade.price}}</td>
-        <td class="text-right"><button class="btn btn-default btn-sm" ng-click="openTrade(trade);"><span class="glyphicon glyphicon-arrow-right"></span></button></td>
+      <tr ng-repeat="offer in availableOffers">
+        <td>{{offer.partner}}</td>
+        <td>{{offer.price}}</td>
+        <td class="text-right"><button class="btn btn-default btn-sm" ng-click="openOffer(offer);"><span class="glyphicon glyphicon-arrow-right"></span></button></td>
       </tr>
     </table>
   </div>
@@ -65,11 +65,11 @@
           <th>Status</th>
           <th class="text-right">Trade</th>
         </tr>
-        <tr ng-repeat="offer in availableOffers">
-          <td>{{offer.partner}}</td>
-          <td>{{offer.price}}</td>
-          <td>{{offer.status}}</td>
-          <td class="text-right"><button class="btn btn-default btn-sm" ng-click="openOffer(offer);"><span class="glyphicon glyphicon-arrow-right"></span></button></td>
+        <tr ng-repeat="trade in availableTrades">
+          <td>{{trade.partner}}</td>
+          <td>{{trade.price}}</td>
+          <td>{{trade.status}}</td>
+          <td class="text-right"><button class="btn btn-default btn-sm" ng-click="openTrade(trade);"><span class="glyphicon glyphicon-arrow-right"></span></button></td>
         </tr>
       </table>
     </div>

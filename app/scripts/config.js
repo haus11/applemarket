@@ -45,7 +45,8 @@ var config = {
     roundNew            : '/game/gameId/session/sessionCount/round',
     sessionsGet         : '/game/gameId/sessions',
 
-    offerCreate         : '/apple/offer/'
+    offer               : '/apple/offer/',
+    offerCreated        : 'offer:create'
   },
 
   nav : {
