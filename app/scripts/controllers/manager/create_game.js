@@ -17,7 +17,7 @@ angular.module('applemarketApp')
       'gameName'          : undefined,
       'maxSessionNumber'  : gameData.getMaxSessionNumber(),
       'maxRoundNumber'    : gameData.getMaxRoundNumber(),
-      'playerMax'         : 0
+      'playerMax'         : gameData.getPlayerMax()
     };
 
     playerData.setIsGameManager(true);
@@ -51,7 +51,9 @@ angular.module('applemarketApp')
     };
 
     $scope.decreasePlayerMax = function () {
-      $scope.inputData.playerMax--;
+      if ($scope.inputData.playerMax > 6) {
+        $scope.inputData.playerMax--;
+      }
     };
 
     $scope.createGame = function () {

@@ -40,9 +40,11 @@ angular.module('applemarketApp')
       connectionService.put(apiAddress, payload)
         .then(function (_data) {
           $scope.lobbyData.gameName         = _data.game.name;
-          $scope.lobbyData.playerList       = _data.game.user; // remove gamemanager from player list
+          $scope.lobbyData.playerList       = _data.game.user;
+          // remove gamemanager from player list
+          $scope.lobbyData.playerList.shift();
           $scope.lobbyData.playerMax        = _data.game.playerMax;
-          $scope.lobbyData.numberOfPlayers  = _data.game.user.length - 1;
+          $scope.lobbyData.numberOfPlayers  = _data.game.user.length;
           gameData.setNumberOfPlayers(_data.game.user.length);
           gameData.setGameName(_data.game.name);
           gameData.setPlayerMax(_data.game.playerMax);

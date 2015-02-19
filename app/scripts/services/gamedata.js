@@ -19,7 +19,7 @@ angular.module('applemarketApp')
     var roundNumber       = 0;
     var maxRoundNumber    = 2;
     var gameId;
-    var playerMax         = 0;
+    var playerMax         = 6;
     var numberOfPlayers   = 0;
     var playerList        = [];
     var gameFinished      = false;
