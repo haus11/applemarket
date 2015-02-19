@@ -75,15 +75,19 @@ angular.module('applemarketApp')
     };
 
     $scope.accepted = function () {
+      console.log("accept");
       // if it's a direct accept
       if (tradeService.getIsOpenOffer()) {
+        console.log("directAccept")
         var payload = {
           price : $scope.offer,
-          offerID : tradeService.getOffer().id,
-          directAccept : true
+          direct : true
         };
 
-        connectionService.post(config.api.trade_create, payload)
+        console.log(payload);
+        var url = config.api.trade_create.replace(':offerId', tradeService.getOffer().id);
+        console.log(url);
+        connectionService.post(url, payload)
           .then(function (_data) {
             console.log(_data);
             tradeService.setPricePaid($scope.offer);
@@ -91,7 +95,7 @@ angular.module('applemarketApp')
             $location.path(config.routes.tradeSuccess);
           })
           .catch(function (_reason) {
-            notificationService.notify($scope, 'Could do accept trade', _reason);
+            notificationService.notify($scope, 'Could not do accept trade', _reason);
           });
       }
     };

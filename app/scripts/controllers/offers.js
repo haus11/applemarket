@@ -42,11 +42,19 @@ angular.module('applemarketApp')
       var postData = {
         'price'   : $scope.prices.customPrice
       };
-      ç
+      connectionService.post(config.api.offer, postData)
+        .then(function (_data) {
+          $scope.showSupplierForm = false;
+          playerData.setCustomPrice($scope.prices.customPrice);
+        })
+        .catch(function (_reason) {
+          notificationService.notify($scope, 'Offer creation failed', _reason);
+        });
     };
 
     connectionService.get(config.api.offersCurRoundGet, null)
       .then(function (_data) {
+        console.log("getOffers")
         console.log(_data);
         $scope.availableOffers = _data;
         tradeService.setAvailableOffers(_data);
@@ -58,7 +66,6 @@ angular.module('applemarketApp')
     // when a new offer is created
     $rootScope.$on(config.bc.onOfferCreated, function (event, _data) {
       console.log('onOfferCreated');
-      console.log(_data);
       tradeService.pushAvailableOffer(_data);
       $scope.availableOffers = tradeService.getAvailableOffers();
     });
@@ -115,7 +122,6 @@ angular.module('applemarketApp')
 
     // a new session is started
     $rootScope.$on(config.bc.onNewSession, function (event, _data) {
-      console.log(_data);
       gameData.setSessionNumber(_data.session.count);
       playerData.setMaxValue(_data.role.maxValue);
       playerData.setIsDemander(_data.role.type === 'demander');
@@ -141,6 +147,6 @@ angular.module('applemarketApp')
 
     $scope.openOffer = function (_offer) {
       tradeService.setOffer(_offer);
-      $location.path(config.routes.tradeAccept);
+      $location.path(config.routes.trade);
     };
   });
