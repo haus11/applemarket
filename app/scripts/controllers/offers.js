@@ -137,16 +137,25 @@ angular.module('applemarketApp')
 
     $scope.openTrade = function (_offer) {
       tradeService.setOffer(_offer);
+      tradeService.setIsOpenOffer(false);
+      tradeService.setIsOpenTrade(true);
+      tradeService.setIsRunningTrade(false);
       $location.path(config.routes.trade);
     };
 
     $scope.openRunningTrade = function (_offer) {
       tradeService.setOffer(_offer);
+      tradeService.setIsOpenOffer(false);
+      tradeService.setIsOpenTrade(false);
+      tradeService.setIsRunningTrade(true);
       $location.path(config.routes.trade);
     };
 
     $scope.openOffer = function (_offer) {
       tradeService.setOffer(_offer);
+      tradeService.setIsOpenOffer(true);
+      tradeService.setIsOpenTrade(false);
+      tradeService.setIsRunningTrade(false);
       $location.path(config.routes.trade);
     };
   });

@@ -71,6 +71,21 @@ angular.module('applemarketApp')
     };
 
     $scope.sendOffer = function () {
+      var payload = {
+        price   : $scope.offer,
+        direct  : false
+      };
+      var url = config.api.trade_create.replace(':offerId', tradeService.getOffer().id);
+      console.log("send offer / create trade");
+      connectionService.post(url, payload)
+        .then(function (_data) {
+          tradeService.setPricePaid($scope.offer);
+          tradeService.setProfit($scope.profit);
+          $location.path(config.routes.tradeSuccess);
+        })
+        .catch(function (_reason) {
+          notificationService.notify($scope, 'Could not do accept trade', _reason);
+        });
       $location.path(config.routes.offers);
     };
 
@@ -83,13 +98,27 @@ angular.module('applemarketApp')
           price : $scope.offer,
           direct : true
         };
-
-        console.log(payload);
         var url = config.api.trade_create.replace(':offerId', tradeService.getOffer().id);
-        console.log(url);
         connectionService.post(url, payload)
           .then(function (_data) {
-            console.log(_data);
+            tradeService.setPricePaid($scope.offer);
+            tradeService.setProfit($scope.profit);
+            $location.path(config.routes.tradeSuccess);
+          })
+          .catch(function (_reason) {
+            notificationService.notify($scope, 'Could not do accept trade', _reason);
+          });
+      }
+      // else open or running trade --> TODO do not post but update trade
+      else {
+        var payload = {
+          price : $scope.offer,
+          direct : false
+        };
+        var url = config.api.trade_create.replace(':offerId', tradeService.getOffer().id);
+        console.log("openTrade");
+        connectionService.post(url, payload)
+          .then(function (_data) {
             tradeService.setPricePaid($scope.offer);
             tradeService.setProfit($scope.profit);
             $location.path(config.routes.tradeSuccess);
