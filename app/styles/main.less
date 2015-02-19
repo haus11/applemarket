@@ -1,5 +1,6 @@
 @import "less_includes/variables.less";
 @import 'less_includes/statistics_and_graphs.less';
+@import "../../bower_components/bootstrap/less/bootstrap.less";
 
 /***********************
 * html tags
@@ -65,10 +66,6 @@ caption {
 }
 .red {
   color: @red-default;
-}
-
-button .btn .btn-success {
-  background-color: @color-btn-succ !important;
 }
 
 /***********************
@@ -146,6 +143,10 @@ button .btn .btn-success {
 
 .span-buffer {
   margin-top: 5px;
+}
+
+.btn-new-offer {
+  .button-variant(#FFF, @color-btn-info, #999e29);
 }
 
 .badge {
