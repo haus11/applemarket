@@ -127,6 +127,8 @@ angular.module('applemarketApp')
       playerData.setIsDemander(_data.role.type === 'demander');
       $scope.isDemander = _data.role.type === 'demander';
       tradeService.availableOffers = [];
+
+      $location.path(config.routes.profile);
     });
 
     // game finished
