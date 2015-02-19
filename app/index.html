@@ -26,7 +26,7 @@
     <div class="nav-fixed nav-top" ng-controller="IndexCtrl">
       <div class="nav-wrapper">
         <ul>
-          <li><a><span class="fa fa-apple"></span> Game <small class="nav-small">{{gameInfoData.gameName}}</small></a></li>
+          <li><a><span class="fa fa-apple"></span> {{gameInfoData.gameName}}<small class="nav-small"></small></a></li>
           <li><a><span class="fa fa-refresh"></span> Session <small class="nav-small">{{gameInfoData.sessionNumber}}/{{gameInfoData.maxSessionNumber}}</small></a></li>
           <li><a><span class="fa fa-repeat"></span> Round <small class="nav-small">{{gameInfoData.roundNumber}}/{{gameInfoData.maxRoundNumber}}</small></a></li>
           <!--<li><a><span class="fa fa-clock-o"></span> Time <small class="nav-small">{{gameInfoData.timeLeft}}s</small></a></li>-->
@@ -87,7 +87,6 @@
     <script src="scripts/services/configdata.js"></script>
     <script src="scripts/services/simplechart.js"></script>
     <script src="scripts/services/playerdata.js"></script>
-    <script src="scripts/services/rolegenerator.js"></script>
     <script src="scripts/services/appcache.js"></script>
     <script src="scripts/services/connectionservice.js"></script>
     <script src="scripts/services/tradeservice.js"></script>
@@ -105,6 +104,8 @@
     <script src="scripts/controllers/join.js"></script>
     <script src="scripts/controllers/error.js"></script>
     <script src="scripts/services/notificationservice.js"></script>
+    <script src="scripts/services/socketservice.js"></script>
+    <script src="scripts/services/dataservice.js"></script>
     <!-- endbuild -->
 </body>
 </html>

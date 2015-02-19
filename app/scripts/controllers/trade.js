@@ -30,10 +30,17 @@ angular.module('applemarketApp')
     //#############################################################
 
     $scope.increasePrice = function () {
+      var oldOffer = $scope.newOffer;
+
       $scope.newOffer++;
 
       if ($scope.isDemander) {
         $scope.profit--;
+
+        if ($scope.profit < 0) {
+          $scope.profit = 0;
+          $scope.newOffer = oldOffer;
+        }
       }
       else {
         $scope.profit++;
@@ -41,13 +48,25 @@ angular.module('applemarketApp')
     };
 
     $scope.decreasePrice = function () {
+      var oldOffer = $scope.newOffer;
+
       $scope.newOffer--;
 
-      if ($scope.isDemander) {
-        $scope.profit++;
+      if ($scope.newOffer < 0) {
+        $scope.newOffer = oldOffer;
       }
       else {
-        $scope.profit--;
+        if ($scope.isDemander) {
+          $scope.profit++;
+        }
+        else {
+          $scope.profit--;
+
+          if ($scope.profit < 0) {
+            $scope.profit = 0;
+            $scope.newOffer = oldOffer;
+          }
+        }
       }
     };
 

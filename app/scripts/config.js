@@ -47,11 +47,20 @@ var config = {
     roundCreated      : 'session:newRound',
 
     offer             : '/apple/offer/',
-    offerCreated      : 'offer:create',
+    offerCreated      : 'offer:created',
+    offersCurRoundGet : 'apple/offer/currentRound',
 
     secret                : 'apple',
     sails                 : 'http://localhost:1338',
+
     completedTransactions : '/apple/completedTransactions'
+  },
+
+  bc : {
+    onNewRound : 'onNewRound',
+    onNewSession : 'onNewSession',
+    onGameFinished : 'onGameFinished',
+    onOfferCreated : 'onOfferCreated'
   },
 
   nav : {

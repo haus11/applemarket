@@ -35,7 +35,7 @@ angular.module('applemarketApp')
               gameData.setGameFinished();
               console.log("finished game");
               console.log(_data);
-              $location.path(config.routes.base);
+              $location.path(config.routes.statistics);
             })
             .catch(function (_reason) {
               notificationService.notify($scope, 'End Game failed', _reason);

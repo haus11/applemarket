@@ -1,7 +1,7 @@
-<h2>Profile <small>Type: {{ user.type }}</small></h2>
+<h2>Profile <small>Type: {{ typeText }}</small></h2>
 
 <h4 class="row-buffer">Description</h4>
-<p ng-bind-html="supplierText | stringular:user.session2.maxValue"></p>
+<p ng-bind-html="descriptionText | stringular:maxValue"></p>
 <table class="table table-responsive table-striped">
   <caption>Profits</caption>
   <tr>

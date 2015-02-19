@@ -10,7 +10,7 @@
  * Controller of the applemarketApp
  */
 angular.module('applemarketApp')
-  .controller('OffersCtrl', function ($scope, $location, gameData, playerData, tradeService, connectionService, notificationService) {
+  .controller('OffersCtrl', function ($rootScope, $scope, $location, gameData, playerData, tradeService, connectionService, notificationService) {
 
     //#############################################################
     //                           Base
@@ -91,12 +91,10 @@ angular.module('applemarketApp')
     $scope.saveSupplierPrice = function () {
       // post initial supplier price
       var postData = {
-        'price'   : $scope.prices.customPrice,
-        'userId'  : gameData.getPlayerId()
+        'price'   : $scope.prices.customPrice
       };
       connectionService.post(config.api.offer, postData)
         .then(function (_data) {
-          console.log(_data);
           $scope.showSupplierForm = false;
           playerData.setCustomPrice($scope.prices.customPrice);
         })
@@ -105,8 +103,20 @@ angular.module('applemarketApp')
         });
     };
 
+    connectionService.get(config.api.offersCurRoundGet, null)
+      .then(function (_data) {
+        console.log(_data);
+        $scope.availableOffers = _data;
+        tradeService.setAvailableOffers(_data);
+      })
+      .catch(function (_reason) {
+        //notificationService.notify($scope, 'Could not get Offers', _reason);
+      });
+
     // when a new offer is created
-    connectionService.on(config.api.offerCreated, function (_data) {
+    $rootScope.$on(config.bc.onOfferCreated, function (event, _data) {
+      console.log('onOfferCreated');
+      console.log(_data);
       tradeService.pushAvailableOffer(_data);
       $scope.availableOffers = tradeService.getAvailableOffers();
     });
@@ -116,20 +126,23 @@ angular.module('applemarketApp')
     //#############################################################
 
     // a new round is started
-    connectionService.on(config.api.roundCreated, function (_data) {
+    $rootScope.$on(config.bc.onNewRound, function (event, _data) {
       gameData.setRoundNumber(_data.count);
       tradeService.availableOffers = []; // later get offers from server, if somebody is faster than this instance of client
     });
 
     // a new session is started
-    connectionService.on(config.api.sessionCreated, function (_data) {
+    $rootScope.$on(config.bc.onNewSession, function (event, _data) {
       console.log(_data);
       gameData.setSessionNumber(_data.session.count);
+      playerData.setMaxValue(_data.role.maxValue);
+      playerData.setIsDemander(_data.role.type === 'demander');
+      $scope.isDemander = _data.role.type === 'demander';
       tradeService.availableOffers = [];
     });
 
     // game finished
-    connectionService.on(config.api.gameFinished, function () {
+    $rootScope.$on(config.bc.onGameFinished, function () {
       gameData.setGameFinished();
       $location.path(config.routes.profile);
     });

@@ -40,9 +40,11 @@ angular.module('applemarketApp')
       connectionService.put(apiAddress, payload)
         .then(function (_data) {
           $scope.lobbyData.gameName         = _data.game.name;
-          $scope.lobbyData.playerList       = _data.game.user; // remove gamemanager from player list
+          $scope.lobbyData.playerList       = _data.game.user;
+          // remove gamemanager from player list
+          $scope.lobbyData.playerList.shift();
           $scope.lobbyData.playerMax        = _data.game.playerMax;
-          $scope.lobbyData.numberOfPlayers  = _data.game.user.length - 1;
+          $scope.lobbyData.numberOfPlayers  = _data.game.user.length;
           gameData.setNumberOfPlayers(_data.game.user.length);
           gameData.setGameName(_data.game.name);
           gameData.setPlayerMax(_data.game.playerMax);
@@ -69,9 +71,6 @@ angular.module('applemarketApp')
       gameData.setPlayerList($scope.lobbyData.playerList);
       gameData.setNumberOfPlayers($scope.numberOfPlayers);
 
-      //if ($scope.$root.$$phase !== '$apply' && $scope.$root.$$phase !== '$digest') {
-      //  $scope.$apply();
-      //}
     });
 
     // on player reconnects
@@ -81,10 +80,6 @@ angular.module('applemarketApp')
       $scope.lobbyData.numberOfPlayers++;
       gameData.setPlayerList($scope.lobbyData.playerList);
       gameData.setNumberOfPlayers($scope.numberOfPlayers);
-
-      //if ($scope.$root.$$phase !== '$apply' && $scope.$root.$$phase !== '$digest') {
-      //  $scope.$apply();
-      //}
 
     });
 
@@ -98,18 +93,6 @@ angular.module('applemarketApp')
           $scope.lobbyData.numberOfPlayers--;
           gameData.setPlayerList($scope.lobbyData.playerList);
           gameData.setNumberOfPlayers($scope.numberOfPlayers);
-          break;
-        }
-      }
-    });
-
-    // on player data changes
-    connectionService.on(config.api.userUpdate, function (_data) {
-
-      for (var i = 0; i < $scope.lobbyData.playerList.length; i++) {
-        if ($scope.lobbyData.playerList[i].id === _data.id) {
-          $scope.lobbyData.playerList[i] = _data;
-          gameData.setPlayerList($scope.lobbyData.playerList);
           break;
         }
       }
