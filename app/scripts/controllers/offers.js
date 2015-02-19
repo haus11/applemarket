@@ -123,7 +123,8 @@ angular.module('applemarketApp')
 
     // a new session is started
     connectionService.on(config.api.sessionCreated, function (_data) {
-      gameData.setSessionNumber(_data.count);
+      console.log(_data);
+      gameData.setSessionNumber(_data.session.count);
       tradeService.availableOffers = [];
     });
 
