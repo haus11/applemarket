@@ -15,7 +15,7 @@ angular.module('applemarketApp')
     // -----------------------------------------------------------------------------
     // establish socket connection
     // -----------------------------------------------------------------------------
-    connectionService.get('/api/apple/transactions')
+    connectionService.get(config.api.completedTransactions)
       .then(function(data) {
 
         // draw first set of bars

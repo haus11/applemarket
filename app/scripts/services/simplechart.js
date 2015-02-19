@@ -45,11 +45,7 @@ angular.module('applemarketApp')
     // -----------------------------------------------------------------------------
     // targets id in which the chart will be drawn
     // -----------------------------------------------------------------------------
-    var svg = d3.select('#respBarChart').append('svg')
-      .attr('preserveAspectRatio', 'xMinYMin meet')
-      .attr('viewBox', '0 0 960 500')
-      .append('g')
-      .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+    var svg = null;
 
     // -----------------------------------------------------------------------------
     // variables to browse through dataset
@@ -65,6 +61,15 @@ angular.module('applemarketApp')
     // -----------------------------------------------------------------------------
     function drawBarChart(amount, data) {
 
+      // -----------------------------------------------------------------------------
+      // targets id in which the chart will be drawn
+      // -----------------------------------------------------------------------------
+      svg = d3.select('.respBarChart').append('svg')
+        .attr('preserveAspectRatio', 'xMinYMin meet')
+        .attr('viewBox', '0 0 960 500')
+        .append('g')
+        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+      console.log(svg);
       if(data.constructor !== Array || data.length <= 0) { return; }
 
       // -----------------------------------------------------------------------------
@@ -113,6 +118,7 @@ angular.module('applemarketApp')
     // draw bars
     // -----------------------------------------------------------------------------
     function drawBars(dataset) {
+
       x.domain(dataset.map(function(d) { return d.transactionNmbr; }));
 
       svg.append('g')
@@ -148,6 +154,8 @@ angular.module('applemarketApp')
         .attr('y', function(d) { return y(d.price) - 1.0; })
         .attr('height', function(d) { return height - y(d.price); })
         .attr('width', x.rangeBand());
+
+      console.log(svg);
     }
 
     // -----------------------------------------------------------------------------
@@ -198,7 +206,6 @@ angular.module('applemarketApp')
         round: round
       };
     }
-
 
     return {
       drawBarChart : function (amount, data) {
