@@ -10,14 +10,14 @@
  * Controller of the applemarketApp
  */
 angular.module('applemarketApp')
-  .controller('TradeCtrl', function ($scope, $location, playerData, tradeService) {
+  .controller('TradeCtrl', function ($scope, $location, playerData, tradeService, connectionService, notificationService) {
 
     //#############################################################
     //                           Base
     //#############################################################
 
     $scope.isDemander   = playerData.isDemander();
-    $scope.trade        = tradeService.getTrade();
+    $scope.trade        = tradeService.getOffer();
 
     $scope.customPrice  = playerData.getCustomPrice();
     $scope.startPrice   = playerData.getStartPrice();
@@ -75,10 +75,25 @@ angular.module('applemarketApp')
     };
 
     $scope.accepted = function () {
-      console.log($scope.offer + ' | ' + $scope.profit);
-      tradeService.setPricePaid($scope.offer);
-      tradeService.setProfit($scope.profit);
-      $location.path(config.routes.tradeSuccess);
+      // if it's a direct accept
+      if (tradeService.getIsOpenOffer()) {
+        var payload = {
+          price : $scope.offer,
+          offerID : tradeService.getOffer().id,
+          directAccept : true
+        };
+
+        connectionService.post(config.api.trade_create, payload)
+          .then(function (_data) {
+            console.log(_data);
+            tradeService.setPricePaid($scope.offer);
+            tradeService.setProfit($scope.profit);
+            $location.path(config.routes.tradeSuccess);
+          })
+          .catch(function (_reason) {
+            notificationService.notify($scope, 'Could do accept trade', _reason);
+          });
+      }
     };
 
     $scope.rejected = function () {
