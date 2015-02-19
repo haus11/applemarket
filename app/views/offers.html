@@ -27,7 +27,7 @@
         <th class="text-right">Trade</th>
       </tr>
       <tr ng-repeat="offer in availableOffers">
-        <td>{{offer.partner}}</td>
+        <td>{{offer.seller.name}}</td>
         <td>{{offer.price}}</td>
         <td class="text-right"><button class="btn btn-default btn-sm" ng-click="openOffer(offer);"><span class="glyphicon glyphicon-arrow-right"></span></button></td>
       </tr>

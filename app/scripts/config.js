@@ -47,7 +47,7 @@ var config = {
     roundCreated      : 'session:newRound',
 
     offer             : '/apple/offer/',
-    offerCreated      : 'offer:create',
+    offerCreated      : 'offer:created',
     offersCurRoundGet : 'apple/offer/currentRound',
 
     secret            : 'apple',
