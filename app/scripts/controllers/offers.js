@@ -115,6 +115,7 @@ angular.module('applemarketApp')
 
     // when a new offer is created
     connectionService.on(config.api.offerCreated, function (_data) {
+      console.log(_data);
       tradeService.pushAvailableOffer(_data);
       $scope.availableOffers = tradeService.getAvailableOffers();
     });
