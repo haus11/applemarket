@@ -91,12 +91,10 @@ angular.module('applemarketApp')
     $scope.saveSupplierPrice = function () {
       // post initial supplier price
       var postData = {
-        'price'   : $scope.prices.customPrice,
-        'userId'  : gameData.getPlayerId()
+        'price'   : $scope.prices.customPrice
       };
       connectionService.post(config.api.offer, postData)
         .then(function (_data) {
-          console.log(_data);
           $scope.showSupplierForm = false;
           playerData.setCustomPrice($scope.prices.customPrice);
         })
@@ -104,6 +102,16 @@ angular.module('applemarketApp')
           notificationService.notify($scope, 'Offer creation failed', _reason);
         });
     };
+
+    connectionService.get(config.api.offersCurRoundGet, null)
+      .then(function (_data) {
+        console.log(_data);
+        $scope.availableOffers = _data;
+        tradeService.setAvailableOffers(_data);
+      })
+      .catch(function (_reason) {
+        //notificationService.notify($scope, 'Could not get Offers', _reason);
+      });
 
     // when a new offer is created
     connectionService.on(config.api.offerCreated, function (_data) {

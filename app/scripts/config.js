@@ -48,9 +48,10 @@ var config = {
 
     offer             : '/apple/offer/',
     offerCreated      : 'offer:create',
+    offersCurRoundGet : 'apple/offer/currentRound',
 
-    secret              : 'apple',
-    sails               : 'http://192.168.0.197:1338'
+    secret            : 'apple',
+    sails             : 'http://192.168.0.198:1338'
   },
 
   nav : {

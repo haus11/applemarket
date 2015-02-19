@@ -12,10 +12,9 @@ angular.module('applemarketApp')
 
     //console.log(roleGenerator.generateTypeDistribution(29));
 
-    $scope.typeText     = playerData.isDemander() ? 'Demander' : 'Supplier';
-    $scope.maxValue     = playerData.getMaxValue();
-    $scope.supplierText = configData.getSupplierText();
-    $scope.demanderText = configData.getDemanderText();
+    $scope.typeText         = playerData.isDemander() ? 'Demander' : 'Supplier';
+    $scope.maxValue         = playerData.getMaxValue();
+    $scope.descriptionText  = playerData.isDemander() ? configData.getDemanderText() : configData.getSupplierText();
 
     $scope.tradeData = [
       {

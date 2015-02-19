@@ -13,7 +13,7 @@ angular.module('applemarketApp')
   .service('gameData', function ($rootScope) {
 
     var gameStarted       = false;
-    var gameName;
+    var gameName          = 'Gamename';
     var sessionNumber     = 0;
     var maxSessionNumber  = 2;
     var roundNumber       = 0;
