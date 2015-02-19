@@ -16,6 +16,9 @@ angular.module('applemarketApp')
         var isGameManager;
         var startPrice = 20.0;
         var customPrice = 0;//23.0;
+        var type = {
+
+        };
 
         return {
 

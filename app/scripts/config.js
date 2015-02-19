@@ -41,7 +41,7 @@ var config = {
     gameStarted       : 'game:started',
     gameFinished      : 'game:finished',
 
-    sessionCreate     : '/game/session',
+    sessionCreate     : '/apple/game/session',
     roundCreate       : '/game/session/round',
     sessionCreated    : 'session:new',
     roundCreated      : 'session:newRound',
