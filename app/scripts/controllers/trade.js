@@ -22,7 +22,7 @@ angular.module('applemarketApp')
     $scope.customPrice  = playerData.getCustomPrice();
     $scope.startPrice   = playerData.getStartPrice();
     $scope.offer        = $scope.trade.price;
-    $scope.newOffer     = $scope.trade.price;
+    //$scope.newOffer     = $scope.trade.price;
     $scope.profit       = $scope.isDemander ? ($scope.startPrice - $scope.offer) : ($scope.offer - $scope.startPrice);
 
     //#############################################################
@@ -32,42 +32,42 @@ angular.module('applemarketApp')
     $scope.increasePrice = function () {
       var oldOffer = $scope.newOffer;
 
-      $scope.newOffer++;
+      $scope.offer++;
 
-      if ($scope.isDemander) {
-        $scope.profit--;
-
-        if ($scope.profit < 0) {
-          $scope.profit = 0;
-          $scope.newOffer = oldOffer;
-        }
-      }
-      else {
-        $scope.profit++;
-      }
+      //if ($scope.isDemander) {
+      //  $scope.profit--;
+      //
+      //  if ($scope.profit < 0) {
+      //    $scope.profit = 0;
+      //    $scope.newOffer = oldOffer;
+      //  }
+      //}
+      //else {
+      //  $scope.profit++;
+      //}
     };
 
     $scope.decreasePrice = function () {
       var oldOffer = $scope.newOffer;
 
-      $scope.newOffer--;
+      $scope.offer--;
 
-      if ($scope.newOffer < 0) {
-        $scope.newOffer = oldOffer;
-      }
-      else {
-        if ($scope.isDemander) {
-          $scope.profit++;
-        }
-        else {
-          $scope.profit--;
-
-          if ($scope.profit < 0) {
-            $scope.profit = 0;
-            $scope.newOffer = oldOffer;
-          }
-        }
-      }
+      //if ($scope.newOffer < 0) {
+      //  $scope.newOffer = oldOffer;
+      //}
+      //else {
+      //  if ($scope.isDemander) {
+      //    $scope.profit++;
+      //  }
+      //  else {
+      //    $scope.profit--;
+      //
+      //    if ($scope.profit < 0) {
+      //      $scope.profit = 0;
+      //      $scope.newOffer = oldOffer;
+      //    }
+      //  }
+      //}
     };
 
     $scope.sendOffer = function () {
@@ -75,13 +75,12 @@ angular.module('applemarketApp')
         price   : $scope.offer,
         direct  : false
       };
+      console.log(payload);
       var url = config.api.trade_create.replace(':offerId', tradeService.getOffer().id);
+      console.log(url);
       console.log("send offer / create trade");
       connectionService.post(url, payload)
         .then(function (_data) {
-          tradeService.setPricePaid($scope.offer);
-          tradeService.setProfit($scope.profit);
-          $location.path(config.routes.tradeSuccess);
         })
         .catch(function (_reason) {
           notificationService.notify($scope, 'Could not do accept trade', _reason);
