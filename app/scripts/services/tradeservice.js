@@ -12,19 +12,23 @@ angular.module('applemarketApp')
     // AngularJS will instantiate a singleton by calling "new" on this function
 
     var trade;
+    var offer;
 
     var pricePaid = 0.0;
     var profit    = 0.0;
+    var isOpenOffer = false;
+    var isRunningTrade = false;
+    var isOpenTrade = false;
 
     var availableOffers = [];
 
     return {
-      setTrade : function (_trade) {
-        trade = _trade;
+      setOffer : function (_offer) {
+        offer = _offer;
       },
 
-      getTrade : function () {
-        return trade;
+      getOffer : function () {
+        return offer;
       },
 
       setPricePaid : function (_pricePaid) {
@@ -53,6 +57,29 @@ angular.module('applemarketApp')
 
       getAvailableOffers : function () {
         return availableOffers;
+      },
+      setIsOpenOffer : function (_isOpenOffer) {
+        isOpenOffer = _isOpenOffer;
+      },
+
+      getIsOpenOffer : function () {
+        return isOpenOffer;
+      },
+
+      setIsRunningTrade : function (_isRunningTrade) {
+        isRunningTrade = _isRunningTrade;
+      },
+
+      getIsRunningTrade : function () {
+        return isRunningTrade;
+      },
+
+      setIsOpenTrade : function (_isOpenTrade) {
+        isOpenTrade = _isOpenTrade;
+      },
+
+      getIsOpenTrade : function () {
+        return isOpenTrade;
       }
     };
   });

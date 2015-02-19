@@ -50,18 +50,31 @@ var config = {
     offerCreated      : 'offer:created',
     offersCurRoundGet : 'apple/offer/currentRound',
 
-    secret                : 'apple',
-    sails                 : 'http://localhost:1338',
+    trade_create      : '/offer/:offerId/trade',
+    trade_update      : '/trade/:tradeId',
+    trade_accept      : '/trade/:tradeId/accept',
 
+<<<<<<< HEAD
     completedTransactions : '/apple/completedTransactions',
     transactionUpdate     : 'transaction:updated'
+=======
+    trade_created     : 'trade:created',
+    trade_updated     : 'trade:updated',
+    trade_accepted    : 'trade:accepted',
+
+    secret            : 'apple',
+    sails             : 'http://192.168.0.197:1338'
+>>>>>>> b1dff8656d9612f97133b6f14f518ab34e66dce5
   },
 
   bc : {
     onNewRound : 'onNewRound',
     onNewSession : 'onNewSession',
     onGameFinished : 'onGameFinished',
-    onOfferCreated : 'onOfferCreated'
+    onOfferCreated : 'onOfferCreated',
+    onTradeCreated : 'onTradeCreated',
+    onTradeUpdated : 'onTradeUpdated',
+    onTradeAccepted : 'onTradeAccepted'
   },
 
   nav : {

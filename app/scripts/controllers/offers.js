@@ -27,65 +27,14 @@ angular.module('applemarketApp')
     //                         Demander
     //#############################################################
 
-    $scope.availableTrades = [
-      {
-        partner : 'Peter',
-        price   : 10.0
-      },
-      {
-        partner : 'Jon',
-        price   : 20.0
-      },
-      {
-        partner : 'Ken',
-        price   : 35.0
-      }
-    ];
-
-    $scope.runningTrades = [
-      {
-        partner : 'Peter',
-        price   : 10.0,
-        myPrice : 13.0,
-        status  : 'Waiting'
-      },
-      {
-        partner : 'Jon',
-        price   : 20.0,
-        myPrice : 18.0,
-        status  : 'Processing'
-      },
-      {
-        partner : 'Ken',
-        price   : 35.0,
-        myPrice : 25.0,
-        status  : 'Waiting'
-      }
-    ];
-
+    $scope.availableTrades = [];
+    $scope.runningTrades   = [];
 
     //#############################################################
     //                         Supplier
     //#############################################################
 
     $scope.availableOffers = [];
-    //$scope.availableOffers = [
-    //  {
-    //    partner : 'Peter',
-    //    price   : 10.0,
-    //    status  : 'Waiting'
-    //  },
-    //  {
-    //    partner : 'Jon',
-    //    price   : 20.0,
-    //    status  : 'Processing'
-    //  },
-    //  {
-    //    partner : 'Ken',
-    //    price   : 35.0,
-    //    status  : 'Waiting'
-    //  }
-    //];
 
     // create an initial offer as supplier
     $scope.saveSupplierPrice = function () {
@@ -93,14 +42,7 @@ angular.module('applemarketApp')
       var postData = {
         'price'   : $scope.prices.customPrice
       };
-      connectionService.post(config.api.offer, postData)
-        .then(function (_data) {
-          $scope.showSupplierForm = false;
-          playerData.setCustomPrice($scope.prices.customPrice);
-        })
-        .catch(function (_reason) {
-          notificationService.notify($scope, 'Offer creation failed', _reason);
-        });
+      ç
     };
 
     connectionService.get(config.api.offersCurRoundGet, null)
@@ -125,6 +67,46 @@ angular.module('applemarketApp')
     //                    Functions
     //#############################################################
 
+    $rootScope.$on(config.bc.onTradeCreated, function (event, _data) {
+      $scope.availableTrades.push(_data);
+    });
+
+    $rootScope.$on(config.bc.onTradeUpdated, function (event, _data) {
+      for (var i = 0;  i < $scope.availableTrades.length; i++) {
+        if (_data.id === $scope.availableTrades[i].id) {
+          $scope.availableTrades.splice(i, 1);
+          break;
+        }
+      }
+
+      for (var i = 0;  i < $scope.runningTrades.length; i++) {
+        if (_data.id === $scope.runningTrades[i].id) {
+          $scope.runningTrades.splice(i, 1);
+          break;
+        }
+      }
+
+      $scope.availableTrades.push(_data);
+      $scope.runningTrades.push(_data);
+    });
+
+    $rootScope.$on(config.bc.onTradeAccepted, function (event, _data) {
+      for (var i = 0;  i < $scope.availableTrades.length; i++) {
+        if (_data.id === $scope.availableTrades[i].id) {
+          $scope.availableTrades.splice(i, 1);
+          break;
+        }
+      }
+
+      for (var i = 0;  i < $scope.runningTrades.length; i++) {
+        if (_data.id === $scope.runningTrades[i].id) {
+          $scope.runningTrades.splice(i, 1);
+          break;
+        }
+      }
+
+    });
+
     // a new round is started
     $rootScope.$on(config.bc.onNewRound, function (event, _data) {
       gameData.setRoundNumber(_data.count);
@@ -147,18 +129,18 @@ angular.module('applemarketApp')
       $location.path(config.routes.profile);
     });
 
-    $scope.openTrade = function (_trade) {
-      tradeService.setTrade(_trade);
+    $scope.openTrade = function (_offer) {
+      tradeService.setOffer(_offer);
       $location.path(config.routes.trade);
     };
 
-    $scope.openRunningTrade = function (_trade) {
-      tradeService.setTrade(_trade);
+    $scope.openRunningTrade = function (_offer) {
+      tradeService.setOffer(_offer);
       $location.path(config.routes.trade);
     };
 
     $scope.openOffer = function (_offer) {
-      tradeService.setTrade(_offer);
+      tradeService.setOffer(_offer);
       $location.path(config.routes.tradeAccept);
     };
   });
