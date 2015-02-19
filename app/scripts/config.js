@@ -54,12 +54,17 @@ var config = {
     trade_update      : '/trade/:tradeId',
     trade_accept      : '/trade/:tradeId/accept',
 
+    completedTransactions : '/apple/completedTransactions',
+    transactionUpdate     : 'transaction:updated',
+
     trade_created     : 'trade:created',
     trade_updated     : 'trade:updated',
     trade_accepted    : 'trade:accepted',
 
     secret            : 'apple',
+
     sails             : 'http://192.168.0.198:1338'
+
   },
 
   bc : {
