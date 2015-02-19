@@ -16,7 +16,7 @@ angular.module('applemarketApp')
 
     var pricePaid = 0.0;
     var profit    = 0.0;
-    var isOpenOffer = false;
+    var isOpenOffer = true;
     var isRunningTrade = false;
     var isOpenTrade = false;
 

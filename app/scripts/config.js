@@ -54,7 +54,6 @@ var config = {
     trade_update      : '/trade/:tradeId',
     trade_accept      : '/trade/:tradeId/accept',
 
-
     completedTransactions : '/apple/completedTransactions',
     transactionUpdate     : 'transaction:updated',
 

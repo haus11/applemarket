@@ -71,27 +71,60 @@ angular.module('applemarketApp')
     };
 
     $scope.sendOffer = function () {
+      var payload = {
+        price   : $scope.offer,
+        direct  : false
+      };
+      var url = config.api.trade_create.replace(':offerId', tradeService.getOffer().id);
+      console.log("send offer / create trade");
+      connectionService.post(url, payload)
+        .then(function (_data) {
+          tradeService.setPricePaid($scope.offer);
+          tradeService.setProfit($scope.profit);
+          $location.path(config.routes.tradeSuccess);
+        })
+        .catch(function (_reason) {
+          notificationService.notify($scope, 'Could not do accept trade', _reason);
+        });
       $location.path(config.routes.offers);
     };
 
     $scope.accepted = function () {
+      console.log("accept");
       // if it's a direct accept
       if (tradeService.getIsOpenOffer()) {
+        console.log("directAccept")
         var payload = {
           price : $scope.offer,
-          offerID : tradeService.getOffer().id,
-          directAccept : true
+          direct : true
         };
-
-        connectionService.post(config.api.trade_create, payload)
+        var url = config.api.trade_create.replace(':offerId', tradeService.getOffer().id);
+        connectionService.post(url, payload)
           .then(function (_data) {
-            console.log(_data);
             tradeService.setPricePaid($scope.offer);
             tradeService.setProfit($scope.profit);
             $location.path(config.routes.tradeSuccess);
           })
           .catch(function (_reason) {
-            notificationService.notify($scope, 'Could do accept trade', _reason);
+            notificationService.notify($scope, 'Could not do accept trade', _reason);
+          });
+      }
+      // else open or running trade --> TODO do not post but update trade
+      else {
+        var payload = {
+          price : $scope.offer,
+          direct : false
+        };
+        var url = config.api.trade_create.replace(':offerId', tradeService.getOffer().id);
+        console.log("openTrade");
+        connectionService.post(url, payload)
+          .then(function (_data) {
+            tradeService.setPricePaid($scope.offer);
+            tradeService.setProfit($scope.profit);
+            $location.path(config.routes.tradeSuccess);
+          })
+          .catch(function (_reason) {
+            notificationService.notify($scope, 'Could not do accept trade', _reason);
           });
       }
     };
