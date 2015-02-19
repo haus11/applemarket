@@ -10,7 +10,7 @@
  * Controller of the applemarketApp
  */
 angular.module('applemarketApp')
-  .controller('OffersCtrl', function ($scope, $location, gameData, playerData, tradeService, connectionService, notificationService) {
+  .controller('OffersCtrl', function ($rootScope, $scope, $location, gameData, playerData, tradeService, connectionService, notificationService) {
 
     //#############################################################
     //                           Base
@@ -114,7 +114,7 @@ angular.module('applemarketApp')
       });
 
     // when a new offer is created
-    connectionService.on(config.api.offerCreated, function (_data) {
+    $rootScope.$on(config.bc.onOfferCreated, function (event, _data) {
       tradeService.pushAvailableOffer(_data);
       $scope.availableOffers = tradeService.getAvailableOffers();
     });
@@ -124,13 +124,13 @@ angular.module('applemarketApp')
     //#############################################################
 
     // a new round is started
-    connectionService.on(config.api.roundCreated, function (_data) {
+    $rootScope.$on(config.bc.onNewRound, function (event, _data) {
       gameData.setRoundNumber(_data.count);
       tradeService.availableOffers = []; // later get offers from server, if somebody is faster than this instance of client
     });
 
     // a new session is started
-    connectionService.on(config.api.sessionCreated, function (_data) {
+    $rootScope.$on(config.bc.onNewSession, function (event, _data) {
       console.log(_data);
       gameData.setSessionNumber(_data.session.count);
       playerData.setMaxValue(_data.role.maxValue);
@@ -140,7 +140,7 @@ angular.module('applemarketApp')
     });
 
     // game finished
-    connectionService.on(config.api.gameFinished, function () {
+    $rootScope.$on(config.bc.onGameFinished, function () {
       gameData.setGameFinished();
       $location.path(config.routes.profile);
     });

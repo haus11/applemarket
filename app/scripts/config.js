@@ -51,7 +51,14 @@ var config = {
     offersCurRoundGet : 'apple/offer/currentRound',
 
     secret            : 'apple',
-    sails             : 'http://192.168.0.198:1338'
+    sails             : 'http://192.168.0.197:1338'
+  },
+
+  bc : {
+    onNewRound : 'onNewRound',
+    onNewSession : 'onNewSession',
+    onGameFinished : 'onGameFinished',
+    onOfferCreated : 'onOfferCreated'
   },
 
   nav : {
