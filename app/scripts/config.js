@@ -50,7 +50,7 @@ var config = {
     offerCreated      : 'offer:create',
 
     secret              : 'apple',
-    sails               : 'http://192.168.0.198:1338'
+    sails               : 'http://192.168.0.197:1338'
   },
 
   nav : {

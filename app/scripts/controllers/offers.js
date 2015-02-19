@@ -127,6 +127,7 @@ angular.module('applemarketApp')
       gameData.setSessionNumber(_data.session.count);
       playerData.setMaxValue(_data.role.maxValue);
       playerData.setIsDemander(_data.role.type === 'demander');
+      $scope.isDemander = _data.role.type === 'demander';
       tradeService.availableOffers = [];
     });
 
