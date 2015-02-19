@@ -71,9 +71,6 @@ angular.module('applemarketApp')
       gameData.setPlayerList($scope.lobbyData.playerList);
       gameData.setNumberOfPlayers($scope.numberOfPlayers);
 
-      //if ($scope.$root.$$phase !== '$apply' && $scope.$root.$$phase !== '$digest') {
-      //  $scope.$apply();
-      //}
     });
 
     // on player reconnects
@@ -83,10 +80,6 @@ angular.module('applemarketApp')
       $scope.lobbyData.numberOfPlayers++;
       gameData.setPlayerList($scope.lobbyData.playerList);
       gameData.setNumberOfPlayers($scope.numberOfPlayers);
-
-      //if ($scope.$root.$$phase !== '$apply' && $scope.$root.$$phase !== '$digest') {
-      //  $scope.$apply();
-      //}
 
     });
 
@@ -100,18 +93,6 @@ angular.module('applemarketApp')
           $scope.lobbyData.numberOfPlayers--;
           gameData.setPlayerList($scope.lobbyData.playerList);
           gameData.setNumberOfPlayers($scope.numberOfPlayers);
-          break;
-        }
-      }
-    });
-
-    // on player data changes
-    connectionService.on(config.api.userUpdate, function (_data) {
-
-      for (var i = 0; i < $scope.lobbyData.playerList.length; i++) {
-        if ($scope.lobbyData.playerList[i].id === _data.id) {
-          $scope.lobbyData.playerList[i] = _data;
-          gameData.setPlayerList($scope.lobbyData.playerList);
           break;
         }
       }

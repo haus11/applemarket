@@ -46,13 +46,13 @@ angular.module('applemarketApp')
       $scope.inputData.timeLeft--;
     };
 
-    $scope.increasePlayerMax = function () {
-      $scope.inputData.playerMax++;
+    $scope.increasePlayerMax = function (_value) {
+      $scope.inputData.playerMax += _value;
     };
 
-    $scope.decreasePlayerMax = function () {
+    $scope.decreasePlayerMax = function (_value) {
       if ($scope.inputData.playerMax > 6) {
-        $scope.inputData.playerMax--;
+        $scope.inputData.playerMax -= _value;
       }
     };
 
