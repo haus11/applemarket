@@ -21,6 +21,8 @@ angular.module('applemarketApp')
     var isOpenTrade = false;
 
     var availableOffers = [];
+    var availableTrades = [];
+    var runningTrades   = [];
 
     return {
       setOffer : function (_offer) {
@@ -58,6 +60,43 @@ angular.module('applemarketApp')
       getAvailableOffers : function () {
         return availableOffers;
       },
+
+      resetAvailableOffer : function () {
+        availableOffers = [];
+      },
+
+      pushAvailableTrade : function (_offer) {
+        availableTrades.push(_offer);
+      },
+
+      setAvailableTrades : function (_offers) {
+        availableTrades = _offers;
+      },
+
+      getAvailableTrades : function () {
+        return availableTrades;
+      },
+
+      resetAvailableTrade : function () {
+        availableTrades = [];
+      },
+
+      pushRunningTrade : function (_offer) {
+        runningTrades.push(_offer);
+      },
+
+      setRunningTrades : function (_offers) {
+        runningTrades = _offers;
+      },
+
+      getRunningTrades : function () {
+        return runningTrades;
+      },
+
+      resetRunningTrade : function () {
+        runningTrades = [];
+      },
+
       setIsOpenOffer : function (_isOpenOffer) {
         isOpenOffer = _isOpenOffer;
       },

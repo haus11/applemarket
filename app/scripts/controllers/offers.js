@@ -29,12 +29,11 @@ angular.module('applemarketApp')
 
     $scope.availableTrades = [];
     $scope.runningTrades   = [];
+    $scope.availableOffers = [];
 
     //#############################################################
     //                         Supplier
     //#############################################################
-
-    $scope.availableOffers = [];
 
     // create an initial offer as supplier
     $scope.saveSupplierPrice = function () {
@@ -57,7 +56,7 @@ angular.module('applemarketApp')
         console.log("getOffers")
         console.log(_data);
         $scope.availableOffers = _data;
-        tradeService.setAvailableOffers(_data);
+        //tradeService.setAvailableOffers(_data);
       })
       .catch(function (_reason) {
         //notificationService.notify($scope, 'Could not get Offers', _reason);
@@ -66,8 +65,8 @@ angular.module('applemarketApp')
     // when a new offer is created
     $rootScope.$on(config.bc.onOfferCreated, function (event, _data) {
       console.log('onOfferCreated');
-      tradeService.pushAvailableOffer(_data);
-      $scope.availableOffers = tradeService.getAvailableOffers();
+      //tradeService.pushAvailableOffer(_data);
+      $scope.availableOffers.push(_data); //= tradeService.getAvailableOffers();
     });
 
     //#############################################################
@@ -75,10 +74,12 @@ angular.module('applemarketApp')
     //#############################################################
 
     $rootScope.$on(config.bc.onTradeCreated, function (event, _data) {
-      $scope.availableTrades.push(_data);
+      tradeService.pushAvailableTrade(_data);
+      $scope.availableTrades = tradeService.getAvailableTrades();
     });
 
     $rootScope.$on(config.bc.onTradeUpdated, function (event, _data) {
+      $scope.availableTrades = tradeService.getAvailableTrades();
       for (var i = 0;  i < $scope.availableTrades.length; i++) {
         if (_data.id === $scope.availableTrades[i].id) {
           $scope.availableTrades.splice(i, 1);
@@ -87,6 +88,7 @@ angular.module('applemarketApp')
       }
 
       for (var i = 0;  i < $scope.runningTrades.length; i++) {
+        $scope.runningTrades = tradeService.getRunningTrades();
         if (_data.id === $scope.runningTrades[i].id) {
           $scope.runningTrades.splice(i, 1);
           break;
@@ -95,6 +97,8 @@ angular.module('applemarketApp')
 
       $scope.availableTrades.push(_data);
       $scope.runningTrades.push(_data);
+      tradeService.setAvailableTrades(($scope.availableTrades));
+      tradeService.setRunningTrades($scope.runningTrades);
     });
 
     $rootScope.$on(config.bc.onTradeAccepted, function (event, _data) {
@@ -117,7 +121,9 @@ angular.module('applemarketApp')
     // a new round is started
     $rootScope.$on(config.bc.onNewRound, function (event, _data) {
       gameData.setRoundNumber(_data.count);
-      tradeService.availableOffers = []; // later get offers from server, if somebody is faster than this instance of client
+      tradeService.resetAvailableOffer();
+      tradeService.resetAvailableTrade();
+      tradeService.resetRunningTrade()
     });
 
     // a new session is started
@@ -126,7 +132,9 @@ angular.module('applemarketApp')
       playerData.setMaxValue(_data.role.maxValue);
       playerData.setIsDemander(_data.role.type === 'demander');
       $scope.isDemander = _data.role.type === 'demander';
-      tradeService.availableOffers = [];
+      tradeService.resetAvailableOffer();
+      tradeService.resetAvailableTrade();
+      tradeService.resetRunningTrade();
 
       $location.path(config.routes.profile);
     });
