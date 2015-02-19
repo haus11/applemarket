@@ -10,7 +10,7 @@
 angular.module('applemarketApp')
   .controller('StatisticsCtrl', function ($scope, simpleChart, connectionService) {
 
-    var numberOfBarsDrawn = 5;
+    var numberOfBarsDrawn = 15;
 
     // -----------------------------------------------------------------------------
     // establish socket connection
@@ -18,6 +18,7 @@ angular.module('applemarketApp')
     connectionService.get(config.api.completedTransactions)
       .then(function(data) {
 
+        console.log(data);
         // draw first set of bars
         $scope.respBarChart  = simpleChart.drawBarChart(numberOfBarsDrawn, data);
 
@@ -34,4 +35,10 @@ angular.module('applemarketApp')
       .catch(function (_reason) {
         console.log(_reason);
       });
+
+    connectionService.on(config.api.transactionUpdate, function (_data) {
+
+      console.log(_data);
+      $scope.respBarChart  = simpleChart.updateBarChart(_data);
+    });
   });

@@ -53,7 +53,8 @@ var config = {
     secret                : 'apple',
     sails                 : 'http://localhost:1338',
 
-    completedTransactions : '/apple/completedTransactions'
+    completedTransactions : '/apple/completedTransactions',
+    transactionUpdate     : 'transaction:updated'
   },
 
   bc : {

@@ -213,6 +213,10 @@ angular.module('applemarketApp')
       },
       controlBarChart : function(direction) {
         controlBars(direction);
+      },
+      updateBarChart : function(data) {
+
+        updateBarChart(data);
       }
     };
   });

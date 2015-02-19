@@ -32,6 +32,8 @@ angular.module('applemarketApp')
       $rootScope.$broadcast(config.bc.onOfferCreated, _data);
     });
 
+    // when transaction is updated
+
     return {
 
     };
