@@ -62,7 +62,7 @@ var config = {
     trade_accepted    : 'trade:accepted',
 
     secret            : 'apple',
-    sails             : 'http://192.168.0.198:1338'
+    sails             : 'http://localhost:1338'
   },
 
   bc : {
